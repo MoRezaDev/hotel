@@ -1,0 +1,52 @@
+model Hotel {
+  id          String   @id @default(uuid())
+  name        String
+  title       String
+  slug        String   @unique
+  description String?
+  address     String
+  city        String
+  state       String
+  country     String
+  starRating  Int?
+  isInstallment Boolean @default(false)
+  features HotelFeatures[]
+  rooms Room[]
+  distances Json?
+  entryTime Int
+  exitTime Int
+  rulesDescriptions String[]
+  comments Comment[]
+  mainImageUrl    String?
+  imagesUrl   String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model HotelFeatures {
+    id String @id @default(uuid())
+
+    title String @unique
+    imageUrl String?
+
+    hotels Hotel[]
+}
+
+model Room {
+    id String @id @default(uuid())
+    title String
+    extraInfo String?
+    capacity Int @default(1)
+    breakfast Boolean @default(true)
+    dinner Boolean @default(false)
+    extraBed Boolean @default(false)
+    features String[]
+    actualPrice Int
+    discountedPrice Int
+
+    HotelId String
+    hotel Hotel @relation(fields: [HotelId],references: [id],onDelete: Cascade)
+
+    
+}
+
