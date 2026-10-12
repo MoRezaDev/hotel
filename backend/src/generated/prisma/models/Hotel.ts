@@ -52,6 +52,7 @@ export type HotelMinAggregateOutputType = {
   isInstallment: boolean | null
   entryTime: number | null
   exitTime: number | null
+  isSuggested: boolean | null
   mainImageUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -71,6 +72,7 @@ export type HotelMaxAggregateOutputType = {
   isInstallment: boolean | null
   entryTime: number | null
   exitTime: number | null
+  isSuggested: boolean | null
   mainImageUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -91,6 +93,7 @@ export type HotelCountAggregateOutputType = {
   distances: number
   entryTime: number
   exitTime: number
+  isSuggested: number
   rulesDescriptions: number
   mainImageUrl: number
   imagesUrl: number
@@ -126,6 +129,7 @@ export type HotelMinAggregateInputType = {
   isInstallment?: true
   entryTime?: true
   exitTime?: true
+  isSuggested?: true
   mainImageUrl?: true
   createdAt?: true
   updatedAt?: true
@@ -145,6 +149,7 @@ export type HotelMaxAggregateInputType = {
   isInstallment?: true
   entryTime?: true
   exitTime?: true
+  isSuggested?: true
   mainImageUrl?: true
   createdAt?: true
   updatedAt?: true
@@ -165,6 +170,7 @@ export type HotelCountAggregateInputType = {
   distances?: true
   entryTime?: true
   exitTime?: true
+  isSuggested?: true
   rulesDescriptions?: true
   mainImageUrl?: true
   imagesUrl?: true
@@ -274,6 +280,7 @@ export type HotelGroupByOutputType = {
   distances: runtime.JsonValue | null
   entryTime: number
   exitTime: number
+  isSuggested: boolean
   rulesDescriptions: string[]
   mainImageUrl: string | null
   imagesUrl: string[]
@@ -319,6 +326,7 @@ export type HotelWhereInput = {
   distances?: Prisma.JsonNullableFilter<"Hotel">
   entryTime?: Prisma.IntFilter<"Hotel"> | number
   exitTime?: Prisma.IntFilter<"Hotel"> | number
+  isSuggested?: Prisma.BoolFilter<"Hotel"> | boolean
   rulesDescriptions?: Prisma.StringNullableListFilter<"Hotel">
   mainImageUrl?: Prisma.StringNullableFilter<"Hotel"> | string | null
   imagesUrl?: Prisma.StringNullableListFilter<"Hotel">
@@ -327,6 +335,7 @@ export type HotelWhereInput = {
   features?: Prisma.HotelFeaturesListRelationFilter
   rooms?: Prisma.RoomListRelationFilter
   comments?: Prisma.CommentListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
 }
 
 export type HotelOrderByWithRelationInput = {
@@ -344,6 +353,7 @@ export type HotelOrderByWithRelationInput = {
   distances?: Prisma.SortOrderInput | Prisma.SortOrder
   entryTime?: Prisma.SortOrder
   exitTime?: Prisma.SortOrder
+  isSuggested?: Prisma.SortOrder
   rulesDescriptions?: Prisma.SortOrder
   mainImageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   imagesUrl?: Prisma.SortOrder
@@ -352,6 +362,7 @@ export type HotelOrderByWithRelationInput = {
   features?: Prisma.HotelFeaturesOrderByRelationAggregateInput
   rooms?: Prisma.RoomOrderByRelationAggregateInput
   comments?: Prisma.CommentOrderByRelationAggregateInput
+  orders?: Prisma.OrderOrderByRelationAggregateInput
 }
 
 export type HotelWhereUniqueInput = Prisma.AtLeast<{
@@ -372,6 +383,7 @@ export type HotelWhereUniqueInput = Prisma.AtLeast<{
   distances?: Prisma.JsonNullableFilter<"Hotel">
   entryTime?: Prisma.IntFilter<"Hotel"> | number
   exitTime?: Prisma.IntFilter<"Hotel"> | number
+  isSuggested?: Prisma.BoolFilter<"Hotel"> | boolean
   rulesDescriptions?: Prisma.StringNullableListFilter<"Hotel">
   mainImageUrl?: Prisma.StringNullableFilter<"Hotel"> | string | null
   imagesUrl?: Prisma.StringNullableListFilter<"Hotel">
@@ -380,6 +392,7 @@ export type HotelWhereUniqueInput = Prisma.AtLeast<{
   features?: Prisma.HotelFeaturesListRelationFilter
   rooms?: Prisma.RoomListRelationFilter
   comments?: Prisma.CommentListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
 }, "id" | "slug">
 
 export type HotelOrderByWithAggregationInput = {
@@ -397,6 +410,7 @@ export type HotelOrderByWithAggregationInput = {
   distances?: Prisma.SortOrderInput | Prisma.SortOrder
   entryTime?: Prisma.SortOrder
   exitTime?: Prisma.SortOrder
+  isSuggested?: Prisma.SortOrder
   rulesDescriptions?: Prisma.SortOrder
   mainImageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   imagesUrl?: Prisma.SortOrder
@@ -427,6 +441,7 @@ export type HotelScalarWhereWithAggregatesInput = {
   distances?: Prisma.JsonNullableWithAggregatesFilter<"Hotel">
   entryTime?: Prisma.IntWithAggregatesFilter<"Hotel"> | number
   exitTime?: Prisma.IntWithAggregatesFilter<"Hotel"> | number
+  isSuggested?: Prisma.BoolWithAggregatesFilter<"Hotel"> | boolean
   rulesDescriptions?: Prisma.StringNullableListFilter<"Hotel">
   mainImageUrl?: Prisma.StringNullableWithAggregatesFilter<"Hotel"> | string | null
   imagesUrl?: Prisma.StringNullableListFilter<"Hotel">
@@ -449,6 +464,7 @@ export type HotelCreateInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime: number
   exitTime: number
+  isSuggested?: boolean
   rulesDescriptions?: Prisma.HotelCreaterulesDescriptionsInput | string[]
   mainImageUrl?: string | null
   imagesUrl?: Prisma.HotelCreateimagesUrlInput | string[]
@@ -457,6 +473,7 @@ export type HotelCreateInput = {
   features?: Prisma.HotelFeaturesCreateNestedManyWithoutHotelsInput
   rooms?: Prisma.RoomCreateNestedManyWithoutHotelInput
   comments?: Prisma.CommentCreateNestedManyWithoutHotelInput
+  orders?: Prisma.OrderCreateNestedManyWithoutHotelInput
 }
 
 export type HotelUncheckedCreateInput = {
@@ -474,6 +491,7 @@ export type HotelUncheckedCreateInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime: number
   exitTime: number
+  isSuggested?: boolean
   rulesDescriptions?: Prisma.HotelCreaterulesDescriptionsInput | string[]
   mainImageUrl?: string | null
   imagesUrl?: Prisma.HotelCreateimagesUrlInput | string[]
@@ -482,6 +500,7 @@ export type HotelUncheckedCreateInput = {
   features?: Prisma.HotelFeaturesUncheckedCreateNestedManyWithoutHotelsInput
   rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutHotelInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutHotelInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutHotelInput
 }
 
 export type HotelUpdateInput = {
@@ -499,6 +518,7 @@ export type HotelUpdateInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime?: Prisma.IntFieldUpdateOperationsInput | number
   exitTime?: Prisma.IntFieldUpdateOperationsInput | number
+  isSuggested?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rulesDescriptions?: Prisma.HotelUpdaterulesDescriptionsInput | string[]
   mainImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagesUrl?: Prisma.HotelUpdateimagesUrlInput | string[]
@@ -507,6 +527,7 @@ export type HotelUpdateInput = {
   features?: Prisma.HotelFeaturesUpdateManyWithoutHotelsNestedInput
   rooms?: Prisma.RoomUpdateManyWithoutHotelNestedInput
   comments?: Prisma.CommentUpdateManyWithoutHotelNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutHotelNestedInput
 }
 
 export type HotelUncheckedUpdateInput = {
@@ -524,6 +545,7 @@ export type HotelUncheckedUpdateInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime?: Prisma.IntFieldUpdateOperationsInput | number
   exitTime?: Prisma.IntFieldUpdateOperationsInput | number
+  isSuggested?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rulesDescriptions?: Prisma.HotelUpdaterulesDescriptionsInput | string[]
   mainImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagesUrl?: Prisma.HotelUpdateimagesUrlInput | string[]
@@ -532,6 +554,7 @@ export type HotelUncheckedUpdateInput = {
   features?: Prisma.HotelFeaturesUncheckedUpdateManyWithoutHotelsNestedInput
   rooms?: Prisma.RoomUncheckedUpdateManyWithoutHotelNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutHotelNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutHotelNestedInput
 }
 
 export type HotelCreateManyInput = {
@@ -549,6 +572,7 @@ export type HotelCreateManyInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime: number
   exitTime: number
+  isSuggested?: boolean
   rulesDescriptions?: Prisma.HotelCreaterulesDescriptionsInput | string[]
   mainImageUrl?: string | null
   imagesUrl?: Prisma.HotelCreateimagesUrlInput | string[]
@@ -571,6 +595,7 @@ export type HotelUpdateManyMutationInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime?: Prisma.IntFieldUpdateOperationsInput | number
   exitTime?: Prisma.IntFieldUpdateOperationsInput | number
+  isSuggested?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rulesDescriptions?: Prisma.HotelUpdaterulesDescriptionsInput | string[]
   mainImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagesUrl?: Prisma.HotelUpdateimagesUrlInput | string[]
@@ -593,6 +618,7 @@ export type HotelUncheckedUpdateManyInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime?: Prisma.IntFieldUpdateOperationsInput | number
   exitTime?: Prisma.IntFieldUpdateOperationsInput | number
+  isSuggested?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rulesDescriptions?: Prisma.HotelUpdaterulesDescriptionsInput | string[]
   mainImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagesUrl?: Prisma.HotelUpdateimagesUrlInput | string[]
@@ -623,6 +649,7 @@ export type HotelCountOrderByAggregateInput = {
   distances?: Prisma.SortOrder
   entryTime?: Prisma.SortOrder
   exitTime?: Prisma.SortOrder
+  isSuggested?: Prisma.SortOrder
   rulesDescriptions?: Prisma.SortOrder
   mainImageUrl?: Prisma.SortOrder
   imagesUrl?: Prisma.SortOrder
@@ -650,6 +677,7 @@ export type HotelMaxOrderByAggregateInput = {
   isInstallment?: Prisma.SortOrder
   entryTime?: Prisma.SortOrder
   exitTime?: Prisma.SortOrder
+  isSuggested?: Prisma.SortOrder
   mainImageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -669,6 +697,7 @@ export type HotelMinOrderByAggregateInput = {
   isInstallment?: Prisma.SortOrder
   entryTime?: Prisma.SortOrder
   exitTime?: Prisma.SortOrder
+  isSuggested?: Prisma.SortOrder
   mainImageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -797,6 +826,20 @@ export type HotelUpdateOneRequiredWithoutRoomsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.HotelUpdateToOneWithWhereWithoutRoomsInput, Prisma.HotelUpdateWithoutRoomsInput>, Prisma.HotelUncheckedUpdateWithoutRoomsInput>
 }
 
+export type HotelCreateNestedOneWithoutOrdersInput = {
+  create?: Prisma.XOR<Prisma.HotelCreateWithoutOrdersInput, Prisma.HotelUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.HotelCreateOrConnectWithoutOrdersInput
+  connect?: Prisma.HotelWhereUniqueInput
+}
+
+export type HotelUpdateOneRequiredWithoutOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.HotelCreateWithoutOrdersInput, Prisma.HotelUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.HotelCreateOrConnectWithoutOrdersInput
+  upsert?: Prisma.HotelUpsertWithoutOrdersInput
+  connect?: Prisma.HotelWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.HotelUpdateToOneWithWhereWithoutOrdersInput, Prisma.HotelUpdateWithoutOrdersInput>, Prisma.HotelUncheckedUpdateWithoutOrdersInput>
+}
+
 export type HotelCreateNestedOneWithoutCommentsInput = {
   create?: Prisma.XOR<Prisma.HotelCreateWithoutCommentsInput, Prisma.HotelUncheckedCreateWithoutCommentsInput>
   connectOrCreate?: Prisma.HotelCreateOrConnectWithoutCommentsInput
@@ -826,6 +869,7 @@ export type HotelCreateWithoutFeaturesInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime: number
   exitTime: number
+  isSuggested?: boolean
   rulesDescriptions?: Prisma.HotelCreaterulesDescriptionsInput | string[]
   mainImageUrl?: string | null
   imagesUrl?: Prisma.HotelCreateimagesUrlInput | string[]
@@ -833,6 +877,7 @@ export type HotelCreateWithoutFeaturesInput = {
   updatedAt?: Date | string
   rooms?: Prisma.RoomCreateNestedManyWithoutHotelInput
   comments?: Prisma.CommentCreateNestedManyWithoutHotelInput
+  orders?: Prisma.OrderCreateNestedManyWithoutHotelInput
 }
 
 export type HotelUncheckedCreateWithoutFeaturesInput = {
@@ -850,6 +895,7 @@ export type HotelUncheckedCreateWithoutFeaturesInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime: number
   exitTime: number
+  isSuggested?: boolean
   rulesDescriptions?: Prisma.HotelCreaterulesDescriptionsInput | string[]
   mainImageUrl?: string | null
   imagesUrl?: Prisma.HotelCreateimagesUrlInput | string[]
@@ -857,6 +903,7 @@ export type HotelUncheckedCreateWithoutFeaturesInput = {
   updatedAt?: Date | string
   rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutHotelInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutHotelInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutHotelInput
 }
 
 export type HotelCreateOrConnectWithoutFeaturesInput = {
@@ -898,6 +945,7 @@ export type HotelScalarWhereInput = {
   distances?: Prisma.JsonNullableFilter<"Hotel">
   entryTime?: Prisma.IntFilter<"Hotel"> | number
   exitTime?: Prisma.IntFilter<"Hotel"> | number
+  isSuggested?: Prisma.BoolFilter<"Hotel"> | boolean
   rulesDescriptions?: Prisma.StringNullableListFilter<"Hotel">
   mainImageUrl?: Prisma.StringNullableFilter<"Hotel"> | string | null
   imagesUrl?: Prisma.StringNullableListFilter<"Hotel">
@@ -920,6 +968,7 @@ export type HotelCreateWithoutRoomsInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime: number
   exitTime: number
+  isSuggested?: boolean
   rulesDescriptions?: Prisma.HotelCreaterulesDescriptionsInput | string[]
   mainImageUrl?: string | null
   imagesUrl?: Prisma.HotelCreateimagesUrlInput | string[]
@@ -927,6 +976,7 @@ export type HotelCreateWithoutRoomsInput = {
   updatedAt?: Date | string
   features?: Prisma.HotelFeaturesCreateNestedManyWithoutHotelsInput
   comments?: Prisma.CommentCreateNestedManyWithoutHotelInput
+  orders?: Prisma.OrderCreateNestedManyWithoutHotelInput
 }
 
 export type HotelUncheckedCreateWithoutRoomsInput = {
@@ -944,6 +994,7 @@ export type HotelUncheckedCreateWithoutRoomsInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime: number
   exitTime: number
+  isSuggested?: boolean
   rulesDescriptions?: Prisma.HotelCreaterulesDescriptionsInput | string[]
   mainImageUrl?: string | null
   imagesUrl?: Prisma.HotelCreateimagesUrlInput | string[]
@@ -951,6 +1002,7 @@ export type HotelUncheckedCreateWithoutRoomsInput = {
   updatedAt?: Date | string
   features?: Prisma.HotelFeaturesUncheckedCreateNestedManyWithoutHotelsInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutHotelInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutHotelInput
 }
 
 export type HotelCreateOrConnectWithoutRoomsInput = {
@@ -984,6 +1036,7 @@ export type HotelUpdateWithoutRoomsInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime?: Prisma.IntFieldUpdateOperationsInput | number
   exitTime?: Prisma.IntFieldUpdateOperationsInput | number
+  isSuggested?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rulesDescriptions?: Prisma.HotelUpdaterulesDescriptionsInput | string[]
   mainImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagesUrl?: Prisma.HotelUpdateimagesUrlInput | string[]
@@ -991,6 +1044,7 @@ export type HotelUpdateWithoutRoomsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   features?: Prisma.HotelFeaturesUpdateManyWithoutHotelsNestedInput
   comments?: Prisma.CommentUpdateManyWithoutHotelNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutHotelNestedInput
 }
 
 export type HotelUncheckedUpdateWithoutRoomsInput = {
@@ -1008,12 +1062,134 @@ export type HotelUncheckedUpdateWithoutRoomsInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime?: Prisma.IntFieldUpdateOperationsInput | number
   exitTime?: Prisma.IntFieldUpdateOperationsInput | number
+  isSuggested?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rulesDescriptions?: Prisma.HotelUpdaterulesDescriptionsInput | string[]
   mainImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagesUrl?: Prisma.HotelUpdateimagesUrlInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   features?: Prisma.HotelFeaturesUncheckedUpdateManyWithoutHotelsNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutHotelNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutHotelNestedInput
+}
+
+export type HotelCreateWithoutOrdersInput = {
+  id?: string
+  name: string
+  title: string
+  slug: string
+  description?: string | null
+  address: string
+  city: string
+  state: string
+  country: string
+  starRating?: number | null
+  isInstallment?: boolean
+  distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  entryTime: number
+  exitTime: number
+  isSuggested?: boolean
+  rulesDescriptions?: Prisma.HotelCreaterulesDescriptionsInput | string[]
+  mainImageUrl?: string | null
+  imagesUrl?: Prisma.HotelCreateimagesUrlInput | string[]
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  features?: Prisma.HotelFeaturesCreateNestedManyWithoutHotelsInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutHotelInput
+  comments?: Prisma.CommentCreateNestedManyWithoutHotelInput
+}
+
+export type HotelUncheckedCreateWithoutOrdersInput = {
+  id?: string
+  name: string
+  title: string
+  slug: string
+  description?: string | null
+  address: string
+  city: string
+  state: string
+  country: string
+  starRating?: number | null
+  isInstallment?: boolean
+  distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  entryTime: number
+  exitTime: number
+  isSuggested?: boolean
+  rulesDescriptions?: Prisma.HotelCreaterulesDescriptionsInput | string[]
+  mainImageUrl?: string | null
+  imagesUrl?: Prisma.HotelCreateimagesUrlInput | string[]
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  features?: Prisma.HotelFeaturesUncheckedCreateNestedManyWithoutHotelsInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutHotelInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutHotelInput
+}
+
+export type HotelCreateOrConnectWithoutOrdersInput = {
+  where: Prisma.HotelWhereUniqueInput
+  create: Prisma.XOR<Prisma.HotelCreateWithoutOrdersInput, Prisma.HotelUncheckedCreateWithoutOrdersInput>
+}
+
+export type HotelUpsertWithoutOrdersInput = {
+  update: Prisma.XOR<Prisma.HotelUpdateWithoutOrdersInput, Prisma.HotelUncheckedUpdateWithoutOrdersInput>
+  create: Prisma.XOR<Prisma.HotelCreateWithoutOrdersInput, Prisma.HotelUncheckedCreateWithoutOrdersInput>
+  where?: Prisma.HotelWhereInput
+}
+
+export type HotelUpdateToOneWithWhereWithoutOrdersInput = {
+  where?: Prisma.HotelWhereInput
+  data: Prisma.XOR<Prisma.HotelUpdateWithoutOrdersInput, Prisma.HotelUncheckedUpdateWithoutOrdersInput>
+}
+
+export type HotelUpdateWithoutOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  state?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  starRating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isInstallment?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  entryTime?: Prisma.IntFieldUpdateOperationsInput | number
+  exitTime?: Prisma.IntFieldUpdateOperationsInput | number
+  isSuggested?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rulesDescriptions?: Prisma.HotelUpdaterulesDescriptionsInput | string[]
+  mainImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imagesUrl?: Prisma.HotelUpdateimagesUrlInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  features?: Prisma.HotelFeaturesUpdateManyWithoutHotelsNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutHotelNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutHotelNestedInput
+}
+
+export type HotelUncheckedUpdateWithoutOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  state?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  starRating?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isInstallment?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  entryTime?: Prisma.IntFieldUpdateOperationsInput | number
+  exitTime?: Prisma.IntFieldUpdateOperationsInput | number
+  isSuggested?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rulesDescriptions?: Prisma.HotelUpdaterulesDescriptionsInput | string[]
+  mainImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imagesUrl?: Prisma.HotelUpdateimagesUrlInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  features?: Prisma.HotelFeaturesUncheckedUpdateManyWithoutHotelsNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutHotelNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutHotelNestedInput
 }
 
@@ -1032,6 +1208,7 @@ export type HotelCreateWithoutCommentsInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime: number
   exitTime: number
+  isSuggested?: boolean
   rulesDescriptions?: Prisma.HotelCreaterulesDescriptionsInput | string[]
   mainImageUrl?: string | null
   imagesUrl?: Prisma.HotelCreateimagesUrlInput | string[]
@@ -1039,6 +1216,7 @@ export type HotelCreateWithoutCommentsInput = {
   updatedAt?: Date | string
   features?: Prisma.HotelFeaturesCreateNestedManyWithoutHotelsInput
   rooms?: Prisma.RoomCreateNestedManyWithoutHotelInput
+  orders?: Prisma.OrderCreateNestedManyWithoutHotelInput
 }
 
 export type HotelUncheckedCreateWithoutCommentsInput = {
@@ -1056,6 +1234,7 @@ export type HotelUncheckedCreateWithoutCommentsInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime: number
   exitTime: number
+  isSuggested?: boolean
   rulesDescriptions?: Prisma.HotelCreaterulesDescriptionsInput | string[]
   mainImageUrl?: string | null
   imagesUrl?: Prisma.HotelCreateimagesUrlInput | string[]
@@ -1063,6 +1242,7 @@ export type HotelUncheckedCreateWithoutCommentsInput = {
   updatedAt?: Date | string
   features?: Prisma.HotelFeaturesUncheckedCreateNestedManyWithoutHotelsInput
   rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutHotelInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutHotelInput
 }
 
 export type HotelCreateOrConnectWithoutCommentsInput = {
@@ -1096,6 +1276,7 @@ export type HotelUpdateWithoutCommentsInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime?: Prisma.IntFieldUpdateOperationsInput | number
   exitTime?: Prisma.IntFieldUpdateOperationsInput | number
+  isSuggested?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rulesDescriptions?: Prisma.HotelUpdaterulesDescriptionsInput | string[]
   mainImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagesUrl?: Prisma.HotelUpdateimagesUrlInput | string[]
@@ -1103,6 +1284,7 @@ export type HotelUpdateWithoutCommentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   features?: Prisma.HotelFeaturesUpdateManyWithoutHotelsNestedInput
   rooms?: Prisma.RoomUpdateManyWithoutHotelNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutHotelNestedInput
 }
 
 export type HotelUncheckedUpdateWithoutCommentsInput = {
@@ -1120,6 +1302,7 @@ export type HotelUncheckedUpdateWithoutCommentsInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime?: Prisma.IntFieldUpdateOperationsInput | number
   exitTime?: Prisma.IntFieldUpdateOperationsInput | number
+  isSuggested?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rulesDescriptions?: Prisma.HotelUpdaterulesDescriptionsInput | string[]
   mainImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagesUrl?: Prisma.HotelUpdateimagesUrlInput | string[]
@@ -1127,6 +1310,7 @@ export type HotelUncheckedUpdateWithoutCommentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   features?: Prisma.HotelFeaturesUncheckedUpdateManyWithoutHotelsNestedInput
   rooms?: Prisma.RoomUncheckedUpdateManyWithoutHotelNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutHotelNestedInput
 }
 
 export type HotelUpdateWithoutFeaturesInput = {
@@ -1144,6 +1328,7 @@ export type HotelUpdateWithoutFeaturesInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime?: Prisma.IntFieldUpdateOperationsInput | number
   exitTime?: Prisma.IntFieldUpdateOperationsInput | number
+  isSuggested?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rulesDescriptions?: Prisma.HotelUpdaterulesDescriptionsInput | string[]
   mainImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagesUrl?: Prisma.HotelUpdateimagesUrlInput | string[]
@@ -1151,6 +1336,7 @@ export type HotelUpdateWithoutFeaturesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rooms?: Prisma.RoomUpdateManyWithoutHotelNestedInput
   comments?: Prisma.CommentUpdateManyWithoutHotelNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutHotelNestedInput
 }
 
 export type HotelUncheckedUpdateWithoutFeaturesInput = {
@@ -1168,6 +1354,7 @@ export type HotelUncheckedUpdateWithoutFeaturesInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime?: Prisma.IntFieldUpdateOperationsInput | number
   exitTime?: Prisma.IntFieldUpdateOperationsInput | number
+  isSuggested?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rulesDescriptions?: Prisma.HotelUpdaterulesDescriptionsInput | string[]
   mainImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagesUrl?: Prisma.HotelUpdateimagesUrlInput | string[]
@@ -1175,6 +1362,7 @@ export type HotelUncheckedUpdateWithoutFeaturesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rooms?: Prisma.RoomUncheckedUpdateManyWithoutHotelNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutHotelNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutHotelNestedInput
 }
 
 export type HotelUncheckedUpdateManyWithoutFeaturesInput = {
@@ -1192,6 +1380,7 @@ export type HotelUncheckedUpdateManyWithoutFeaturesInput = {
   distances?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   entryTime?: Prisma.IntFieldUpdateOperationsInput | number
   exitTime?: Prisma.IntFieldUpdateOperationsInput | number
+  isSuggested?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rulesDescriptions?: Prisma.HotelUpdaterulesDescriptionsInput | string[]
   mainImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagesUrl?: Prisma.HotelUpdateimagesUrlInput | string[]
@@ -1208,12 +1397,14 @@ export type HotelCountOutputType = {
   features: number
   rooms: number
   comments: number
+  orders: number
 }
 
 export type HotelCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   features?: boolean | HotelCountOutputTypeCountFeaturesArgs
   rooms?: boolean | HotelCountOutputTypeCountRoomsArgs
   comments?: boolean | HotelCountOutputTypeCountCommentsArgs
+  orders?: boolean | HotelCountOutputTypeCountOrdersArgs
 }
 
 /**
@@ -1247,6 +1438,13 @@ export type HotelCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.CommentWhereInput
 }
 
+/**
+ * HotelCountOutputType without action
+ */
+export type HotelCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderWhereInput
+}
+
 
 export type HotelSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1263,6 +1461,7 @@ export type HotelSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   distances?: boolean
   entryTime?: boolean
   exitTime?: boolean
+  isSuggested?: boolean
   rulesDescriptions?: boolean
   mainImageUrl?: boolean
   imagesUrl?: boolean
@@ -1271,6 +1470,7 @@ export type HotelSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   features?: boolean | Prisma.Hotel$featuresArgs<ExtArgs>
   rooms?: boolean | Prisma.Hotel$roomsArgs<ExtArgs>
   comments?: boolean | Prisma.Hotel$commentsArgs<ExtArgs>
+  orders?: boolean | Prisma.Hotel$ordersArgs<ExtArgs>
   _count?: boolean | Prisma.HotelCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["hotel"]>
 
@@ -1289,6 +1489,7 @@ export type HotelSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   distances?: boolean
   entryTime?: boolean
   exitTime?: boolean
+  isSuggested?: boolean
   rulesDescriptions?: boolean
   mainImageUrl?: boolean
   imagesUrl?: boolean
@@ -1311,6 +1512,7 @@ export type HotelSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   distances?: boolean
   entryTime?: boolean
   exitTime?: boolean
+  isSuggested?: boolean
   rulesDescriptions?: boolean
   mainImageUrl?: boolean
   imagesUrl?: boolean
@@ -1333,6 +1535,7 @@ export type HotelSelectScalar = {
   distances?: boolean
   entryTime?: boolean
   exitTime?: boolean
+  isSuggested?: boolean
   rulesDescriptions?: boolean
   mainImageUrl?: boolean
   imagesUrl?: boolean
@@ -1340,11 +1543,12 @@ export type HotelSelectScalar = {
   updatedAt?: boolean
 }
 
-export type HotelOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "title" | "slug" | "description" | "address" | "city" | "state" | "country" | "starRating" | "isInstallment" | "distances" | "entryTime" | "exitTime" | "rulesDescriptions" | "mainImageUrl" | "imagesUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["hotel"]>
+export type HotelOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "title" | "slug" | "description" | "address" | "city" | "state" | "country" | "starRating" | "isInstallment" | "distances" | "entryTime" | "exitTime" | "isSuggested" | "rulesDescriptions" | "mainImageUrl" | "imagesUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["hotel"]>
 export type HotelInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   features?: boolean | Prisma.Hotel$featuresArgs<ExtArgs>
   rooms?: boolean | Prisma.Hotel$roomsArgs<ExtArgs>
   comments?: boolean | Prisma.Hotel$commentsArgs<ExtArgs>
+  orders?: boolean | Prisma.Hotel$ordersArgs<ExtArgs>
   _count?: boolean | Prisma.HotelCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type HotelIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1356,6 +1560,7 @@ export type $HotelPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     features: Prisma.$HotelFeaturesPayload<ExtArgs>[]
     rooms: Prisma.$RoomPayload<ExtArgs>[]
     comments: Prisma.$CommentPayload<ExtArgs>[]
+    orders: Prisma.$OrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1372,6 +1577,7 @@ export type $HotelPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     distances: runtime.JsonValue | null
     entryTime: number
     exitTime: number
+    isSuggested: boolean
     rulesDescriptions: string[]
     mainImageUrl: string | null
     imagesUrl: string[]
@@ -1774,6 +1980,7 @@ export interface Prisma__HotelClient<T, Null = never, ExtArgs extends runtime.Ty
   features<T extends Prisma.Hotel$featuresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Hotel$featuresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HotelFeaturesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   rooms<T extends Prisma.Hotel$roomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Hotel$roomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   comments<T extends Prisma.Hotel$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Hotel$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orders<T extends Prisma.Hotel$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Hotel$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1817,6 +2024,7 @@ export interface HotelFieldRefs {
   readonly distances: Prisma.FieldRef<"Hotel", 'Json'>
   readonly entryTime: Prisma.FieldRef<"Hotel", 'Int'>
   readonly exitTime: Prisma.FieldRef<"Hotel", 'Int'>
+  readonly isSuggested: Prisma.FieldRef<"Hotel", 'Boolean'>
   readonly rulesDescriptions: Prisma.FieldRef<"Hotel", 'String[]'>
   readonly mainImageUrl: Prisma.FieldRef<"Hotel", 'String'>
   readonly imagesUrl: Prisma.FieldRef<"Hotel", 'String[]'>
@@ -2284,6 +2492,30 @@ export type Hotel$commentsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.CommentScalarFieldEnum | Prisma.CommentScalarFieldEnum[]
+}
+
+/**
+ * Hotel.orders
+ */
+export type Hotel$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Order
+   */
+  select?: Prisma.OrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Order
+   */
+  omit?: Prisma.OrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderInclude<ExtArgs> | null
+  where?: Prisma.OrderWhereInput
+  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
+  cursor?: Prisma.OrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
 }
 
 /**

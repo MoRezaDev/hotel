@@ -54,9 +54,12 @@ export const ModelName = {
   Hotel: 'Hotel',
   HotelFeatures: 'HotelFeatures',
   Room: 'Room',
+  Order: 'Order',
+  Transaction: 'Transaction',
   Person: 'Person',
   Otp: 'Otp',
-  Comment: 'Comment'
+  Comment: 'Comment',
+  Passenger: 'Passenger'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -90,6 +93,7 @@ export const HotelScalarFieldEnum = {
   distances: 'distances',
   entryTime: 'entryTime',
   exitTime: 'exitTime',
+  isSuggested: 'isSuggested',
   rulesDescriptions: 'rulesDescriptions',
   mainImageUrl: 'mainImageUrl',
   imagesUrl: 'imagesUrl',
@@ -103,7 +107,9 @@ export type HotelScalarFieldEnum = (typeof HotelScalarFieldEnum)[keyof typeof Ho
 export const HotelFeaturesScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  imageUrl: 'imageUrl'
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type HotelFeaturesScalarFieldEnum = (typeof HotelFeaturesScalarFieldEnum)[keyof typeof HotelFeaturesScalarFieldEnum]
@@ -120,16 +126,55 @@ export const RoomScalarFieldEnum = {
   features: 'features',
   actualPrice: 'actualPrice',
   discountedPrice: 'discountedPrice',
-  HotelId: 'HotelId'
+  HotelId: 'HotelId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof RoomScalarFieldEnum]
+
+
+export const OrderScalarFieldEnum = {
+  id: 'id',
+  orderNumber: 'orderNumber',
+  extraRequest: 'extraRequest',
+  passengerId: 'passengerId',
+  personId: 'personId',
+  hotelId: 'hotelId',
+  roomId: 'roomId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const TransactionScalarFieldEnum = {
+  id: 'id',
+  codeNumber: 'codeNumber',
+  verifyCode: 'verifyCode',
+  status: 'status',
+  orderId: 'orderId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
 
 
 export const PersonScalarFieldEnum = {
   id: 'id',
   firstName: 'firstName',
   lastName: 'lastName',
+  firstNameEn: 'firstNameEn',
+  lastNameEn: 'lastNameEn',
+  gender: 'gender',
+  mobileNumber: 'mobileNumber',
+  nationality: 'nationality',
+  codeNational: 'codeNational',
+  passportNumber: 'passportNumber',
+  passportExpireDate: 'passportExpireDate',
+  birthday: 'birthday',
   image: 'image',
   isVip: 'isVip',
   isBanned: 'isBanned',
@@ -158,10 +203,25 @@ export const CommentScalarFieldEnum = {
   text: 'text',
   userRating: 'userRating',
   userId: 'userId',
-  hotelId: 'hotelId'
+  hotelId: 'hotelId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
+
+
+export const PassengerScalarFieldEnum = {
+  id: 'id',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  codeNational: 'codeNational',
+  mobileNumber: 'mobileNumber',
+  gender: 'gender',
+  createdAt: 'createdAt'
+} as const
+
+export type PassengerScalarFieldEnum = (typeof PassengerScalarFieldEnum)[keyof typeof PassengerScalarFieldEnum]
 
 
 export const SortOrder = {

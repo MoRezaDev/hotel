@@ -15,12 +15,17 @@ model Hotel {
   distances Json?
   entryTime Int
   exitTime Int
+  isSuggested Boolean @default(false)
   rulesDescriptions String[]
   comments Comment[]
   mainImageUrl    String?
   imagesUrl   String[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  
+
+  orders Order[]
+  
 }
 
 model HotelFeatures {
@@ -30,6 +35,9 @@ model HotelFeatures {
     imageUrl String?
 
     hotels Hotel[]
+
+    createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Room {
@@ -47,6 +55,9 @@ model Room {
     HotelId String
     hotel Hotel @relation(fields: [HotelId],references: [id],onDelete: Cascade)
 
-    
+    orders Order[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 

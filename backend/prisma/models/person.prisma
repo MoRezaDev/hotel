@@ -3,6 +3,15 @@ model Person {
 
     firstName String?
     lastName String?
+    firstNameEn String?
+    lastNameEn String?
+    gender Gender?
+    mobileNumber Int @unique
+    nationality String?
+    codeNational Int? @unique
+    passportNumber Int? @unique
+    passportExpireDate DateTime?
+    birthday DateTime?
     image String?
     isVip Boolean @default(false)
     isBanned Boolean @default(false)
@@ -10,6 +19,8 @@ model Person {
     email String?
     password String?
     otp Otp?
+    passengers Passenger[]
+    orders Order[]
 
     comments Comment[]
 
@@ -18,6 +29,11 @@ model Person {
 
 
 }
+enum Gender {
+    MAN
+    WOMAN
+}
+
 
 model Otp {
     id String @id @default(uuid())
@@ -39,5 +55,24 @@ model Comment {
 
     hotelId String
     hotel Hotel @relation(fields: [hotelId],references: [id],onDelete: Cascade)
+
+    createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Passenger {
+    id String @id @default(uuid())
+
+    firstName String 
+    lastName String
+    codeNational Int @unique
+    mobileNumber Int @unique
+    gender Gender
+
+    persons Person[]
+    orders Order[]
+
+    createdAt DateTime @default(now())
+
 }
 

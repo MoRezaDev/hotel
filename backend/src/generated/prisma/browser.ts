@@ -33,6 +33,16 @@ export type HotelFeatures = Prisma.HotelFeaturesModel
  */
 export type Room = Prisma.RoomModel
 /**
+ * Model Order
+ * 
+ */
+export type Order = Prisma.OrderModel
+/**
+ * Model Transaction
+ * 
+ */
+export type Transaction = Prisma.TransactionModel
+/**
  * Model Person
  * 
  */
@@ -47,3 +57,8 @@ export type Otp = Prisma.OtpModel
  * 
  */
 export type Comment = Prisma.CommentModel
+/**
+ * Model Passenger
+ * 
+ */
+export type Passenger = Prisma.PassengerModel

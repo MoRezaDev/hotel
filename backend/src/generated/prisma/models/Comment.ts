@@ -40,6 +40,8 @@ export type CommentMinAggregateOutputType = {
   userRating: number | null
   userId: string | null
   hotelId: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type CommentMaxAggregateOutputType = {
@@ -48,6 +50,8 @@ export type CommentMaxAggregateOutputType = {
   userRating: number | null
   userId: string | null
   hotelId: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type CommentCountAggregateOutputType = {
@@ -56,6 +60,8 @@ export type CommentCountAggregateOutputType = {
   userRating: number
   userId: number
   hotelId: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -74,6 +80,8 @@ export type CommentMinAggregateInputType = {
   userRating?: true
   userId?: true
   hotelId?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type CommentMaxAggregateInputType = {
@@ -82,6 +90,8 @@ export type CommentMaxAggregateInputType = {
   userRating?: true
   userId?: true
   hotelId?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type CommentCountAggregateInputType = {
@@ -90,6 +100,8 @@ export type CommentCountAggregateInputType = {
   userRating?: true
   userId?: true
   hotelId?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -185,6 +197,8 @@ export type CommentGroupByOutputType = {
   userRating: number
   userId: string
   hotelId: string
+  createdAt: Date
+  updatedAt: Date
   _count: CommentCountAggregateOutputType | null
   _avg: CommentAvgAggregateOutputType | null
   _sum: CommentSumAggregateOutputType | null
@@ -216,6 +230,8 @@ export type CommentWhereInput = {
   userRating?: Prisma.IntFilter<"Comment"> | number
   userId?: Prisma.StringFilter<"Comment"> | string
   hotelId?: Prisma.StringFilter<"Comment"> | string
+  createdAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
   user?: Prisma.XOR<Prisma.PersonScalarRelationFilter, Prisma.PersonWhereInput>
   hotel?: Prisma.XOR<Prisma.HotelScalarRelationFilter, Prisma.HotelWhereInput>
 }
@@ -226,6 +242,8 @@ export type CommentOrderByWithRelationInput = {
   userRating?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   user?: Prisma.PersonOrderByWithRelationInput
   hotel?: Prisma.HotelOrderByWithRelationInput
 }
@@ -239,6 +257,8 @@ export type CommentWhereUniqueInput = Prisma.AtLeast<{
   userRating?: Prisma.IntFilter<"Comment"> | number
   userId?: Prisma.StringFilter<"Comment"> | string
   hotelId?: Prisma.StringFilter<"Comment"> | string
+  createdAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
   user?: Prisma.XOR<Prisma.PersonScalarRelationFilter, Prisma.PersonWhereInput>
   hotel?: Prisma.XOR<Prisma.HotelScalarRelationFilter, Prisma.HotelWhereInput>
 }, "id">
@@ -249,6 +269,8 @@ export type CommentOrderByWithAggregationInput = {
   userRating?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.CommentCountOrderByAggregateInput
   _avg?: Prisma.CommentAvgOrderByAggregateInput
   _max?: Prisma.CommentMaxOrderByAggregateInput
@@ -265,12 +287,16 @@ export type CommentScalarWhereWithAggregatesInput = {
   userRating?: Prisma.IntWithAggregatesFilter<"Comment"> | number
   userId?: Prisma.StringWithAggregatesFilter<"Comment"> | string
   hotelId?: Prisma.StringWithAggregatesFilter<"Comment"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Comment"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Comment"> | Date | string
 }
 
 export type CommentCreateInput = {
   id?: string
   text: string
   userRating: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   user: Prisma.PersonCreateNestedOneWithoutCommentsInput
   hotel: Prisma.HotelCreateNestedOneWithoutCommentsInput
 }
@@ -281,12 +307,16 @@ export type CommentUncheckedCreateInput = {
   userRating: number
   userId: string
   hotelId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type CommentUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   userRating?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.PersonUpdateOneRequiredWithoutCommentsNestedInput
   hotel?: Prisma.HotelUpdateOneRequiredWithoutCommentsNestedInput
 }
@@ -297,6 +327,8 @@ export type CommentUncheckedUpdateInput = {
   userRating?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CommentCreateManyInput = {
@@ -305,12 +337,16 @@ export type CommentCreateManyInput = {
   userRating: number
   userId: string
   hotelId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type CommentUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   userRating?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CommentUncheckedUpdateManyInput = {
@@ -319,6 +355,8 @@ export type CommentUncheckedUpdateManyInput = {
   userRating?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CommentListRelationFilter = {
@@ -337,6 +375,8 @@ export type CommentCountOrderByAggregateInput = {
   userRating?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type CommentAvgOrderByAggregateInput = {
@@ -349,6 +389,8 @@ export type CommentMaxOrderByAggregateInput = {
   userRating?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type CommentMinOrderByAggregateInput = {
@@ -357,6 +399,8 @@ export type CommentMinOrderByAggregateInput = {
   userRating?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type CommentSumOrderByAggregateInput = {
@@ -451,6 +495,8 @@ export type CommentCreateWithoutHotelInput = {
   id?: string
   text: string
   userRating: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   user: Prisma.PersonCreateNestedOneWithoutCommentsInput
 }
 
@@ -459,6 +505,8 @@ export type CommentUncheckedCreateWithoutHotelInput = {
   text: string
   userRating: number
   userId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type CommentCreateOrConnectWithoutHotelInput = {
@@ -496,12 +544,16 @@ export type CommentScalarWhereInput = {
   userRating?: Prisma.IntFilter<"Comment"> | number
   userId?: Prisma.StringFilter<"Comment"> | string
   hotelId?: Prisma.StringFilter<"Comment"> | string
+  createdAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
 }
 
 export type CommentCreateWithoutUserInput = {
   id?: string
   text: string
   userRating: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   hotel: Prisma.HotelCreateNestedOneWithoutCommentsInput
 }
 
@@ -510,6 +562,8 @@ export type CommentUncheckedCreateWithoutUserInput = {
   text: string
   userRating: number
   hotelId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type CommentCreateOrConnectWithoutUserInput = {
@@ -543,12 +597,16 @@ export type CommentCreateManyHotelInput = {
   text: string
   userRating: number
   userId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type CommentUpdateWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   userRating?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.PersonUpdateOneRequiredWithoutCommentsNestedInput
 }
 
@@ -557,6 +615,8 @@ export type CommentUncheckedUpdateWithoutHotelInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   userRating?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CommentUncheckedUpdateManyWithoutHotelInput = {
@@ -564,6 +624,8 @@ export type CommentUncheckedUpdateManyWithoutHotelInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   userRating?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CommentCreateManyUserInput = {
@@ -571,12 +633,16 @@ export type CommentCreateManyUserInput = {
   text: string
   userRating: number
   hotelId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type CommentUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   userRating?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hotel?: Prisma.HotelUpdateOneRequiredWithoutCommentsNestedInput
 }
 
@@ -585,6 +651,8 @@ export type CommentUncheckedUpdateWithoutUserInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   userRating?: Prisma.IntFieldUpdateOperationsInput | number
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CommentUncheckedUpdateManyWithoutUserInput = {
@@ -592,6 +660,8 @@ export type CommentUncheckedUpdateManyWithoutUserInput = {
   text?: Prisma.StringFieldUpdateOperationsInput | string
   userRating?: Prisma.IntFieldUpdateOperationsInput | number
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -602,6 +672,8 @@ export type CommentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   userRating?: boolean
   userId?: boolean
   hotelId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   user?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   hotel?: boolean | Prisma.HotelDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["comment"]>
@@ -612,6 +684,8 @@ export type CommentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   userRating?: boolean
   userId?: boolean
   hotelId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   user?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   hotel?: boolean | Prisma.HotelDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["comment"]>
@@ -622,6 +696,8 @@ export type CommentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   userRating?: boolean
   userId?: boolean
   hotelId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   user?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   hotel?: boolean | Prisma.HotelDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["comment"]>
@@ -632,9 +708,11 @@ export type CommentSelectScalar = {
   userRating?: boolean
   userId?: boolean
   hotelId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type CommentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "text" | "userRating" | "userId" | "hotelId", ExtArgs["result"]["comment"]>
+export type CommentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "text" | "userRating" | "userId" | "hotelId" | "createdAt" | "updatedAt", ExtArgs["result"]["comment"]>
 export type CommentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   hotel?: boolean | Prisma.HotelDefaultArgs<ExtArgs>
@@ -660,6 +738,8 @@ export type $CommentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     userRating: number
     userId: string
     hotelId: string
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["comment"]>
   composites: {}
 }
@@ -1090,6 +1170,8 @@ export interface CommentFieldRefs {
   readonly userRating: Prisma.FieldRef<"Comment", 'Int'>
   readonly userId: Prisma.FieldRef<"Comment", 'String'>
   readonly hotelId: Prisma.FieldRef<"Comment", 'String'>
+  readonly createdAt: Prisma.FieldRef<"Comment", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Comment", 'DateTime'>
 }
     
 
