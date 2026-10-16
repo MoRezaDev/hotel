@@ -12,9 +12,11 @@ model Hotel {
   isInstallment Boolean @default(false)
   features HotelFeatures[]
   rooms Room[]
-  distances Json?
+  distances Json[]
   entryTime Int
   exitTime Int
+  entryDate DateTime
+  exitDate DateTime
   isSuggested Boolean @default(false)
   rulesDescriptions String[]
   comments Comment[]
@@ -50,7 +52,8 @@ model Room {
     extraBed Boolean @default(false)
     features String[]
     actualPrice Int
-    discountedPrice Int
+    discountedPrice Int?
+    discountPercent Int?
 
     HotelId String
     hotel Hotel @relation(fields: [HotelId],references: [id],onDelete: Cascade)

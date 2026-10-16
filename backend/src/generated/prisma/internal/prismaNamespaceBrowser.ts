@@ -93,6 +93,8 @@ export const HotelScalarFieldEnum = {
   distances: 'distances',
   entryTime: 'entryTime',
   exitTime: 'exitTime',
+  entryDate: 'entryDate',
+  exitDate: 'exitDate',
   isSuggested: 'isSuggested',
   rulesDescriptions: 'rulesDescriptions',
   mainImageUrl: 'mainImageUrl',
@@ -126,6 +128,7 @@ export const RoomScalarFieldEnum = {
   features: 'features',
   actualPrice: 'actualPrice',
   discountedPrice: 'discountedPrice',
+  discountPercent: 'discountPercent',
   HotelId: 'HotelId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -218,7 +221,8 @@ export const PassengerScalarFieldEnum = {
   codeNational: 'codeNational',
   mobileNumber: 'mobileNumber',
   gender: 'gender',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type PassengerScalarFieldEnum = (typeof PassengerScalarFieldEnum)[keyof typeof PassengerScalarFieldEnum]
@@ -232,29 +236,12 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-export const NullableJsonNullValueInput = {
-  DbNull: DbNull,
-  JsonNull: JsonNull
-} as const
-
-export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
-
-
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
-export const JsonNullValueFilter = {
-  DbNull: DbNull,
-  JsonNull: JsonNull,
-  AnyNull: AnyNull
-} as const
-
-export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 export const NullsOrder = {
