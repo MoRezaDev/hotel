@@ -17,14 +17,18 @@ export class HotelService {
   }
 
   async createHotel(createHotelDto: CreateHotelDto) {
+    const {hotelFeatureIds,distances,...hotelData} = createHotelDto
     return await this.databaseService.hotel.create({
       data: {
-        ...createHotelDto,
-        distances: createHotelDto.distances
-          ? (createHotelDto.distances.map(({ title, value }) => ({
+        ...hotelData,
+        distances: distances
+          ? (distances.map(({ title, value }) => ({
               title,
               value,
             })) satisfies Prisma.InputJsonArray)
+          : undefined,
+        features: hotelFeatureIds?.length
+          ? { connect: hotelFeatureIds.map((id) => ({ id })) }
           : undefined,
       },
     });
@@ -41,6 +45,7 @@ export class HotelService {
   async getAllHotelFeatures() {
     return await this.databaseService.hotelFeatures.findMany({});
   }
+
   async createHotelFeatures(createHotelFeatures: CreateHotelFeaturesDto[]) {
     return await this.databaseService.hotelFeatures.createMany({
       data: createHotelFeatures,

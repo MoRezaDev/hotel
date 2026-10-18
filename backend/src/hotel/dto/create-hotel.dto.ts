@@ -70,7 +70,7 @@ export class CreateHotelDto {
   isInstallment?: boolean;
 
   @IsOptional()
-  @ValidateNested()
+  @ValidateNested({ each: true })
   @Type(() => DistanceDto)
   distances?: DistanceDto[];
 
@@ -81,14 +81,6 @@ export class CreateHotelDto {
   @IsNotEmpty()
   @IsNumber()
   exitTime: number;
-
-  @IsNotEmpty()
-  @IsDateString()
-  entryDate: string;
-
-  @IsNotEmpty()
-  @IsDateString()
-  exitDate: string;
 
   @IsOptional()
   @IsBoolean()
@@ -102,4 +94,7 @@ export class CreateHotelDto {
 
   @ArrayNotEmptyString()
   imagesUrl?: string[];
+
+  @IsOptional()
+  hotelFeatureIds?: string[];
 }
