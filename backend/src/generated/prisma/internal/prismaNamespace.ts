@@ -1141,12 +1141,11 @@ export const HotelScalarFieldEnum = {
   state: 'state',
   country: 'country',
   starRating: 'starRating',
+  rating: 'rating',
   isInstallment: 'isInstallment',
   distances: 'distances',
   entryTime: 'entryTime',
   exitTime: 'exitTime',
-  entryDate: 'entryDate',
-  exitDate: 'exitDate',
   isSuggested: 'isSuggested',
   rulesDescriptions: 'rulesDescriptions',
   mainImageUrl: 'mainImageUrl',
@@ -1162,6 +1161,7 @@ export const HotelFeaturesScalarFieldEnum = {
   id: 'id',
   title: 'title',
   imageUrl: 'imageUrl',
+  iconName: 'iconName',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1177,6 +1177,7 @@ export const RoomScalarFieldEnum = {
   breakfast: 'breakfast',
   dinner: 'dinner',
   extraBed: 'extraBed',
+  isMainContent: 'isMainContent',
   features: 'features',
   actualPrice: 'actualPrice',
   discountedPrice: 'discountedPrice',
@@ -1339,6 +1340,20 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -1398,20 +1413,6 @@ export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'Gender[]'
  */
 export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
-    
-
-
-/**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**

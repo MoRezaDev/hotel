@@ -9,14 +9,13 @@ model Hotel {
   state       String
   country     String
   starRating  Int?
+  rating Float?
   isInstallment Boolean @default(false)
   features HotelFeatures[]
   rooms Room[]
   distances Json[]
   entryTime Int
   exitTime Int
-  entryDate DateTime
-  exitDate DateTime
   isSuggested Boolean @default(false)
   rulesDescriptions String[]
   comments Comment[]
@@ -35,6 +34,7 @@ model HotelFeatures {
 
     title String @unique
     imageUrl String?
+    iconName String?
 
     hotels Hotel[]
 
@@ -50,6 +50,7 @@ model Room {
     breakfast Boolean @default(true)
     dinner Boolean @default(false)
     extraBed Boolean @default(false)
+    isMainContent Boolean @default(false)
     features String[]
     actualPrice Int
     discountedPrice Int?

@@ -48,6 +48,7 @@ export type RoomMinAggregateOutputType = {
   breakfast: boolean | null
   dinner: boolean | null
   extraBed: boolean | null
+  isMainContent: boolean | null
   actualPrice: number | null
   discountedPrice: number | null
   discountPercent: number | null
@@ -64,6 +65,7 @@ export type RoomMaxAggregateOutputType = {
   breakfast: boolean | null
   dinner: boolean | null
   extraBed: boolean | null
+  isMainContent: boolean | null
   actualPrice: number | null
   discountedPrice: number | null
   discountPercent: number | null
@@ -80,6 +82,7 @@ export type RoomCountAggregateOutputType = {
   breakfast: number
   dinner: number
   extraBed: number
+  isMainContent: number
   features: number
   actualPrice: number
   discountedPrice: number
@@ -113,6 +116,7 @@ export type RoomMinAggregateInputType = {
   breakfast?: true
   dinner?: true
   extraBed?: true
+  isMainContent?: true
   actualPrice?: true
   discountedPrice?: true
   discountPercent?: true
@@ -129,6 +133,7 @@ export type RoomMaxAggregateInputType = {
   breakfast?: true
   dinner?: true
   extraBed?: true
+  isMainContent?: true
   actualPrice?: true
   discountedPrice?: true
   discountPercent?: true
@@ -145,6 +150,7 @@ export type RoomCountAggregateInputType = {
   breakfast?: true
   dinner?: true
   extraBed?: true
+  isMainContent?: true
   features?: true
   actualPrice?: true
   discountedPrice?: true
@@ -249,6 +255,7 @@ export type RoomGroupByOutputType = {
   breakfast: boolean
   dinner: boolean
   extraBed: boolean
+  isMainContent: boolean
   features: string[]
   actualPrice: number
   discountedPrice: number | null
@@ -289,6 +296,7 @@ export type RoomWhereInput = {
   breakfast?: Prisma.BoolFilter<"Room"> | boolean
   dinner?: Prisma.BoolFilter<"Room"> | boolean
   extraBed?: Prisma.BoolFilter<"Room"> | boolean
+  isMainContent?: Prisma.BoolFilter<"Room"> | boolean
   features?: Prisma.StringNullableListFilter<"Room">
   actualPrice?: Prisma.IntFilter<"Room"> | number
   discountedPrice?: Prisma.IntNullableFilter<"Room"> | number | null
@@ -308,6 +316,7 @@ export type RoomOrderByWithRelationInput = {
   breakfast?: Prisma.SortOrder
   dinner?: Prisma.SortOrder
   extraBed?: Prisma.SortOrder
+  isMainContent?: Prisma.SortOrder
   features?: Prisma.SortOrder
   actualPrice?: Prisma.SortOrder
   discountedPrice?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -330,6 +339,7 @@ export type RoomWhereUniqueInput = Prisma.AtLeast<{
   breakfast?: Prisma.BoolFilter<"Room"> | boolean
   dinner?: Prisma.BoolFilter<"Room"> | boolean
   extraBed?: Prisma.BoolFilter<"Room"> | boolean
+  isMainContent?: Prisma.BoolFilter<"Room"> | boolean
   features?: Prisma.StringNullableListFilter<"Room">
   actualPrice?: Prisma.IntFilter<"Room"> | number
   discountedPrice?: Prisma.IntNullableFilter<"Room"> | number | null
@@ -349,6 +359,7 @@ export type RoomOrderByWithAggregationInput = {
   breakfast?: Prisma.SortOrder
   dinner?: Prisma.SortOrder
   extraBed?: Prisma.SortOrder
+  isMainContent?: Prisma.SortOrder
   features?: Prisma.SortOrder
   actualPrice?: Prisma.SortOrder
   discountedPrice?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -374,6 +385,7 @@ export type RoomScalarWhereWithAggregatesInput = {
   breakfast?: Prisma.BoolWithAggregatesFilter<"Room"> | boolean
   dinner?: Prisma.BoolWithAggregatesFilter<"Room"> | boolean
   extraBed?: Prisma.BoolWithAggregatesFilter<"Room"> | boolean
+  isMainContent?: Prisma.BoolWithAggregatesFilter<"Room"> | boolean
   features?: Prisma.StringNullableListFilter<"Room">
   actualPrice?: Prisma.IntWithAggregatesFilter<"Room"> | number
   discountedPrice?: Prisma.IntNullableWithAggregatesFilter<"Room"> | number | null
@@ -391,6 +403,7 @@ export type RoomCreateInput = {
   breakfast?: boolean
   dinner?: boolean
   extraBed?: boolean
+  isMainContent?: boolean
   features?: Prisma.RoomCreatefeaturesInput | string[]
   actualPrice: number
   discountedPrice?: number | null
@@ -409,6 +422,7 @@ export type RoomUncheckedCreateInput = {
   breakfast?: boolean
   dinner?: boolean
   extraBed?: boolean
+  isMainContent?: boolean
   features?: Prisma.RoomCreatefeaturesInput | string[]
   actualPrice: number
   discountedPrice?: number | null
@@ -427,6 +441,7 @@ export type RoomUpdateInput = {
   breakfast?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dinner?: Prisma.BoolFieldUpdateOperationsInput | boolean
   extraBed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isMainContent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   features?: Prisma.RoomUpdatefeaturesInput | string[]
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -445,6 +460,7 @@ export type RoomUncheckedUpdateInput = {
   breakfast?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dinner?: Prisma.BoolFieldUpdateOperationsInput | boolean
   extraBed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isMainContent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   features?: Prisma.RoomUpdatefeaturesInput | string[]
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -463,6 +479,7 @@ export type RoomCreateManyInput = {
   breakfast?: boolean
   dinner?: boolean
   extraBed?: boolean
+  isMainContent?: boolean
   features?: Prisma.RoomCreatefeaturesInput | string[]
   actualPrice: number
   discountedPrice?: number | null
@@ -480,6 +497,7 @@ export type RoomUpdateManyMutationInput = {
   breakfast?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dinner?: Prisma.BoolFieldUpdateOperationsInput | boolean
   extraBed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isMainContent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   features?: Prisma.RoomUpdatefeaturesInput | string[]
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -496,6 +514,7 @@ export type RoomUncheckedUpdateManyInput = {
   breakfast?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dinner?: Prisma.BoolFieldUpdateOperationsInput | boolean
   extraBed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isMainContent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   features?: Prisma.RoomUpdatefeaturesInput | string[]
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -523,6 +542,7 @@ export type RoomCountOrderByAggregateInput = {
   breakfast?: Prisma.SortOrder
   dinner?: Prisma.SortOrder
   extraBed?: Prisma.SortOrder
+  isMainContent?: Prisma.SortOrder
   features?: Prisma.SortOrder
   actualPrice?: Prisma.SortOrder
   discountedPrice?: Prisma.SortOrder
@@ -547,6 +567,7 @@ export type RoomMaxOrderByAggregateInput = {
   breakfast?: Prisma.SortOrder
   dinner?: Prisma.SortOrder
   extraBed?: Prisma.SortOrder
+  isMainContent?: Prisma.SortOrder
   actualPrice?: Prisma.SortOrder
   discountedPrice?: Prisma.SortOrder
   discountPercent?: Prisma.SortOrder
@@ -563,6 +584,7 @@ export type RoomMinOrderByAggregateInput = {
   breakfast?: Prisma.SortOrder
   dinner?: Prisma.SortOrder
   extraBed?: Prisma.SortOrder
+  isMainContent?: Prisma.SortOrder
   actualPrice?: Prisma.SortOrder
   discountedPrice?: Prisma.SortOrder
   discountPercent?: Prisma.SortOrder
@@ -656,6 +678,7 @@ export type RoomCreateWithoutHotelInput = {
   breakfast?: boolean
   dinner?: boolean
   extraBed?: boolean
+  isMainContent?: boolean
   features?: Prisma.RoomCreatefeaturesInput | string[]
   actualPrice: number
   discountedPrice?: number | null
@@ -673,6 +696,7 @@ export type RoomUncheckedCreateWithoutHotelInput = {
   breakfast?: boolean
   dinner?: boolean
   extraBed?: boolean
+  isMainContent?: boolean
   features?: Prisma.RoomCreatefeaturesInput | string[]
   actualPrice: number
   discountedPrice?: number | null
@@ -719,6 +743,7 @@ export type RoomScalarWhereInput = {
   breakfast?: Prisma.BoolFilter<"Room"> | boolean
   dinner?: Prisma.BoolFilter<"Room"> | boolean
   extraBed?: Prisma.BoolFilter<"Room"> | boolean
+  isMainContent?: Prisma.BoolFilter<"Room"> | boolean
   features?: Prisma.StringNullableListFilter<"Room">
   actualPrice?: Prisma.IntFilter<"Room"> | number
   discountedPrice?: Prisma.IntNullableFilter<"Room"> | number | null
@@ -736,6 +761,7 @@ export type RoomCreateWithoutOrdersInput = {
   breakfast?: boolean
   dinner?: boolean
   extraBed?: boolean
+  isMainContent?: boolean
   features?: Prisma.RoomCreatefeaturesInput | string[]
   actualPrice: number
   discountedPrice?: number | null
@@ -753,6 +779,7 @@ export type RoomUncheckedCreateWithoutOrdersInput = {
   breakfast?: boolean
   dinner?: boolean
   extraBed?: boolean
+  isMainContent?: boolean
   features?: Prisma.RoomCreatefeaturesInput | string[]
   actualPrice: number
   discountedPrice?: number | null
@@ -786,6 +813,7 @@ export type RoomUpdateWithoutOrdersInput = {
   breakfast?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dinner?: Prisma.BoolFieldUpdateOperationsInput | boolean
   extraBed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isMainContent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   features?: Prisma.RoomUpdatefeaturesInput | string[]
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -803,6 +831,7 @@ export type RoomUncheckedUpdateWithoutOrdersInput = {
   breakfast?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dinner?: Prisma.BoolFieldUpdateOperationsInput | boolean
   extraBed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isMainContent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   features?: Prisma.RoomUpdatefeaturesInput | string[]
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -820,6 +849,7 @@ export type RoomCreateManyHotelInput = {
   breakfast?: boolean
   dinner?: boolean
   extraBed?: boolean
+  isMainContent?: boolean
   features?: Prisma.RoomCreatefeaturesInput | string[]
   actualPrice: number
   discountedPrice?: number | null
@@ -836,6 +866,7 @@ export type RoomUpdateWithoutHotelInput = {
   breakfast?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dinner?: Prisma.BoolFieldUpdateOperationsInput | boolean
   extraBed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isMainContent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   features?: Prisma.RoomUpdatefeaturesInput | string[]
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -853,6 +884,7 @@ export type RoomUncheckedUpdateWithoutHotelInput = {
   breakfast?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dinner?: Prisma.BoolFieldUpdateOperationsInput | boolean
   extraBed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isMainContent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   features?: Prisma.RoomUpdatefeaturesInput | string[]
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -870,6 +902,7 @@ export type RoomUncheckedUpdateManyWithoutHotelInput = {
   breakfast?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dinner?: Prisma.BoolFieldUpdateOperationsInput | boolean
   extraBed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isMainContent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   features?: Prisma.RoomUpdatefeaturesInput | string[]
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -917,6 +950,7 @@ export type RoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   breakfast?: boolean
   dinner?: boolean
   extraBed?: boolean
+  isMainContent?: boolean
   features?: boolean
   actualPrice?: boolean
   discountedPrice?: boolean
@@ -937,6 +971,7 @@ export type RoomSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   breakfast?: boolean
   dinner?: boolean
   extraBed?: boolean
+  isMainContent?: boolean
   features?: boolean
   actualPrice?: boolean
   discountedPrice?: boolean
@@ -955,6 +990,7 @@ export type RoomSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   breakfast?: boolean
   dinner?: boolean
   extraBed?: boolean
+  isMainContent?: boolean
   features?: boolean
   actualPrice?: boolean
   discountedPrice?: boolean
@@ -973,6 +1009,7 @@ export type RoomSelectScalar = {
   breakfast?: boolean
   dinner?: boolean
   extraBed?: boolean
+  isMainContent?: boolean
   features?: boolean
   actualPrice?: boolean
   discountedPrice?: boolean
@@ -982,7 +1019,7 @@ export type RoomSelectScalar = {
   updatedAt?: boolean
 }
 
-export type RoomOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "extraInfo" | "capacity" | "breakfast" | "dinner" | "extraBed" | "features" | "actualPrice" | "discountedPrice" | "discountPercent" | "HotelId" | "createdAt" | "updatedAt", ExtArgs["result"]["room"]>
+export type RoomOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "extraInfo" | "capacity" | "breakfast" | "dinner" | "extraBed" | "isMainContent" | "features" | "actualPrice" | "discountedPrice" | "discountPercent" | "HotelId" | "createdAt" | "updatedAt", ExtArgs["result"]["room"]>
 export type RoomInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hotel?: boolean | Prisma.HotelDefaultArgs<ExtArgs>
   orders?: boolean | Prisma.Room$ordersArgs<ExtArgs>
@@ -1009,6 +1046,7 @@ export type $RoomPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     breakfast: boolean
     dinner: boolean
     extraBed: boolean
+    isMainContent: boolean
     features: string[]
     actualPrice: number
     discountedPrice: number | null
@@ -1448,6 +1486,7 @@ export interface RoomFieldRefs {
   readonly breakfast: Prisma.FieldRef<"Room", 'Boolean'>
   readonly dinner: Prisma.FieldRef<"Room", 'Boolean'>
   readonly extraBed: Prisma.FieldRef<"Room", 'Boolean'>
+  readonly isMainContent: Prisma.FieldRef<"Room", 'Boolean'>
   readonly features: Prisma.FieldRef<"Room", 'String[]'>
   readonly actualPrice: Prisma.FieldRef<"Room", 'Int'>
   readonly discountedPrice: Prisma.FieldRef<"Room", 'Int'>

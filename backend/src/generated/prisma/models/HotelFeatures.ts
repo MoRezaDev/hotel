@@ -28,6 +28,7 @@ export type HotelFeaturesMinAggregateOutputType = {
   id: string | null
   title: string | null
   imageUrl: string | null
+  iconName: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -36,6 +37,7 @@ export type HotelFeaturesMaxAggregateOutputType = {
   id: string | null
   title: string | null
   imageUrl: string | null
+  iconName: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -44,6 +46,7 @@ export type HotelFeaturesCountAggregateOutputType = {
   id: number
   title: number
   imageUrl: number
+  iconName: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -54,6 +57,7 @@ export type HotelFeaturesMinAggregateInputType = {
   id?: true
   title?: true
   imageUrl?: true
+  iconName?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -62,6 +66,7 @@ export type HotelFeaturesMaxAggregateInputType = {
   id?: true
   title?: true
   imageUrl?: true
+  iconName?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -70,6 +75,7 @@ export type HotelFeaturesCountAggregateInputType = {
   id?: true
   title?: true
   imageUrl?: true
+  iconName?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -151,6 +157,7 @@ export type HotelFeaturesGroupByOutputType = {
   id: string
   title: string
   imageUrl: string | null
+  iconName: string | null
   createdAt: Date
   updatedAt: Date
   _count: HotelFeaturesCountAggregateOutputType | null
@@ -180,6 +187,7 @@ export type HotelFeaturesWhereInput = {
   id?: Prisma.StringFilter<"HotelFeatures"> | string
   title?: Prisma.StringFilter<"HotelFeatures"> | string
   imageUrl?: Prisma.StringNullableFilter<"HotelFeatures"> | string | null
+  iconName?: Prisma.StringNullableFilter<"HotelFeatures"> | string | null
   createdAt?: Prisma.DateTimeFilter<"HotelFeatures"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"HotelFeatures"> | Date | string
   hotels?: Prisma.HotelListRelationFilter
@@ -189,6 +197,7 @@ export type HotelFeaturesOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  iconName?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   hotels?: Prisma.HotelOrderByRelationAggregateInput
@@ -201,6 +210,7 @@ export type HotelFeaturesWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.HotelFeaturesWhereInput[]
   NOT?: Prisma.HotelFeaturesWhereInput | Prisma.HotelFeaturesWhereInput[]
   imageUrl?: Prisma.StringNullableFilter<"HotelFeatures"> | string | null
+  iconName?: Prisma.StringNullableFilter<"HotelFeatures"> | string | null
   createdAt?: Prisma.DateTimeFilter<"HotelFeatures"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"HotelFeatures"> | Date | string
   hotels?: Prisma.HotelListRelationFilter
@@ -210,6 +220,7 @@ export type HotelFeaturesOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  iconName?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.HotelFeaturesCountOrderByAggregateInput
@@ -224,6 +235,7 @@ export type HotelFeaturesScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"HotelFeatures"> | string
   title?: Prisma.StringWithAggregatesFilter<"HotelFeatures"> | string
   imageUrl?: Prisma.StringNullableWithAggregatesFilter<"HotelFeatures"> | string | null
+  iconName?: Prisma.StringNullableWithAggregatesFilter<"HotelFeatures"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"HotelFeatures"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"HotelFeatures"> | Date | string
 }
@@ -232,6 +244,7 @@ export type HotelFeaturesCreateInput = {
   id?: string
   title: string
   imageUrl?: string | null
+  iconName?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   hotels?: Prisma.HotelCreateNestedManyWithoutFeaturesInput
@@ -241,6 +254,7 @@ export type HotelFeaturesUncheckedCreateInput = {
   id?: string
   title: string
   imageUrl?: string | null
+  iconName?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   hotels?: Prisma.HotelUncheckedCreateNestedManyWithoutFeaturesInput
@@ -250,6 +264,7 @@ export type HotelFeaturesUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hotels?: Prisma.HotelUpdateManyWithoutFeaturesNestedInput
@@ -259,6 +274,7 @@ export type HotelFeaturesUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hotels?: Prisma.HotelUncheckedUpdateManyWithoutFeaturesNestedInput
@@ -268,6 +284,7 @@ export type HotelFeaturesCreateManyInput = {
   id?: string
   title: string
   imageUrl?: string | null
+  iconName?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -276,6 +293,7 @@ export type HotelFeaturesUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -284,6 +302,7 @@ export type HotelFeaturesUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -302,6 +321,7 @@ export type HotelFeaturesCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  iconName?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -310,6 +330,7 @@ export type HotelFeaturesMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  iconName?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -318,6 +339,7 @@ export type HotelFeaturesMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  iconName?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -364,6 +386,7 @@ export type HotelFeaturesCreateWithoutHotelsInput = {
   id?: string
   title: string
   imageUrl?: string | null
+  iconName?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -372,6 +395,7 @@ export type HotelFeaturesUncheckedCreateWithoutHotelsInput = {
   id?: string
   title: string
   imageUrl?: string | null
+  iconName?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -404,6 +428,7 @@ export type HotelFeaturesScalarWhereInput = {
   id?: Prisma.StringFilter<"HotelFeatures"> | string
   title?: Prisma.StringFilter<"HotelFeatures"> | string
   imageUrl?: Prisma.StringNullableFilter<"HotelFeatures"> | string | null
+  iconName?: Prisma.StringNullableFilter<"HotelFeatures"> | string | null
   createdAt?: Prisma.DateTimeFilter<"HotelFeatures"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"HotelFeatures"> | Date | string
 }
@@ -412,6 +437,7 @@ export type HotelFeaturesUpdateWithoutHotelsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -420,6 +446,7 @@ export type HotelFeaturesUncheckedUpdateWithoutHotelsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -428,6 +455,7 @@ export type HotelFeaturesUncheckedUpdateManyWithoutHotelsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -467,6 +495,7 @@ export type HotelFeaturesSelect<ExtArgs extends runtime.Types.Extensions.Interna
   id?: boolean
   title?: boolean
   imageUrl?: boolean
+  iconName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   hotels?: boolean | Prisma.HotelFeatures$hotelsArgs<ExtArgs>
@@ -477,6 +506,7 @@ export type HotelFeaturesSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   id?: boolean
   title?: boolean
   imageUrl?: boolean
+  iconName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["hotelFeatures"]>
@@ -485,6 +515,7 @@ export type HotelFeaturesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   id?: boolean
   title?: boolean
   imageUrl?: boolean
+  iconName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["hotelFeatures"]>
@@ -493,11 +524,12 @@ export type HotelFeaturesSelectScalar = {
   id?: boolean
   title?: boolean
   imageUrl?: boolean
+  iconName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type HotelFeaturesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "imageUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["hotelFeatures"]>
+export type HotelFeaturesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "imageUrl" | "iconName" | "createdAt" | "updatedAt", ExtArgs["result"]["hotelFeatures"]>
 export type HotelFeaturesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hotels?: boolean | Prisma.HotelFeatures$hotelsArgs<ExtArgs>
   _count?: boolean | Prisma.HotelFeaturesCountOutputTypeDefaultArgs<ExtArgs>
@@ -514,6 +546,7 @@ export type $HotelFeaturesPayload<ExtArgs extends runtime.Types.Extensions.Inter
     id: string
     title: string
     imageUrl: string | null
+    iconName: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["hotelFeatures"]>
@@ -943,6 +976,7 @@ export interface HotelFeaturesFieldRefs {
   readonly id: Prisma.FieldRef<"HotelFeatures", 'String'>
   readonly title: Prisma.FieldRef<"HotelFeatures", 'String'>
   readonly imageUrl: Prisma.FieldRef<"HotelFeatures", 'String'>
+  readonly iconName: Prisma.FieldRef<"HotelFeatures", 'String'>
   readonly createdAt: Prisma.FieldRef<"HotelFeatures", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"HotelFeatures", 'DateTime'>
 }
