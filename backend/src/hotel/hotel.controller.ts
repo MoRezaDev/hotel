@@ -57,13 +57,6 @@ export class HotelController {
   @UseInterceptors(
     FileInterceptor('image', {
       limits: { fileSize: 10 * 1024 * 1024 },
-      storage: diskStorage({
-        destination: './uploads',
-        filename(req, file, callback) {
-          console.log(file.mimetype);
-          callback(null, `${file.originalname}`);
-        },
-      }),
     }),
   )
   async uploadMain(
