@@ -1,10 +1,7 @@
 import {
   Body,
   Controller,
-  FileTypeValidator,
   Get,
-  MaxFileSizeValidator,
-  ParseFilePipe,
   Post,
   UploadedFile,
   UseInterceptors,
@@ -14,7 +11,6 @@ import { CreateHotelDto } from './dto/create-hotel.dto.js';
 import { CreateHotelFeaturesDto } from './dto/create-hotel-features.dto.js';
 import { CreateHotelRoomDto } from './dto/create-hotel-room.dto.js';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
 
 @Controller('hotel')
 export class HotelController {
