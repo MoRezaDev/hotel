@@ -7,14 +7,18 @@ import {
   ParseFilePipe,
   Post,
   UploadedFile,
+  UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { HotelService } from './hotel.service.js';
 import { CreateHotelDto } from './dto/create-hotel.dto.js';
 import { CreateHotelFeaturesDto } from './dto/create-hotel-features.dto.js';
 import { CreateHotelRoomDto } from './dto/create-hotel-room.dto.js';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+import { HotelExistsGurd } from '../gurds/hotel-exists.gurd.js';
+import { multerMainImageOptions } from '../utils/multer.options.js';
 
 @Controller('hotel')
 export class HotelController {
@@ -53,16 +57,18 @@ export class HotelController {
   }
 
   //for upload
-  @Post('upload/image')
-  @UseInterceptors(
-    FileInterceptor('image', {
-      limits: { fileSize: 10 * 1024 * 1024 },
-    }),
-  )
+  @Post('upload/:hotelId/image')
+  @UseGuards(HotelExistsGurd)
+  @UseInterceptors(FileInterceptor('image', multerMainImageOptions()))
   async uploadMain(
     @UploadedFile()
     file: Express.Multer.File,
   ) {
     console.log(file);
   }
+
+  @Post('upload/:hotelId/images')
+  @UseGuards(HotelExistsGurd)
+  @UseInterceptors(FilesInterceptor('images', 10, multerMainImageOptions()))
+  async uploadImages(@UploadedFiles() files: Array<Express.Multer.File>) {}
 }

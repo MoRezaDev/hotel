@@ -4,9 +4,7 @@ import { CatchEverything } from './catch-all.exception.js';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
-  console.log('[BOOT] Before NestFactory.create');
   const app = await NestFactory.create(AppModule);
-  console.log('[BOOT] After NestFactory.create');
   const httpAdapterHost = app.get(HttpAdapterHost);
   app.useGlobalFilters(new CatchEverything(httpAdapterHost));
   app.useGlobalPipes(
