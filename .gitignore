@@ -19,3 +19,8 @@
 # OS files
 .DS_Store
 Thumbs.db
+
+#backend
+backend/storage
+.vercel
+.env*

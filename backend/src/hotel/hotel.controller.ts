@@ -1,10 +1,7 @@
 import {
   Body,
   Controller,
-  FileTypeValidator,
   Get,
-  MaxFileSizeValidator,
-  ParseFilePipe,
   Post,
   UploadedFile,
   UploadedFiles,
@@ -15,8 +12,8 @@ import { HotelService } from './hotel.service.js';
 import { CreateHotelDto } from './dto/create-hotel.dto.js';
 import { CreateHotelFeaturesDto } from './dto/create-hotel-features.dto.js';
 import { CreateHotelRoomDto } from './dto/create-hotel-room.dto.js';
+
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
 import { HotelExistsGurd } from '../gurds/hotel-exists.gurd.js';
 import { multerMainImageOptions } from '../utils/multer.options.js';
 
