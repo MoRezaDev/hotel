@@ -8,8 +8,8 @@ model Person {
     gender Gender?
     mobileNumber String @unique
     nationality String?
-    codeNational Int? @unique
-    passportNumber Int? @unique
+    codeNational String? @unique
+    passportNumber String? @unique
     passportExpireDate DateTime?
     birthday DateTime?
     image String?

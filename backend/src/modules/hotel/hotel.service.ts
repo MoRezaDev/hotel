@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { DatabaseService } from '../database/database.service.js';
+import { DatabaseService } from '../../database/database.service.js';
 import { CreateHotelDto } from './dto/create-hotel.dto.js';
-import { Prisma } from '../generated/prisma/client.js';
+import { Prisma } from '../../generated/prisma/client.js';
 import { CreateHotelFeaturesDto } from './dto/create-hotel-features.dto.js';
 import { CreateHotelRoomDto } from './dto/create-hotel-room.dto.js';
 import { UpdateHotelDto } from './dto/update-hotel.dto.js';
@@ -17,7 +17,7 @@ export class HotelService {
   }
 
   async createHotel(createHotelDto: CreateHotelDto) {
-    const {hotelFeatureIds,distances,...hotelData} = createHotelDto
+    const { hotelFeatureIds, distances, ...hotelData } = createHotelDto;
     return await this.databaseService.hotel.create({
       data: {
         ...hotelData,

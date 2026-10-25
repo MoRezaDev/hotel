@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Person" ALTER COLUMN "codeNational" SET DATA TYPE TEXT,
+ALTER COLUMN "passportNumber" SET DATA TYPE TEXT;

@@ -2,6 +2,7 @@ import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer
 import { diskStorage, memoryStorage } from 'multer';
 
 export function multerMainImageOptions(): MulterOptions {
+  console.log('NODE_ENV:', process.env.NODE_ENV);
   if (process.env.NODE_ENV === 'development') {
     return {
       limits: { fileSize: 5 * 1024 * 1024 },

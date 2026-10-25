@@ -20,20 +20,8 @@ export type PersonModel = runtime.Types.Result.DefaultSelection<Prisma.$PersonPa
 
 export type AggregatePerson = {
   _count: PersonCountAggregateOutputType | null
-  _avg: PersonAvgAggregateOutputType | null
-  _sum: PersonSumAggregateOutputType | null
   _min: PersonMinAggregateOutputType | null
   _max: PersonMaxAggregateOutputType | null
-}
-
-export type PersonAvgAggregateOutputType = {
-  codeNational: number | null
-  passportNumber: number | null
-}
-
-export type PersonSumAggregateOutputType = {
-  codeNational: number | null
-  passportNumber: number | null
 }
 
 export type PersonMinAggregateOutputType = {
@@ -45,8 +33,8 @@ export type PersonMinAggregateOutputType = {
   gender: $Enums.Gender | null
   mobileNumber: string | null
   nationality: string | null
-  codeNational: number | null
-  passportNumber: number | null
+  codeNational: string | null
+  passportNumber: string | null
   passportExpireDate: Date | null
   birthday: Date | null
   image: string | null
@@ -68,8 +56,8 @@ export type PersonMaxAggregateOutputType = {
   gender: $Enums.Gender | null
   mobileNumber: string | null
   nationality: string | null
-  codeNational: number | null
-  passportNumber: number | null
+  codeNational: string | null
+  passportNumber: string | null
   passportExpireDate: Date | null
   birthday: Date | null
   image: string | null
@@ -106,16 +94,6 @@ export type PersonCountAggregateOutputType = {
   _all: number
 }
 
-
-export type PersonAvgAggregateInputType = {
-  codeNational?: true
-  passportNumber?: true
-}
-
-export type PersonSumAggregateInputType = {
-  codeNational?: true
-  passportNumber?: true
-}
 
 export type PersonMinAggregateInputType = {
   id?: true
@@ -225,18 +203,6 @@ export type PersonAggregateArgs<ExtArgs extends runtime.Types.Extensions.Interna
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: PersonAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: PersonSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: PersonMinAggregateInputType
@@ -267,8 +233,6 @@ export type PersonGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   _count?: PersonCountAggregateInputType | true
-  _avg?: PersonAvgAggregateInputType
-  _sum?: PersonSumAggregateInputType
   _min?: PersonMinAggregateInputType
   _max?: PersonMaxAggregateInputType
 }
@@ -282,8 +246,8 @@ export type PersonGroupByOutputType = {
   gender: $Enums.Gender | null
   mobileNumber: string
   nationality: string | null
-  codeNational: number | null
-  passportNumber: number | null
+  codeNational: string | null
+  passportNumber: string | null
   passportExpireDate: Date | null
   birthday: Date | null
   image: string | null
@@ -295,8 +259,6 @@ export type PersonGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   _count: PersonCountAggregateOutputType | null
-  _avg: PersonAvgAggregateOutputType | null
-  _sum: PersonSumAggregateOutputType | null
   _min: PersonMinAggregateOutputType | null
   _max: PersonMaxAggregateOutputType | null
 }
@@ -328,8 +290,8 @@ export type PersonWhereInput = {
   gender?: Prisma.EnumGenderNullableFilter<"Person"> | $Enums.Gender | null
   mobileNumber?: Prisma.StringFilter<"Person"> | string
   nationality?: Prisma.StringNullableFilter<"Person"> | string | null
-  codeNational?: Prisma.IntNullableFilter<"Person"> | number | null
-  passportNumber?: Prisma.IntNullableFilter<"Person"> | number | null
+  codeNational?: Prisma.StringNullableFilter<"Person"> | string | null
+  passportNumber?: Prisma.StringNullableFilter<"Person"> | string | null
   passportExpireDate?: Prisma.DateTimeNullableFilter<"Person"> | Date | string | null
   birthday?: Prisma.DateTimeNullableFilter<"Person"> | Date | string | null
   image?: Prisma.StringNullableFilter<"Person"> | string | null
@@ -376,8 +338,8 @@ export type PersonOrderByWithRelationInput = {
 export type PersonWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   mobileNumber?: string
-  codeNational?: number
-  passportNumber?: number
+  codeNational?: string
+  passportNumber?: string
   AND?: Prisma.PersonWhereInput | Prisma.PersonWhereInput[]
   OR?: Prisma.PersonWhereInput[]
   NOT?: Prisma.PersonWhereInput | Prisma.PersonWhereInput[]
@@ -425,10 +387,8 @@ export type PersonOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PersonCountOrderByAggregateInput
-  _avg?: Prisma.PersonAvgOrderByAggregateInput
   _max?: Prisma.PersonMaxOrderByAggregateInput
   _min?: Prisma.PersonMinOrderByAggregateInput
-  _sum?: Prisma.PersonSumOrderByAggregateInput
 }
 
 export type PersonScalarWhereWithAggregatesInput = {
@@ -443,8 +403,8 @@ export type PersonScalarWhereWithAggregatesInput = {
   gender?: Prisma.EnumGenderNullableWithAggregatesFilter<"Person"> | $Enums.Gender | null
   mobileNumber?: Prisma.StringWithAggregatesFilter<"Person"> | string
   nationality?: Prisma.StringNullableWithAggregatesFilter<"Person"> | string | null
-  codeNational?: Prisma.IntNullableWithAggregatesFilter<"Person"> | number | null
-  passportNumber?: Prisma.IntNullableWithAggregatesFilter<"Person"> | number | null
+  codeNational?: Prisma.StringNullableWithAggregatesFilter<"Person"> | string | null
+  passportNumber?: Prisma.StringNullableWithAggregatesFilter<"Person"> | string | null
   passportExpireDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Person"> | Date | string | null
   birthday?: Prisma.DateTimeNullableWithAggregatesFilter<"Person"> | Date | string | null
   image?: Prisma.StringNullableWithAggregatesFilter<"Person"> | string | null
@@ -466,8 +426,8 @@ export type PersonCreateInput = {
   gender?: $Enums.Gender | null
   mobileNumber: string
   nationality?: string | null
-  codeNational?: number | null
-  passportNumber?: number | null
+  codeNational?: string | null
+  passportNumber?: string | null
   passportExpireDate?: Date | string | null
   birthday?: Date | string | null
   image?: string | null
@@ -493,8 +453,8 @@ export type PersonUncheckedCreateInput = {
   gender?: $Enums.Gender | null
   mobileNumber: string
   nationality?: string | null
-  codeNational?: number | null
-  passportNumber?: number | null
+  codeNational?: string | null
+  passportNumber?: string | null
   passportExpireDate?: Date | string | null
   birthday?: Date | string | null
   image?: string | null
@@ -520,8 +480,8 @@ export type PersonUpdateInput = {
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  passportNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -547,8 +507,8 @@ export type PersonUncheckedUpdateInput = {
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  passportNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -574,8 +534,8 @@ export type PersonCreateManyInput = {
   gender?: $Enums.Gender | null
   mobileNumber: string
   nationality?: string | null
-  codeNational?: number | null
-  passportNumber?: number | null
+  codeNational?: string | null
+  passportNumber?: string | null
   passportExpireDate?: Date | string | null
   birthday?: Date | string | null
   image?: string | null
@@ -597,8 +557,8 @@ export type PersonUpdateManyMutationInput = {
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  passportNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -620,8 +580,8 @@ export type PersonUncheckedUpdateManyInput = {
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  passportNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -660,11 +620,6 @@ export type PersonCountOrderByAggregateInput = {
   password?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type PersonAvgOrderByAggregateInput = {
-  codeNational?: Prisma.SortOrder
-  passportNumber?: Prisma.SortOrder
 }
 
 export type PersonMaxOrderByAggregateInput = {
@@ -711,11 +666,6 @@ export type PersonMinOrderByAggregateInput = {
   password?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type PersonSumOrderByAggregateInput = {
-  codeNational?: Prisma.SortOrder
-  passportNumber?: Prisma.SortOrder
 }
 
 export type PersonListRelationFilter = {
@@ -825,8 +775,8 @@ export type PersonCreateWithoutOrdersInput = {
   gender?: $Enums.Gender | null
   mobileNumber: string
   nationality?: string | null
-  codeNational?: number | null
-  passportNumber?: number | null
+  codeNational?: string | null
+  passportNumber?: string | null
   passportExpireDate?: Date | string | null
   birthday?: Date | string | null
   image?: string | null
@@ -851,8 +801,8 @@ export type PersonUncheckedCreateWithoutOrdersInput = {
   gender?: $Enums.Gender | null
   mobileNumber: string
   nationality?: string | null
-  codeNational?: number | null
-  passportNumber?: number | null
+  codeNational?: string | null
+  passportNumber?: string | null
   passportExpireDate?: Date | string | null
   birthday?: Date | string | null
   image?: string | null
@@ -893,8 +843,8 @@ export type PersonUpdateWithoutOrdersInput = {
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  passportNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -919,8 +869,8 @@ export type PersonUncheckedUpdateWithoutOrdersInput = {
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  passportNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -945,8 +895,8 @@ export type PersonCreateWithoutOtpInput = {
   gender?: $Enums.Gender | null
   mobileNumber: string
   nationality?: string | null
-  codeNational?: number | null
-  passportNumber?: number | null
+  codeNational?: string | null
+  passportNumber?: string | null
   passportExpireDate?: Date | string | null
   birthday?: Date | string | null
   image?: string | null
@@ -971,8 +921,8 @@ export type PersonUncheckedCreateWithoutOtpInput = {
   gender?: $Enums.Gender | null
   mobileNumber: string
   nationality?: string | null
-  codeNational?: number | null
-  passportNumber?: number | null
+  codeNational?: string | null
+  passportNumber?: string | null
   passportExpireDate?: Date | string | null
   birthday?: Date | string | null
   image?: string | null
@@ -1013,8 +963,8 @@ export type PersonUpdateWithoutOtpInput = {
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  passportNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1039,8 +989,8 @@ export type PersonUncheckedUpdateWithoutOtpInput = {
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  passportNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1065,8 +1015,8 @@ export type PersonCreateWithoutCommentsInput = {
   gender?: $Enums.Gender | null
   mobileNumber: string
   nationality?: string | null
-  codeNational?: number | null
-  passportNumber?: number | null
+  codeNational?: string | null
+  passportNumber?: string | null
   passportExpireDate?: Date | string | null
   birthday?: Date | string | null
   image?: string | null
@@ -1091,8 +1041,8 @@ export type PersonUncheckedCreateWithoutCommentsInput = {
   gender?: $Enums.Gender | null
   mobileNumber: string
   nationality?: string | null
-  codeNational?: number | null
-  passportNumber?: number | null
+  codeNational?: string | null
+  passportNumber?: string | null
   passportExpireDate?: Date | string | null
   birthday?: Date | string | null
   image?: string | null
@@ -1133,8 +1083,8 @@ export type PersonUpdateWithoutCommentsInput = {
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  passportNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1159,8 +1109,8 @@ export type PersonUncheckedUpdateWithoutCommentsInput = {
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  passportNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1185,8 +1135,8 @@ export type PersonCreateWithoutPassengersInput = {
   gender?: $Enums.Gender | null
   mobileNumber: string
   nationality?: string | null
-  codeNational?: number | null
-  passportNumber?: number | null
+  codeNational?: string | null
+  passportNumber?: string | null
   passportExpireDate?: Date | string | null
   birthday?: Date | string | null
   image?: string | null
@@ -1211,8 +1161,8 @@ export type PersonUncheckedCreateWithoutPassengersInput = {
   gender?: $Enums.Gender | null
   mobileNumber: string
   nationality?: string | null
-  codeNational?: number | null
-  passportNumber?: number | null
+  codeNational?: string | null
+  passportNumber?: string | null
   passportExpireDate?: Date | string | null
   birthday?: Date | string | null
   image?: string | null
@@ -1261,8 +1211,8 @@ export type PersonScalarWhereInput = {
   gender?: Prisma.EnumGenderNullableFilter<"Person"> | $Enums.Gender | null
   mobileNumber?: Prisma.StringFilter<"Person"> | string
   nationality?: Prisma.StringNullableFilter<"Person"> | string | null
-  codeNational?: Prisma.IntNullableFilter<"Person"> | number | null
-  passportNumber?: Prisma.IntNullableFilter<"Person"> | number | null
+  codeNational?: Prisma.StringNullableFilter<"Person"> | string | null
+  passportNumber?: Prisma.StringNullableFilter<"Person"> | string | null
   passportExpireDate?: Prisma.DateTimeNullableFilter<"Person"> | Date | string | null
   birthday?: Prisma.DateTimeNullableFilter<"Person"> | Date | string | null
   image?: Prisma.StringNullableFilter<"Person"> | string | null
@@ -1284,8 +1234,8 @@ export type PersonUpdateWithoutPassengersInput = {
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  passportNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1310,8 +1260,8 @@ export type PersonUncheckedUpdateWithoutPassengersInput = {
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  passportNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1336,8 +1286,8 @@ export type PersonUncheckedUpdateManyWithoutPassengersInput = {
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  passportNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1524,8 +1474,8 @@ export type $PersonPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     gender: $Enums.Gender | null
     mobileNumber: string
     nationality: string | null
-    codeNational: number | null
-    passportNumber: number | null
+    codeNational: string | null
+    passportNumber: string | null
     passportExpireDate: Date | null
     birthday: Date | null
     image: string | null
@@ -1971,8 +1921,8 @@ export interface PersonFieldRefs {
   readonly gender: Prisma.FieldRef<"Person", 'Gender'>
   readonly mobileNumber: Prisma.FieldRef<"Person", 'String'>
   readonly nationality: Prisma.FieldRef<"Person", 'String'>
-  readonly codeNational: Prisma.FieldRef<"Person", 'Int'>
-  readonly passportNumber: Prisma.FieldRef<"Person", 'Int'>
+  readonly codeNational: Prisma.FieldRef<"Person", 'String'>
+  readonly passportNumber: Prisma.FieldRef<"Person", 'String'>
   readonly passportExpireDate: Prisma.FieldRef<"Person", 'DateTime'>
   readonly birthday: Prisma.FieldRef<"Person", 'DateTime'>
   readonly image: Prisma.FieldRef<"Person", 'String'>

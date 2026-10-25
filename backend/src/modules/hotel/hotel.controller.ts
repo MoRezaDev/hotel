@@ -14,8 +14,8 @@ import { CreateHotelFeaturesDto } from './dto/create-hotel-features.dto.js';
 import { CreateHotelRoomDto } from './dto/create-hotel-room.dto.js';
 
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { HotelExistsGurd } from '../gurds/hotel-exists.gurd.js';
-import { multerMainImageOptions } from '../utils/multer.options.js';
+import { HotelExistsGurd } from '../../gurds/hotel-exists.gurd.js';
+import { multerMainImageOptions } from '../../utils/multer.options.js';
 
 @Controller('hotel')
 export class HotelController {
@@ -56,7 +56,7 @@ export class HotelController {
   //for upload
   @Post('upload/:hotelId/image')
   @UseGuards(HotelExistsGurd)
-  @UseInterceptors(FileInterceptor('image', multerMainImageOptions()))
+  @UseInterceptors(FileInterceptor('image', {}))
   async uploadMain(
     @UploadedFile()
     file: Express.Multer.File,

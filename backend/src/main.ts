@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module.js';
 import { CatchEverything } from './catch-all.exception.js';
