@@ -18,6 +18,13 @@
     "skipLibCheck": true,
     "strict": true,
     "strictPropertyInitialization": false,
-    "types": ["vitest/globals", "node", "multer", "passport-jwt", "bcrypt"]
+    "types": [
+      "vitest/globals",
+      "node",
+      "multer",
+      "passport-jwt",
+      "bcrypt",
+      "cookie-parser"
+    ]
   }
 }

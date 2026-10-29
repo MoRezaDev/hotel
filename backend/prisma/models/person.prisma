@@ -49,6 +49,7 @@ model Comment {
 
     text String
     userRating Int
+    approved Boolean @default(false)
 
     userId String
     user Person @relation(fields: [userId],references: [id],onDelete: Cascade)
@@ -65,11 +66,12 @@ model Passenger {
 
     firstName String 
     lastName String
-    codeNational Int @unique
-    mobileNumber Int @unique
+    codeNational String 
+    mobileNumber String 
     gender Gender
 
-    persons Person[]
+    personId String 
+    person Person @relation(fields: [personId],references: [id],onDelete: Cascade)
     orders Order[]
 
     createdAt DateTime @default(now())

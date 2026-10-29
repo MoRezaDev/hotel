@@ -206,6 +206,7 @@ export const CommentScalarFieldEnum = {
   id: 'id',
   text: 'text',
   userRating: 'userRating',
+  approved: 'approved',
   userId: 'userId',
   hotelId: 'hotelId',
   createdAt: 'createdAt',
@@ -222,6 +223,7 @@ export const PassengerScalarFieldEnum = {
   codeNational: 'codeNational',
   mobileNumber: 'mobileNumber',
   gender: 'gender',
+  personId: 'personId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

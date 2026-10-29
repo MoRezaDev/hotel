@@ -3,16 +3,23 @@ import { DatabaseService } from '../../database/database.service.js';
 import { CreatePersonDto } from './dto/create-person.dto.js';
 import { UpdatePersonDto } from './dto/update-person.dto.js';
 
+import bcrypt from 'bcrypt';
+
 @Injectable()
 export class PersonService {
   constructor(private readonly databaseService: DatabaseService) {}
 
   async findAll() {
-    return await this.databaseService.person.findMany();
+    return await this.databaseService.person.findMany({
+      include: { comments: true, orders: true, passengers: true, otp: true },
+    });
   }
 
   async create(createPersonDto: CreatePersonDto) {
-    return await this.databaseService.person.create({ data: createPersonDto });
+    const hashedPwd = await bcrypt.hash(createPersonDto.password!, 10);
+    return await this.databaseService.person.create({
+      data: { ...createPersonDto, password: hashedPwd },
+    });
   }
 
   async update(updatePersonDto: UpdatePersonDto & { id: string }) {

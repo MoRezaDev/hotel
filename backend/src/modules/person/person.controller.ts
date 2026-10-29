@@ -6,10 +6,14 @@ import {
   Param,
   Patch,
   Post,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
 import { PersonService } from './person.service.js';
 import { CreatePersonDto } from './dto/create-person.dto.js';
 import { UpdatePersonDto } from './dto/update-person.dto.js';
+import { JwtAuthGurd } from '../../gurds/jwt-auth.gurd.js';
+import { CreatePassengerDto } from '../passenger/dto/create-passenger.dto.js';
 
 @Controller('person')
 export class PersonController {
@@ -25,10 +29,11 @@ export class PersonController {
   }
 
   @Patch('update')
-  async update(@Body() updatePersonDto: UpdatePersonDto & { id: string }) {
+  async update(@Body() updatePersonDto: UpdatePersonDto) {
     return this.personService.update(updatePersonDto);
   }
 
+  //Query params watermark
   @Delete(':id')
   async remove(@Param('id') id: string) {
     return this.personService.remove(id);

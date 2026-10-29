@@ -439,7 +439,7 @@ export type PersonCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   otp?: Prisma.OtpCreateNestedOneWithoutPersonInput
-  passengers?: Prisma.PassengerCreateNestedManyWithoutPersonsInput
+  passengers?: Prisma.PassengerCreateNestedManyWithoutPersonInput
   orders?: Prisma.OrderCreateNestedManyWithoutPersonInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
 }
@@ -466,7 +466,7 @@ export type PersonUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   otp?: Prisma.OtpUncheckedCreateNestedOneWithoutPersonInput
-  passengers?: Prisma.PassengerUncheckedCreateNestedManyWithoutPersonsInput
+  passengers?: Prisma.PassengerUncheckedCreateNestedManyWithoutPersonInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutPersonInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
 }
@@ -493,7 +493,7 @@ export type PersonUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   otp?: Prisma.OtpUpdateOneWithoutPersonNestedInput
-  passengers?: Prisma.PassengerUpdateManyWithoutPersonsNestedInput
+  passengers?: Prisma.PassengerUpdateManyWithoutPersonNestedInput
   orders?: Prisma.OrderUpdateManyWithoutPersonNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
 }
@@ -520,7 +520,7 @@ export type PersonUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   otp?: Prisma.OtpUncheckedUpdateOneWithoutPersonNestedInput
-  passengers?: Prisma.PassengerUncheckedUpdateManyWithoutPersonsNestedInput
+  passengers?: Prisma.PassengerUncheckedUpdateManyWithoutPersonNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutPersonNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -668,16 +668,6 @@ export type PersonMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type PersonListRelationFilter = {
-  every?: Prisma.PersonWhereInput
-  some?: Prisma.PersonWhereInput
-  none?: Prisma.PersonWhereInput
-}
-
-export type PersonOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
 export type PersonCreateNestedOneWithoutOrdersInput = {
   create?: Prisma.XOR<Prisma.PersonCreateWithoutOrdersInput, Prisma.PersonUncheckedCreateWithoutOrdersInput>
   connectOrCreate?: Prisma.PersonCreateOrConnectWithoutOrdersInput
@@ -728,42 +718,18 @@ export type PersonUpdateOneRequiredWithoutCommentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutCommentsInput, Prisma.PersonUpdateWithoutCommentsInput>, Prisma.PersonUncheckedUpdateWithoutCommentsInput>
 }
 
-export type PersonCreateNestedManyWithoutPassengersInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutPassengersInput, Prisma.PersonUncheckedCreateWithoutPassengersInput> | Prisma.PersonCreateWithoutPassengersInput[] | Prisma.PersonUncheckedCreateWithoutPassengersInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutPassengersInput | Prisma.PersonCreateOrConnectWithoutPassengersInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
+export type PersonCreateNestedOneWithoutPassengersInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutPassengersInput, Prisma.PersonUncheckedCreateWithoutPassengersInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutPassengersInput
+  connect?: Prisma.PersonWhereUniqueInput
 }
 
-export type PersonUncheckedCreateNestedManyWithoutPassengersInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutPassengersInput, Prisma.PersonUncheckedCreateWithoutPassengersInput> | Prisma.PersonCreateWithoutPassengersInput[] | Prisma.PersonUncheckedCreateWithoutPassengersInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutPassengersInput | Prisma.PersonCreateOrConnectWithoutPassengersInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-}
-
-export type PersonUpdateManyWithoutPassengersNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutPassengersInput, Prisma.PersonUncheckedCreateWithoutPassengersInput> | Prisma.PersonCreateWithoutPassengersInput[] | Prisma.PersonUncheckedCreateWithoutPassengersInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutPassengersInput | Prisma.PersonCreateOrConnectWithoutPassengersInput[]
-  upsert?: Prisma.PersonUpsertWithWhereUniqueWithoutPassengersInput | Prisma.PersonUpsertWithWhereUniqueWithoutPassengersInput[]
-  set?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  disconnect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  delete?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  update?: Prisma.PersonUpdateWithWhereUniqueWithoutPassengersInput | Prisma.PersonUpdateWithWhereUniqueWithoutPassengersInput[]
-  updateMany?: Prisma.PersonUpdateManyWithWhereWithoutPassengersInput | Prisma.PersonUpdateManyWithWhereWithoutPassengersInput[]
-  deleteMany?: Prisma.PersonScalarWhereInput | Prisma.PersonScalarWhereInput[]
-}
-
-export type PersonUncheckedUpdateManyWithoutPassengersNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonCreateWithoutPassengersInput, Prisma.PersonUncheckedCreateWithoutPassengersInput> | Prisma.PersonCreateWithoutPassengersInput[] | Prisma.PersonUncheckedCreateWithoutPassengersInput[]
-  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutPassengersInput | Prisma.PersonCreateOrConnectWithoutPassengersInput[]
-  upsert?: Prisma.PersonUpsertWithWhereUniqueWithoutPassengersInput | Prisma.PersonUpsertWithWhereUniqueWithoutPassengersInput[]
-  set?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  disconnect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  delete?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  connect?: Prisma.PersonWhereUniqueInput | Prisma.PersonWhereUniqueInput[]
-  update?: Prisma.PersonUpdateWithWhereUniqueWithoutPassengersInput | Prisma.PersonUpdateWithWhereUniqueWithoutPassengersInput[]
-  updateMany?: Prisma.PersonUpdateManyWithWhereWithoutPassengersInput | Prisma.PersonUpdateManyWithWhereWithoutPassengersInput[]
-  deleteMany?: Prisma.PersonScalarWhereInput | Prisma.PersonScalarWhereInput[]
+export type PersonUpdateOneRequiredWithoutPassengersNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonCreateWithoutPassengersInput, Prisma.PersonUncheckedCreateWithoutPassengersInput>
+  connectOrCreate?: Prisma.PersonCreateOrConnectWithoutPassengersInput
+  upsert?: Prisma.PersonUpsertWithoutPassengersInput
+  connect?: Prisma.PersonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonUpdateToOneWithWhereWithoutPassengersInput, Prisma.PersonUpdateWithoutPassengersInput>, Prisma.PersonUncheckedUpdateWithoutPassengersInput>
 }
 
 export type PersonCreateWithoutOrdersInput = {
@@ -788,7 +754,7 @@ export type PersonCreateWithoutOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   otp?: Prisma.OtpCreateNestedOneWithoutPersonInput
-  passengers?: Prisma.PassengerCreateNestedManyWithoutPersonsInput
+  passengers?: Prisma.PassengerCreateNestedManyWithoutPersonInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
 }
 
@@ -814,7 +780,7 @@ export type PersonUncheckedCreateWithoutOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   otp?: Prisma.OtpUncheckedCreateNestedOneWithoutPersonInput
-  passengers?: Prisma.PassengerUncheckedCreateNestedManyWithoutPersonsInput
+  passengers?: Prisma.PassengerUncheckedCreateNestedManyWithoutPersonInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -856,7 +822,7 @@ export type PersonUpdateWithoutOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   otp?: Prisma.OtpUpdateOneWithoutPersonNestedInput
-  passengers?: Prisma.PassengerUpdateManyWithoutPersonsNestedInput
+  passengers?: Prisma.PassengerUpdateManyWithoutPersonNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
 }
 
@@ -882,7 +848,7 @@ export type PersonUncheckedUpdateWithoutOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   otp?: Prisma.OtpUncheckedUpdateOneWithoutPersonNestedInput
-  passengers?: Prisma.PassengerUncheckedUpdateManyWithoutPersonsNestedInput
+  passengers?: Prisma.PassengerUncheckedUpdateManyWithoutPersonNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -907,7 +873,7 @@ export type PersonCreateWithoutOtpInput = {
   password?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  passengers?: Prisma.PassengerCreateNestedManyWithoutPersonsInput
+  passengers?: Prisma.PassengerCreateNestedManyWithoutPersonInput
   orders?: Prisma.OrderCreateNestedManyWithoutPersonInput
   comments?: Prisma.CommentCreateNestedManyWithoutUserInput
 }
@@ -933,7 +899,7 @@ export type PersonUncheckedCreateWithoutOtpInput = {
   password?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  passengers?: Prisma.PassengerUncheckedCreateNestedManyWithoutPersonsInput
+  passengers?: Prisma.PassengerUncheckedCreateNestedManyWithoutPersonInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutPersonInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
 }
@@ -975,7 +941,7 @@ export type PersonUpdateWithoutOtpInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  passengers?: Prisma.PassengerUpdateManyWithoutPersonsNestedInput
+  passengers?: Prisma.PassengerUpdateManyWithoutPersonNestedInput
   orders?: Prisma.OrderUpdateManyWithoutPersonNestedInput
   comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
 }
@@ -1001,7 +967,7 @@ export type PersonUncheckedUpdateWithoutOtpInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  passengers?: Prisma.PassengerUncheckedUpdateManyWithoutPersonsNestedInput
+  passengers?: Prisma.PassengerUncheckedUpdateManyWithoutPersonNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutPersonNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -1028,7 +994,7 @@ export type PersonCreateWithoutCommentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   otp?: Prisma.OtpCreateNestedOneWithoutPersonInput
-  passengers?: Prisma.PassengerCreateNestedManyWithoutPersonsInput
+  passengers?: Prisma.PassengerCreateNestedManyWithoutPersonInput
   orders?: Prisma.OrderCreateNestedManyWithoutPersonInput
 }
 
@@ -1054,7 +1020,7 @@ export type PersonUncheckedCreateWithoutCommentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   otp?: Prisma.OtpUncheckedCreateNestedOneWithoutPersonInput
-  passengers?: Prisma.PassengerUncheckedCreateNestedManyWithoutPersonsInput
+  passengers?: Prisma.PassengerUncheckedCreateNestedManyWithoutPersonInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutPersonInput
 }
 
@@ -1096,7 +1062,7 @@ export type PersonUpdateWithoutCommentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   otp?: Prisma.OtpUpdateOneWithoutPersonNestedInput
-  passengers?: Prisma.PassengerUpdateManyWithoutPersonsNestedInput
+  passengers?: Prisma.PassengerUpdateManyWithoutPersonNestedInput
   orders?: Prisma.OrderUpdateManyWithoutPersonNestedInput
 }
 
@@ -1122,7 +1088,7 @@ export type PersonUncheckedUpdateWithoutCommentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   otp?: Prisma.OtpUncheckedUpdateOneWithoutPersonNestedInput
-  passengers?: Prisma.PassengerUncheckedUpdateManyWithoutPersonsNestedInput
+  passengers?: Prisma.PassengerUncheckedUpdateManyWithoutPersonNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutPersonNestedInput
 }
 
@@ -1183,46 +1149,15 @@ export type PersonCreateOrConnectWithoutPassengersInput = {
   create: Prisma.XOR<Prisma.PersonCreateWithoutPassengersInput, Prisma.PersonUncheckedCreateWithoutPassengersInput>
 }
 
-export type PersonUpsertWithWhereUniqueWithoutPassengersInput = {
-  where: Prisma.PersonWhereUniqueInput
+export type PersonUpsertWithoutPassengersInput = {
   update: Prisma.XOR<Prisma.PersonUpdateWithoutPassengersInput, Prisma.PersonUncheckedUpdateWithoutPassengersInput>
   create: Prisma.XOR<Prisma.PersonCreateWithoutPassengersInput, Prisma.PersonUncheckedCreateWithoutPassengersInput>
+  where?: Prisma.PersonWhereInput
 }
 
-export type PersonUpdateWithWhereUniqueWithoutPassengersInput = {
-  where: Prisma.PersonWhereUniqueInput
+export type PersonUpdateToOneWithWhereWithoutPassengersInput = {
+  where?: Prisma.PersonWhereInput
   data: Prisma.XOR<Prisma.PersonUpdateWithoutPassengersInput, Prisma.PersonUncheckedUpdateWithoutPassengersInput>
-}
-
-export type PersonUpdateManyWithWhereWithoutPassengersInput = {
-  where: Prisma.PersonScalarWhereInput
-  data: Prisma.XOR<Prisma.PersonUpdateManyMutationInput, Prisma.PersonUncheckedUpdateManyWithoutPassengersInput>
-}
-
-export type PersonScalarWhereInput = {
-  AND?: Prisma.PersonScalarWhereInput | Prisma.PersonScalarWhereInput[]
-  OR?: Prisma.PersonScalarWhereInput[]
-  NOT?: Prisma.PersonScalarWhereInput | Prisma.PersonScalarWhereInput[]
-  id?: Prisma.StringFilter<"Person"> | string
-  firstName?: Prisma.StringNullableFilter<"Person"> | string | null
-  lastName?: Prisma.StringNullableFilter<"Person"> | string | null
-  firstNameEn?: Prisma.StringNullableFilter<"Person"> | string | null
-  lastNameEn?: Prisma.StringNullableFilter<"Person"> | string | null
-  gender?: Prisma.EnumGenderNullableFilter<"Person"> | $Enums.Gender | null
-  mobileNumber?: Prisma.StringFilter<"Person"> | string
-  nationality?: Prisma.StringNullableFilter<"Person"> | string | null
-  codeNational?: Prisma.StringNullableFilter<"Person"> | string | null
-  passportNumber?: Prisma.StringNullableFilter<"Person"> | string | null
-  passportExpireDate?: Prisma.DateTimeNullableFilter<"Person"> | Date | string | null
-  birthday?: Prisma.DateTimeNullableFilter<"Person"> | Date | string | null
-  image?: Prisma.StringNullableFilter<"Person"> | string | null
-  isVip?: Prisma.BoolFilter<"Person"> | boolean
-  isBanned?: Prisma.BoolFilter<"Person"> | boolean
-  role?: Prisma.StringFilter<"Person"> | string
-  email?: Prisma.StringNullableFilter<"Person"> | string | null
-  password?: Prisma.StringNullableFilter<"Person"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"Person"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Person"> | Date | string
 }
 
 export type PersonUpdateWithoutPassengersInput = {
@@ -1275,29 +1210,6 @@ export type PersonUncheckedUpdateWithoutPassengersInput = {
   otp?: Prisma.OtpUncheckedUpdateOneWithoutPersonNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutPersonNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type PersonUncheckedUpdateManyWithoutPassengersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastNameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
-  mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  codeNational?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passportNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passportExpireDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVip?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  role?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 

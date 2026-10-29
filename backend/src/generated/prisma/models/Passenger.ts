@@ -20,29 +20,18 @@ export type PassengerModel = runtime.Types.Result.DefaultSelection<Prisma.$Passe
 
 export type AggregatePassenger = {
   _count: PassengerCountAggregateOutputType | null
-  _avg: PassengerAvgAggregateOutputType | null
-  _sum: PassengerSumAggregateOutputType | null
   _min: PassengerMinAggregateOutputType | null
   _max: PassengerMaxAggregateOutputType | null
-}
-
-export type PassengerAvgAggregateOutputType = {
-  codeNational: number | null
-  mobileNumber: number | null
-}
-
-export type PassengerSumAggregateOutputType = {
-  codeNational: number | null
-  mobileNumber: number | null
 }
 
 export type PassengerMinAggregateOutputType = {
   id: string | null
   firstName: string | null
   lastName: string | null
-  codeNational: number | null
-  mobileNumber: number | null
+  codeNational: string | null
+  mobileNumber: string | null
   gender: $Enums.Gender | null
+  personId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -51,9 +40,10 @@ export type PassengerMaxAggregateOutputType = {
   id: string | null
   firstName: string | null
   lastName: string | null
-  codeNational: number | null
-  mobileNumber: number | null
+  codeNational: string | null
+  mobileNumber: string | null
   gender: $Enums.Gender | null
+  personId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -65,21 +55,12 @@ export type PassengerCountAggregateOutputType = {
   codeNational: number
   mobileNumber: number
   gender: number
+  personId: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
-
-export type PassengerAvgAggregateInputType = {
-  codeNational?: true
-  mobileNumber?: true
-}
-
-export type PassengerSumAggregateInputType = {
-  codeNational?: true
-  mobileNumber?: true
-}
 
 export type PassengerMinAggregateInputType = {
   id?: true
@@ -88,6 +69,7 @@ export type PassengerMinAggregateInputType = {
   codeNational?: true
   mobileNumber?: true
   gender?: true
+  personId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -99,6 +81,7 @@ export type PassengerMaxAggregateInputType = {
   codeNational?: true
   mobileNumber?: true
   gender?: true
+  personId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -110,6 +93,7 @@ export type PassengerCountAggregateInputType = {
   codeNational?: true
   mobileNumber?: true
   gender?: true
+  personId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -153,18 +137,6 @@ export type PassengerAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inte
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: PassengerAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: PassengerSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: PassengerMinAggregateInputType
@@ -195,8 +167,6 @@ export type PassengerGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   _count?: PassengerCountAggregateInputType | true
-  _avg?: PassengerAvgAggregateInputType
-  _sum?: PassengerSumAggregateInputType
   _min?: PassengerMinAggregateInputType
   _max?: PassengerMaxAggregateInputType
 }
@@ -205,14 +175,13 @@ export type PassengerGroupByOutputType = {
   id: string
   firstName: string
   lastName: string
-  codeNational: number
-  mobileNumber: number
+  codeNational: string
+  mobileNumber: string
   gender: $Enums.Gender
+  personId: string
   createdAt: Date
   updatedAt: Date
   _count: PassengerCountAggregateOutputType | null
-  _avg: PassengerAvgAggregateOutputType | null
-  _sum: PassengerSumAggregateOutputType | null
   _min: PassengerMinAggregateOutputType | null
   _max: PassengerMaxAggregateOutputType | null
 }
@@ -239,12 +208,13 @@ export type PassengerWhereInput = {
   id?: Prisma.StringFilter<"Passenger"> | string
   firstName?: Prisma.StringFilter<"Passenger"> | string
   lastName?: Prisma.StringFilter<"Passenger"> | string
-  codeNational?: Prisma.IntFilter<"Passenger"> | number
-  mobileNumber?: Prisma.IntFilter<"Passenger"> | number
+  codeNational?: Prisma.StringFilter<"Passenger"> | string
+  mobileNumber?: Prisma.StringFilter<"Passenger"> | string
   gender?: Prisma.EnumGenderFilter<"Passenger"> | $Enums.Gender
+  personId?: Prisma.StringFilter<"Passenger"> | string
   createdAt?: Prisma.DateTimeFilter<"Passenger"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Passenger"> | Date | string
-  persons?: Prisma.PersonListRelationFilter
+  person?: Prisma.XOR<Prisma.PersonScalarRelationFilter, Prisma.PersonWhereInput>
   orders?: Prisma.OrderListRelationFilter
 }
 
@@ -255,27 +225,29 @@ export type PassengerOrderByWithRelationInput = {
   codeNational?: Prisma.SortOrder
   mobileNumber?: Prisma.SortOrder
   gender?: Prisma.SortOrder
+  personId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  persons?: Prisma.PersonOrderByRelationAggregateInput
+  person?: Prisma.PersonOrderByWithRelationInput
   orders?: Prisma.OrderOrderByRelationAggregateInput
 }
 
 export type PassengerWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  codeNational?: number
-  mobileNumber?: number
   AND?: Prisma.PassengerWhereInput | Prisma.PassengerWhereInput[]
   OR?: Prisma.PassengerWhereInput[]
   NOT?: Prisma.PassengerWhereInput | Prisma.PassengerWhereInput[]
   firstName?: Prisma.StringFilter<"Passenger"> | string
   lastName?: Prisma.StringFilter<"Passenger"> | string
+  codeNational?: Prisma.StringFilter<"Passenger"> | string
+  mobileNumber?: Prisma.StringFilter<"Passenger"> | string
   gender?: Prisma.EnumGenderFilter<"Passenger"> | $Enums.Gender
+  personId?: Prisma.StringFilter<"Passenger"> | string
   createdAt?: Prisma.DateTimeFilter<"Passenger"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Passenger"> | Date | string
-  persons?: Prisma.PersonListRelationFilter
+  person?: Prisma.XOR<Prisma.PersonScalarRelationFilter, Prisma.PersonWhereInput>
   orders?: Prisma.OrderListRelationFilter
-}, "id" | "codeNational" | "mobileNumber">
+}, "id">
 
 export type PassengerOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -284,13 +256,12 @@ export type PassengerOrderByWithAggregationInput = {
   codeNational?: Prisma.SortOrder
   mobileNumber?: Prisma.SortOrder
   gender?: Prisma.SortOrder
+  personId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PassengerCountOrderByAggregateInput
-  _avg?: Prisma.PassengerAvgOrderByAggregateInput
   _max?: Prisma.PassengerMaxOrderByAggregateInput
   _min?: Prisma.PassengerMinOrderByAggregateInput
-  _sum?: Prisma.PassengerSumOrderByAggregateInput
 }
 
 export type PassengerScalarWhereWithAggregatesInput = {
@@ -300,9 +271,10 @@ export type PassengerScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Passenger"> | string
   firstName?: Prisma.StringWithAggregatesFilter<"Passenger"> | string
   lastName?: Prisma.StringWithAggregatesFilter<"Passenger"> | string
-  codeNational?: Prisma.IntWithAggregatesFilter<"Passenger"> | number
-  mobileNumber?: Prisma.IntWithAggregatesFilter<"Passenger"> | number
+  codeNational?: Prisma.StringWithAggregatesFilter<"Passenger"> | string
+  mobileNumber?: Prisma.StringWithAggregatesFilter<"Passenger"> | string
   gender?: Prisma.EnumGenderWithAggregatesFilter<"Passenger"> | $Enums.Gender
+  personId?: Prisma.StringWithAggregatesFilter<"Passenger"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Passenger"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Passenger"> | Date | string
 }
@@ -311,12 +283,12 @@ export type PassengerCreateInput = {
   id?: string
   firstName: string
   lastName: string
-  codeNational: number
-  mobileNumber: number
+  codeNational: string
+  mobileNumber: string
   gender: $Enums.Gender
   createdAt?: Date | string
   updatedAt?: Date | string
-  persons?: Prisma.PersonCreateNestedManyWithoutPassengersInput
+  person: Prisma.PersonCreateNestedOneWithoutPassengersInput
   orders?: Prisma.OrderCreateNestedManyWithoutPassengerInput
 }
 
@@ -324,12 +296,12 @@ export type PassengerUncheckedCreateInput = {
   id?: string
   firstName: string
   lastName: string
-  codeNational: number
-  mobileNumber: number
+  codeNational: string
+  mobileNumber: string
   gender: $Enums.Gender
+  personId: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  persons?: Prisma.PersonUncheckedCreateNestedManyWithoutPassengersInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutPassengerInput
 }
 
@@ -337,12 +309,12 @@ export type PassengerUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  codeNational?: Prisma.IntFieldUpdateOperationsInput | number
-  mobileNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  codeNational?: Prisma.StringFieldUpdateOperationsInput | string
+  mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  persons?: Prisma.PersonUpdateManyWithoutPassengersNestedInput
+  person?: Prisma.PersonUpdateOneRequiredWithoutPassengersNestedInput
   orders?: Prisma.OrderUpdateManyWithoutPassengerNestedInput
 }
 
@@ -350,12 +322,12 @@ export type PassengerUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  codeNational?: Prisma.IntFieldUpdateOperationsInput | number
-  mobileNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  codeNational?: Prisma.StringFieldUpdateOperationsInput | string
+  mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  personId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  persons?: Prisma.PersonUncheckedUpdateManyWithoutPassengersNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutPassengerNestedInput
 }
 
@@ -363,9 +335,10 @@ export type PassengerCreateManyInput = {
   id?: string
   firstName: string
   lastName: string
-  codeNational: number
-  mobileNumber: number
+  codeNational: string
+  mobileNumber: string
   gender: $Enums.Gender
+  personId: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -374,8 +347,8 @@ export type PassengerUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  codeNational?: Prisma.IntFieldUpdateOperationsInput | number
-  mobileNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  codeNational?: Prisma.StringFieldUpdateOperationsInput | string
+  mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -385,9 +358,10 @@ export type PassengerUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  codeNational?: Prisma.IntFieldUpdateOperationsInput | number
-  mobileNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  codeNational?: Prisma.StringFieldUpdateOperationsInput | string
+  mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  personId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -414,13 +388,9 @@ export type PassengerCountOrderByAggregateInput = {
   codeNational?: Prisma.SortOrder
   mobileNumber?: Prisma.SortOrder
   gender?: Prisma.SortOrder
+  personId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type PassengerAvgOrderByAggregateInput = {
-  codeNational?: Prisma.SortOrder
-  mobileNumber?: Prisma.SortOrder
 }
 
 export type PassengerMaxOrderByAggregateInput = {
@@ -430,6 +400,7 @@ export type PassengerMaxOrderByAggregateInput = {
   codeNational?: Prisma.SortOrder
   mobileNumber?: Prisma.SortOrder
   gender?: Prisma.SortOrder
+  personId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -441,13 +412,9 @@ export type PassengerMinOrderByAggregateInput = {
   codeNational?: Prisma.SortOrder
   mobileNumber?: Prisma.SortOrder
   gender?: Prisma.SortOrder
+  personId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type PassengerSumOrderByAggregateInput = {
-  codeNational?: Prisma.SortOrder
-  mobileNumber?: Prisma.SortOrder
 }
 
 export type PassengerCreateNestedOneWithoutOrdersInput = {
@@ -464,41 +431,45 @@ export type PassengerUpdateOneRequiredWithoutOrdersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PassengerUpdateToOneWithWhereWithoutOrdersInput, Prisma.PassengerUpdateWithoutOrdersInput>, Prisma.PassengerUncheckedUpdateWithoutOrdersInput>
 }
 
-export type PassengerCreateNestedManyWithoutPersonsInput = {
-  create?: Prisma.XOR<Prisma.PassengerCreateWithoutPersonsInput, Prisma.PassengerUncheckedCreateWithoutPersonsInput> | Prisma.PassengerCreateWithoutPersonsInput[] | Prisma.PassengerUncheckedCreateWithoutPersonsInput[]
-  connectOrCreate?: Prisma.PassengerCreateOrConnectWithoutPersonsInput | Prisma.PassengerCreateOrConnectWithoutPersonsInput[]
+export type PassengerCreateNestedManyWithoutPersonInput = {
+  create?: Prisma.XOR<Prisma.PassengerCreateWithoutPersonInput, Prisma.PassengerUncheckedCreateWithoutPersonInput> | Prisma.PassengerCreateWithoutPersonInput[] | Prisma.PassengerUncheckedCreateWithoutPersonInput[]
+  connectOrCreate?: Prisma.PassengerCreateOrConnectWithoutPersonInput | Prisma.PassengerCreateOrConnectWithoutPersonInput[]
+  createMany?: Prisma.PassengerCreateManyPersonInputEnvelope
   connect?: Prisma.PassengerWhereUniqueInput | Prisma.PassengerWhereUniqueInput[]
 }
 
-export type PassengerUncheckedCreateNestedManyWithoutPersonsInput = {
-  create?: Prisma.XOR<Prisma.PassengerCreateWithoutPersonsInput, Prisma.PassengerUncheckedCreateWithoutPersonsInput> | Prisma.PassengerCreateWithoutPersonsInput[] | Prisma.PassengerUncheckedCreateWithoutPersonsInput[]
-  connectOrCreate?: Prisma.PassengerCreateOrConnectWithoutPersonsInput | Prisma.PassengerCreateOrConnectWithoutPersonsInput[]
+export type PassengerUncheckedCreateNestedManyWithoutPersonInput = {
+  create?: Prisma.XOR<Prisma.PassengerCreateWithoutPersonInput, Prisma.PassengerUncheckedCreateWithoutPersonInput> | Prisma.PassengerCreateWithoutPersonInput[] | Prisma.PassengerUncheckedCreateWithoutPersonInput[]
+  connectOrCreate?: Prisma.PassengerCreateOrConnectWithoutPersonInput | Prisma.PassengerCreateOrConnectWithoutPersonInput[]
+  createMany?: Prisma.PassengerCreateManyPersonInputEnvelope
   connect?: Prisma.PassengerWhereUniqueInput | Prisma.PassengerWhereUniqueInput[]
 }
 
-export type PassengerUpdateManyWithoutPersonsNestedInput = {
-  create?: Prisma.XOR<Prisma.PassengerCreateWithoutPersonsInput, Prisma.PassengerUncheckedCreateWithoutPersonsInput> | Prisma.PassengerCreateWithoutPersonsInput[] | Prisma.PassengerUncheckedCreateWithoutPersonsInput[]
-  connectOrCreate?: Prisma.PassengerCreateOrConnectWithoutPersonsInput | Prisma.PassengerCreateOrConnectWithoutPersonsInput[]
-  upsert?: Prisma.PassengerUpsertWithWhereUniqueWithoutPersonsInput | Prisma.PassengerUpsertWithWhereUniqueWithoutPersonsInput[]
+export type PassengerUpdateManyWithoutPersonNestedInput = {
+  create?: Prisma.XOR<Prisma.PassengerCreateWithoutPersonInput, Prisma.PassengerUncheckedCreateWithoutPersonInput> | Prisma.PassengerCreateWithoutPersonInput[] | Prisma.PassengerUncheckedCreateWithoutPersonInput[]
+  connectOrCreate?: Prisma.PassengerCreateOrConnectWithoutPersonInput | Prisma.PassengerCreateOrConnectWithoutPersonInput[]
+  upsert?: Prisma.PassengerUpsertWithWhereUniqueWithoutPersonInput | Prisma.PassengerUpsertWithWhereUniqueWithoutPersonInput[]
+  createMany?: Prisma.PassengerCreateManyPersonInputEnvelope
   set?: Prisma.PassengerWhereUniqueInput | Prisma.PassengerWhereUniqueInput[]
   disconnect?: Prisma.PassengerWhereUniqueInput | Prisma.PassengerWhereUniqueInput[]
   delete?: Prisma.PassengerWhereUniqueInput | Prisma.PassengerWhereUniqueInput[]
   connect?: Prisma.PassengerWhereUniqueInput | Prisma.PassengerWhereUniqueInput[]
-  update?: Prisma.PassengerUpdateWithWhereUniqueWithoutPersonsInput | Prisma.PassengerUpdateWithWhereUniqueWithoutPersonsInput[]
-  updateMany?: Prisma.PassengerUpdateManyWithWhereWithoutPersonsInput | Prisma.PassengerUpdateManyWithWhereWithoutPersonsInput[]
+  update?: Prisma.PassengerUpdateWithWhereUniqueWithoutPersonInput | Prisma.PassengerUpdateWithWhereUniqueWithoutPersonInput[]
+  updateMany?: Prisma.PassengerUpdateManyWithWhereWithoutPersonInput | Prisma.PassengerUpdateManyWithWhereWithoutPersonInput[]
   deleteMany?: Prisma.PassengerScalarWhereInput | Prisma.PassengerScalarWhereInput[]
 }
 
-export type PassengerUncheckedUpdateManyWithoutPersonsNestedInput = {
-  create?: Prisma.XOR<Prisma.PassengerCreateWithoutPersonsInput, Prisma.PassengerUncheckedCreateWithoutPersonsInput> | Prisma.PassengerCreateWithoutPersonsInput[] | Prisma.PassengerUncheckedCreateWithoutPersonsInput[]
-  connectOrCreate?: Prisma.PassengerCreateOrConnectWithoutPersonsInput | Prisma.PassengerCreateOrConnectWithoutPersonsInput[]
-  upsert?: Prisma.PassengerUpsertWithWhereUniqueWithoutPersonsInput | Prisma.PassengerUpsertWithWhereUniqueWithoutPersonsInput[]
+export type PassengerUncheckedUpdateManyWithoutPersonNestedInput = {
+  create?: Prisma.XOR<Prisma.PassengerCreateWithoutPersonInput, Prisma.PassengerUncheckedCreateWithoutPersonInput> | Prisma.PassengerCreateWithoutPersonInput[] | Prisma.PassengerUncheckedCreateWithoutPersonInput[]
+  connectOrCreate?: Prisma.PassengerCreateOrConnectWithoutPersonInput | Prisma.PassengerCreateOrConnectWithoutPersonInput[]
+  upsert?: Prisma.PassengerUpsertWithWhereUniqueWithoutPersonInput | Prisma.PassengerUpsertWithWhereUniqueWithoutPersonInput[]
+  createMany?: Prisma.PassengerCreateManyPersonInputEnvelope
   set?: Prisma.PassengerWhereUniqueInput | Prisma.PassengerWhereUniqueInput[]
   disconnect?: Prisma.PassengerWhereUniqueInput | Prisma.PassengerWhereUniqueInput[]
   delete?: Prisma.PassengerWhereUniqueInput | Prisma.PassengerWhereUniqueInput[]
   connect?: Prisma.PassengerWhereUniqueInput | Prisma.PassengerWhereUniqueInput[]
-  update?: Prisma.PassengerUpdateWithWhereUniqueWithoutPersonsInput | Prisma.PassengerUpdateWithWhereUniqueWithoutPersonsInput[]
-  updateMany?: Prisma.PassengerUpdateManyWithWhereWithoutPersonsInput | Prisma.PassengerUpdateManyWithWhereWithoutPersonsInput[]
+  update?: Prisma.PassengerUpdateWithWhereUniqueWithoutPersonInput | Prisma.PassengerUpdateWithWhereUniqueWithoutPersonInput[]
+  updateMany?: Prisma.PassengerUpdateManyWithWhereWithoutPersonInput | Prisma.PassengerUpdateManyWithWhereWithoutPersonInput[]
   deleteMany?: Prisma.PassengerScalarWhereInput | Prisma.PassengerScalarWhereInput[]
 }
 
@@ -510,24 +481,24 @@ export type PassengerCreateWithoutOrdersInput = {
   id?: string
   firstName: string
   lastName: string
-  codeNational: number
-  mobileNumber: number
+  codeNational: string
+  mobileNumber: string
   gender: $Enums.Gender
   createdAt?: Date | string
   updatedAt?: Date | string
-  persons?: Prisma.PersonCreateNestedManyWithoutPassengersInput
+  person: Prisma.PersonCreateNestedOneWithoutPassengersInput
 }
 
 export type PassengerUncheckedCreateWithoutOrdersInput = {
   id?: string
   firstName: string
   lastName: string
-  codeNational: number
-  mobileNumber: number
+  codeNational: string
+  mobileNumber: string
   gender: $Enums.Gender
+  personId: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  persons?: Prisma.PersonUncheckedCreateNestedManyWithoutPassengersInput
 }
 
 export type PassengerCreateOrConnectWithoutOrdersInput = {
@@ -550,69 +521,74 @@ export type PassengerUpdateWithoutOrdersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  codeNational?: Prisma.IntFieldUpdateOperationsInput | number
-  mobileNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  codeNational?: Prisma.StringFieldUpdateOperationsInput | string
+  mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  persons?: Prisma.PersonUpdateManyWithoutPassengersNestedInput
+  person?: Prisma.PersonUpdateOneRequiredWithoutPassengersNestedInput
 }
 
 export type PassengerUncheckedUpdateWithoutOrdersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  codeNational?: Prisma.IntFieldUpdateOperationsInput | number
-  mobileNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  codeNational?: Prisma.StringFieldUpdateOperationsInput | string
+  mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  personId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  persons?: Prisma.PersonUncheckedUpdateManyWithoutPassengersNestedInput
 }
 
-export type PassengerCreateWithoutPersonsInput = {
+export type PassengerCreateWithoutPersonInput = {
   id?: string
   firstName: string
   lastName: string
-  codeNational: number
-  mobileNumber: number
+  codeNational: string
+  mobileNumber: string
   gender: $Enums.Gender
   createdAt?: Date | string
   updatedAt?: Date | string
   orders?: Prisma.OrderCreateNestedManyWithoutPassengerInput
 }
 
-export type PassengerUncheckedCreateWithoutPersonsInput = {
+export type PassengerUncheckedCreateWithoutPersonInput = {
   id?: string
   firstName: string
   lastName: string
-  codeNational: number
-  mobileNumber: number
+  codeNational: string
+  mobileNumber: string
   gender: $Enums.Gender
   createdAt?: Date | string
   updatedAt?: Date | string
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutPassengerInput
 }
 
-export type PassengerCreateOrConnectWithoutPersonsInput = {
+export type PassengerCreateOrConnectWithoutPersonInput = {
   where: Prisma.PassengerWhereUniqueInput
-  create: Prisma.XOR<Prisma.PassengerCreateWithoutPersonsInput, Prisma.PassengerUncheckedCreateWithoutPersonsInput>
+  create: Prisma.XOR<Prisma.PassengerCreateWithoutPersonInput, Prisma.PassengerUncheckedCreateWithoutPersonInput>
 }
 
-export type PassengerUpsertWithWhereUniqueWithoutPersonsInput = {
-  where: Prisma.PassengerWhereUniqueInput
-  update: Prisma.XOR<Prisma.PassengerUpdateWithoutPersonsInput, Prisma.PassengerUncheckedUpdateWithoutPersonsInput>
-  create: Prisma.XOR<Prisma.PassengerCreateWithoutPersonsInput, Prisma.PassengerUncheckedCreateWithoutPersonsInput>
+export type PassengerCreateManyPersonInputEnvelope = {
+  data: Prisma.PassengerCreateManyPersonInput | Prisma.PassengerCreateManyPersonInput[]
+  skipDuplicates?: boolean
 }
 
-export type PassengerUpdateWithWhereUniqueWithoutPersonsInput = {
+export type PassengerUpsertWithWhereUniqueWithoutPersonInput = {
   where: Prisma.PassengerWhereUniqueInput
-  data: Prisma.XOR<Prisma.PassengerUpdateWithoutPersonsInput, Prisma.PassengerUncheckedUpdateWithoutPersonsInput>
+  update: Prisma.XOR<Prisma.PassengerUpdateWithoutPersonInput, Prisma.PassengerUncheckedUpdateWithoutPersonInput>
+  create: Prisma.XOR<Prisma.PassengerCreateWithoutPersonInput, Prisma.PassengerUncheckedCreateWithoutPersonInput>
 }
 
-export type PassengerUpdateManyWithWhereWithoutPersonsInput = {
+export type PassengerUpdateWithWhereUniqueWithoutPersonInput = {
+  where: Prisma.PassengerWhereUniqueInput
+  data: Prisma.XOR<Prisma.PassengerUpdateWithoutPersonInput, Prisma.PassengerUncheckedUpdateWithoutPersonInput>
+}
+
+export type PassengerUpdateManyWithWhereWithoutPersonInput = {
   where: Prisma.PassengerScalarWhereInput
-  data: Prisma.XOR<Prisma.PassengerUpdateManyMutationInput, Prisma.PassengerUncheckedUpdateManyWithoutPersonsInput>
+  data: Prisma.XOR<Prisma.PassengerUpdateManyMutationInput, Prisma.PassengerUncheckedUpdateManyWithoutPersonInput>
 }
 
 export type PassengerScalarWhereInput = {
@@ -622,43 +598,55 @@ export type PassengerScalarWhereInput = {
   id?: Prisma.StringFilter<"Passenger"> | string
   firstName?: Prisma.StringFilter<"Passenger"> | string
   lastName?: Prisma.StringFilter<"Passenger"> | string
-  codeNational?: Prisma.IntFilter<"Passenger"> | number
-  mobileNumber?: Prisma.IntFilter<"Passenger"> | number
+  codeNational?: Prisma.StringFilter<"Passenger"> | string
+  mobileNumber?: Prisma.StringFilter<"Passenger"> | string
   gender?: Prisma.EnumGenderFilter<"Passenger"> | $Enums.Gender
+  personId?: Prisma.StringFilter<"Passenger"> | string
   createdAt?: Prisma.DateTimeFilter<"Passenger"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Passenger"> | Date | string
 }
 
-export type PassengerUpdateWithoutPersonsInput = {
+export type PassengerCreateManyPersonInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  codeNational: string
+  mobileNumber: string
+  gender: $Enums.Gender
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PassengerUpdateWithoutPersonInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  codeNational?: Prisma.IntFieldUpdateOperationsInput | number
-  mobileNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  codeNational?: Prisma.StringFieldUpdateOperationsInput | string
+  mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orders?: Prisma.OrderUpdateManyWithoutPassengerNestedInput
 }
 
-export type PassengerUncheckedUpdateWithoutPersonsInput = {
+export type PassengerUncheckedUpdateWithoutPersonInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  codeNational?: Prisma.IntFieldUpdateOperationsInput | number
-  mobileNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  codeNational?: Prisma.StringFieldUpdateOperationsInput | string
+  mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orders?: Prisma.OrderUncheckedUpdateManyWithoutPassengerNestedInput
 }
 
-export type PassengerUncheckedUpdateManyWithoutPersonsInput = {
+export type PassengerUncheckedUpdateManyWithoutPersonInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  codeNational?: Prisma.IntFieldUpdateOperationsInput | number
-  mobileNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  codeNational?: Prisma.StringFieldUpdateOperationsInput | string
+  mobileNumber?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -670,12 +658,10 @@ export type PassengerUncheckedUpdateManyWithoutPersonsInput = {
  */
 
 export type PassengerCountOutputType = {
-  persons: number
   orders: number
 }
 
 export type PassengerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  persons?: boolean | PassengerCountOutputTypeCountPersonsArgs
   orders?: boolean | PassengerCountOutputTypeCountOrdersArgs
 }
 
@@ -687,13 +673,6 @@ export type PassengerCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
    * Select specific fields to fetch from the PassengerCountOutputType
    */
   select?: Prisma.PassengerCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * PassengerCountOutputType without action
- */
-export type PassengerCountOutputTypeCountPersonsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PersonWhereInput
 }
 
 /**
@@ -711,9 +690,10 @@ export type PassengerSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   codeNational?: boolean
   mobileNumber?: boolean
   gender?: boolean
+  personId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  persons?: boolean | Prisma.Passenger$personsArgs<ExtArgs>
+  person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   orders?: boolean | Prisma.Passenger$ordersArgs<ExtArgs>
   _count?: boolean | Prisma.PassengerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["passenger"]>
@@ -725,8 +705,10 @@ export type PassengerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   codeNational?: boolean
   mobileNumber?: boolean
   gender?: boolean
+  personId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["passenger"]>
 
 export type PassengerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -736,8 +718,10 @@ export type PassengerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   codeNational?: boolean
   mobileNumber?: boolean
   gender?: boolean
+  personId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["passenger"]>
 
 export type PassengerSelectScalar = {
@@ -747,32 +731,38 @@ export type PassengerSelectScalar = {
   codeNational?: boolean
   mobileNumber?: boolean
   gender?: boolean
+  personId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PassengerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "codeNational" | "mobileNumber" | "gender" | "createdAt" | "updatedAt", ExtArgs["result"]["passenger"]>
+export type PassengerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "codeNational" | "mobileNumber" | "gender" | "personId" | "createdAt" | "updatedAt", ExtArgs["result"]["passenger"]>
 export type PassengerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  persons?: boolean | Prisma.Passenger$personsArgs<ExtArgs>
+  person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
   orders?: boolean | Prisma.Passenger$ordersArgs<ExtArgs>
   _count?: boolean | Prisma.PassengerCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type PassengerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type PassengerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type PassengerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
+}
+export type PassengerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  person?: boolean | Prisma.PersonDefaultArgs<ExtArgs>
+}
 
 export type $PassengerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Passenger"
   objects: {
-    persons: Prisma.$PersonPayload<ExtArgs>[]
+    person: Prisma.$PersonPayload<ExtArgs>
     orders: Prisma.$OrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     firstName: string
     lastName: string
-    codeNational: number
-    mobileNumber: number
+    codeNational: string
+    mobileNumber: string
     gender: $Enums.Gender
+    personId: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["passenger"]>
@@ -1169,7 +1159,7 @@ readonly fields: PassengerFieldRefs;
  */
 export interface Prisma__PassengerClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  persons<T extends Prisma.Passenger$personsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Passenger$personsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  person<T extends Prisma.PersonDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PersonDefaultArgs<ExtArgs>>): Prisma.Prisma__PersonClient<runtime.Types.Result.GetResult<Prisma.$PersonPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   orders<T extends Prisma.Passenger$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Passenger$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1203,9 +1193,10 @@ export interface PassengerFieldRefs {
   readonly id: Prisma.FieldRef<"Passenger", 'String'>
   readonly firstName: Prisma.FieldRef<"Passenger", 'String'>
   readonly lastName: Prisma.FieldRef<"Passenger", 'String'>
-  readonly codeNational: Prisma.FieldRef<"Passenger", 'Int'>
-  readonly mobileNumber: Prisma.FieldRef<"Passenger", 'Int'>
+  readonly codeNational: Prisma.FieldRef<"Passenger", 'String'>
+  readonly mobileNumber: Prisma.FieldRef<"Passenger", 'String'>
   readonly gender: Prisma.FieldRef<"Passenger", 'Gender'>
+  readonly personId: Prisma.FieldRef<"Passenger", 'String'>
   readonly createdAt: Prisma.FieldRef<"Passenger", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Passenger", 'DateTime'>
 }
@@ -1462,6 +1453,10 @@ export type PassengerCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    */
   data: Prisma.PassengerCreateManyInput | Prisma.PassengerCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PassengerIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1532,6 +1527,10 @@ export type PassengerUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    * Limit how many Passengers to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PassengerIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1598,30 +1597,6 @@ export type PassengerDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many Passengers to delete.
    */
   limit?: number
-}
-
-/**
- * Passenger.persons
- */
-export type Passenger$personsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Person
-   */
-  select?: Prisma.PersonSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Person
-   */
-  omit?: Prisma.PersonOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PersonInclude<ExtArgs> | null
-  where?: Prisma.PersonWhereInput
-  orderBy?: Prisma.PersonOrderByWithRelationInput | Prisma.PersonOrderByWithRelationInput[]
-  cursor?: Prisma.PersonWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PersonScalarFieldEnum | Prisma.PersonScalarFieldEnum[]
 }
 
 /**

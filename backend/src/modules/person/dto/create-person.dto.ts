@@ -75,8 +75,7 @@ export class CreatePersonDto {
   @IsEmail()
   email?: string;
 
-  @IsOptional()
-  @IsString({})
   @MinLength(6)
-  password?: string;
+  @IsString({})
+  password: string;
 }
