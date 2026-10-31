@@ -1,47 +1,71 @@
 model Order {
-    id String @id @default(uuid())
+  id String @id @default(uuid())
 
-    orderNumber Int @unique
-    extraRequest String?
+  orderNumber Int @unique
 
-    transactions Transaction[]
+  status OrderStatus @default(PENDING)
 
-    passengerId String
-    passenger Passenger @relation(fields: [passengerId],references: [id])
+  amount Int
 
-   
+  extraRequest String?
 
-    personId String
-    person Person @relation(fields: [personId],references: [id],onDelete: Cascade)
+  expiresAt DateTime
+  confirmedAt DateTime?
 
-    hotelId String
-    hotel Hotel @relation(fields: [hotelId],references: [id])
+  transactions Transaction[]
 
-    roomId String
-    room Room @relation(fields: [roomId],references: [id])
+  checkIn  DateTime
+  checkOut DateTime
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    
+  passengerId String
+  passenger Passenger @relation(fields: [passengerId], references: [id])
+
+  personId String
+  person Person @relation(fields: [personId], references: [id], onDelete: Cascade)
+
+  hotelId String
+  hotel Hotel @relation(fields: [hotelId], references: [id])
+
+  roomId String
+  room Room @relation(fields: [roomId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  EXPIRED
+  CANCELLED
 }
 
 model Transaction {
-    id String @id @default(uuid())
+  id String @id @default(uuid())
 
-    codeNumber Int @unique
-    verifyCode Int? @unique
+  codeNumber Int @unique
 
-    status Status @default(PENDING)
+  authority String? @unique
+  refId String? @unique
 
-    orderId String 
-    order Order @relation(fields: [orderId],references: [id],onDelete: Cascade)
+  amount Int
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  status TransactionStatus @default(PENDING)
+
+  expiresAt DateTime
+  paidAt DateTime?
+
+  failureReason String?
+
+  orderId String
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-enum Status {
-    PENDING
-    FAILED
-    SUCCESS
+enum TransactionStatus {
+  PENDING
+  SUCCESS
+  FAILED
 }

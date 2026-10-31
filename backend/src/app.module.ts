@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module.js';
 import { PersonModule } from './modules/person/person.module.js';
 import { PassengerModule } from './modules/passenger/passenger.module.js';
 import { CommentModule } from './modules/comment/comment.module.js';
+import { OrderModule } from './modules/order/order.module.js';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CommentModule } from './modules/comment/comment.module.js';
     PersonModule,
     PassengerModule,
     CommentModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -28,19 +28,24 @@ export type AggregateTransaction = {
 
 export type TransactionAvgAggregateOutputType = {
   codeNumber: number | null
-  verifyCode: number | null
+  amount: number | null
 }
 
 export type TransactionSumAggregateOutputType = {
   codeNumber: number | null
-  verifyCode: number | null
+  amount: number | null
 }
 
 export type TransactionMinAggregateOutputType = {
   id: string | null
   codeNumber: number | null
-  verifyCode: number | null
-  status: $Enums.Status | null
+  authority: string | null
+  refId: string | null
+  amount: number | null
+  status: $Enums.TransactionStatus | null
+  expiresAt: Date | null
+  paidAt: Date | null
+  failureReason: string | null
   orderId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -49,8 +54,13 @@ export type TransactionMinAggregateOutputType = {
 export type TransactionMaxAggregateOutputType = {
   id: string | null
   codeNumber: number | null
-  verifyCode: number | null
-  status: $Enums.Status | null
+  authority: string | null
+  refId: string | null
+  amount: number | null
+  status: $Enums.TransactionStatus | null
+  expiresAt: Date | null
+  paidAt: Date | null
+  failureReason: string | null
   orderId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -59,8 +69,13 @@ export type TransactionMaxAggregateOutputType = {
 export type TransactionCountAggregateOutputType = {
   id: number
   codeNumber: number
-  verifyCode: number
+  authority: number
+  refId: number
+  amount: number
   status: number
+  expiresAt: number
+  paidAt: number
+  failureReason: number
   orderId: number
   createdAt: number
   updatedAt: number
@@ -70,19 +85,24 @@ export type TransactionCountAggregateOutputType = {
 
 export type TransactionAvgAggregateInputType = {
   codeNumber?: true
-  verifyCode?: true
+  amount?: true
 }
 
 export type TransactionSumAggregateInputType = {
   codeNumber?: true
-  verifyCode?: true
+  amount?: true
 }
 
 export type TransactionMinAggregateInputType = {
   id?: true
   codeNumber?: true
-  verifyCode?: true
+  authority?: true
+  refId?: true
+  amount?: true
   status?: true
+  expiresAt?: true
+  paidAt?: true
+  failureReason?: true
   orderId?: true
   createdAt?: true
   updatedAt?: true
@@ -91,8 +111,13 @@ export type TransactionMinAggregateInputType = {
 export type TransactionMaxAggregateInputType = {
   id?: true
   codeNumber?: true
-  verifyCode?: true
+  authority?: true
+  refId?: true
+  amount?: true
   status?: true
+  expiresAt?: true
+  paidAt?: true
+  failureReason?: true
   orderId?: true
   createdAt?: true
   updatedAt?: true
@@ -101,8 +126,13 @@ export type TransactionMaxAggregateInputType = {
 export type TransactionCountAggregateInputType = {
   id?: true
   codeNumber?: true
-  verifyCode?: true
+  authority?: true
+  refId?: true
+  amount?: true
   status?: true
+  expiresAt?: true
+  paidAt?: true
+  failureReason?: true
   orderId?: true
   createdAt?: true
   updatedAt?: true
@@ -198,8 +228,13 @@ export type TransactionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type TransactionGroupByOutputType = {
   id: string
   codeNumber: number
-  verifyCode: number | null
-  status: $Enums.Status
+  authority: string | null
+  refId: string | null
+  amount: number
+  status: $Enums.TransactionStatus
+  expiresAt: Date
+  paidAt: Date | null
+  failureReason: string | null
   orderId: string
   createdAt: Date
   updatedAt: Date
@@ -231,8 +266,13 @@ export type TransactionWhereInput = {
   NOT?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[]
   id?: Prisma.StringFilter<"Transaction"> | string
   codeNumber?: Prisma.IntFilter<"Transaction"> | number
-  verifyCode?: Prisma.IntNullableFilter<"Transaction"> | number | null
-  status?: Prisma.EnumStatusFilter<"Transaction"> | $Enums.Status
+  authority?: Prisma.StringNullableFilter<"Transaction"> | string | null
+  refId?: Prisma.StringNullableFilter<"Transaction"> | string | null
+  amount?: Prisma.IntFilter<"Transaction"> | number
+  status?: Prisma.EnumTransactionStatusFilter<"Transaction"> | $Enums.TransactionStatus
+  expiresAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
+  paidAt?: Prisma.DateTimeNullableFilter<"Transaction"> | Date | string | null
+  failureReason?: Prisma.StringNullableFilter<"Transaction"> | string | null
   orderId?: Prisma.StringFilter<"Transaction"> | string
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
@@ -242,8 +282,13 @@ export type TransactionWhereInput = {
 export type TransactionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   codeNumber?: Prisma.SortOrder
-  verifyCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  authority?: Prisma.SortOrderInput | Prisma.SortOrder
+  refId?: Prisma.SortOrderInput | Prisma.SortOrder
+  amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
+  paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  failureReason?: Prisma.SortOrderInput | Prisma.SortOrder
   orderId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -253,22 +298,32 @@ export type TransactionOrderByWithRelationInput = {
 export type TransactionWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   codeNumber?: number
-  verifyCode?: number
+  authority?: string
+  refId?: string
   AND?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[]
   OR?: Prisma.TransactionWhereInput[]
   NOT?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[]
-  status?: Prisma.EnumStatusFilter<"Transaction"> | $Enums.Status
+  amount?: Prisma.IntFilter<"Transaction"> | number
+  status?: Prisma.EnumTransactionStatusFilter<"Transaction"> | $Enums.TransactionStatus
+  expiresAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
+  paidAt?: Prisma.DateTimeNullableFilter<"Transaction"> | Date | string | null
+  failureReason?: Prisma.StringNullableFilter<"Transaction"> | string | null
   orderId?: Prisma.StringFilter<"Transaction"> | string
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
   order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
-}, "id" | "codeNumber" | "verifyCode">
+}, "id" | "codeNumber" | "authority" | "refId">
 
 export type TransactionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   codeNumber?: Prisma.SortOrder
-  verifyCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  authority?: Prisma.SortOrderInput | Prisma.SortOrder
+  refId?: Prisma.SortOrderInput | Prisma.SortOrder
+  amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
+  paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  failureReason?: Prisma.SortOrderInput | Prisma.SortOrder
   orderId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -285,8 +340,13 @@ export type TransactionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.TransactionScalarWhereWithAggregatesInput | Prisma.TransactionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
   codeNumber?: Prisma.IntWithAggregatesFilter<"Transaction"> | number
-  verifyCode?: Prisma.IntNullableWithAggregatesFilter<"Transaction"> | number | null
-  status?: Prisma.EnumStatusWithAggregatesFilter<"Transaction"> | $Enums.Status
+  authority?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
+  refId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
+  amount?: Prisma.IntWithAggregatesFilter<"Transaction"> | number
+  status?: Prisma.EnumTransactionStatusWithAggregatesFilter<"Transaction"> | $Enums.TransactionStatus
+  expiresAt?: Prisma.DateTimeWithAggregatesFilter<"Transaction"> | Date | string
+  paidAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Transaction"> | Date | string | null
+  failureReason?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
   orderId?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Transaction"> | Date | string
@@ -295,8 +355,13 @@ export type TransactionScalarWhereWithAggregatesInput = {
 export type TransactionCreateInput = {
   id?: string
   codeNumber: number
-  verifyCode?: number | null
-  status?: $Enums.Status
+  authority?: string | null
+  refId?: string | null
+  amount: number
+  status?: $Enums.TransactionStatus
+  expiresAt: Date | string
+  paidAt?: Date | string | null
+  failureReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   order: Prisma.OrderCreateNestedOneWithoutTransactionsInput
@@ -305,8 +370,13 @@ export type TransactionCreateInput = {
 export type TransactionUncheckedCreateInput = {
   id?: string
   codeNumber: number
-  verifyCode?: number | null
-  status?: $Enums.Status
+  authority?: string | null
+  refId?: string | null
+  amount: number
+  status?: $Enums.TransactionStatus
+  expiresAt: Date | string
+  paidAt?: Date | string | null
+  failureReason?: string | null
   orderId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -315,8 +385,13 @@ export type TransactionUncheckedCreateInput = {
 export type TransactionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codeNumber?: Prisma.IntFieldUpdateOperationsInput | number
-  verifyCode?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  authority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   order?: Prisma.OrderUpdateOneRequiredWithoutTransactionsNestedInput
@@ -325,8 +400,13 @@ export type TransactionUpdateInput = {
 export type TransactionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codeNumber?: Prisma.IntFieldUpdateOperationsInput | number
-  verifyCode?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  authority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -335,8 +415,13 @@ export type TransactionUncheckedUpdateInput = {
 export type TransactionCreateManyInput = {
   id?: string
   codeNumber: number
-  verifyCode?: number | null
-  status?: $Enums.Status
+  authority?: string | null
+  refId?: string | null
+  amount: number
+  status?: $Enums.TransactionStatus
+  expiresAt: Date | string
+  paidAt?: Date | string | null
+  failureReason?: string | null
   orderId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -345,8 +430,13 @@ export type TransactionCreateManyInput = {
 export type TransactionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codeNumber?: Prisma.IntFieldUpdateOperationsInput | number
-  verifyCode?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  authority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -354,8 +444,13 @@ export type TransactionUpdateManyMutationInput = {
 export type TransactionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codeNumber?: Prisma.IntFieldUpdateOperationsInput | number
-  verifyCode?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  authority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -374,8 +469,13 @@ export type TransactionOrderByRelationAggregateInput = {
 export type TransactionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   codeNumber?: Prisma.SortOrder
-  verifyCode?: Prisma.SortOrder
+  authority?: Prisma.SortOrder
+  refId?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
+  paidAt?: Prisma.SortOrder
+  failureReason?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -383,14 +483,19 @@ export type TransactionCountOrderByAggregateInput = {
 
 export type TransactionAvgOrderByAggregateInput = {
   codeNumber?: Prisma.SortOrder
-  verifyCode?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
 }
 
 export type TransactionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   codeNumber?: Prisma.SortOrder
-  verifyCode?: Prisma.SortOrder
+  authority?: Prisma.SortOrder
+  refId?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
+  paidAt?: Prisma.SortOrder
+  failureReason?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -399,8 +504,13 @@ export type TransactionMaxOrderByAggregateInput = {
 export type TransactionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   codeNumber?: Prisma.SortOrder
-  verifyCode?: Prisma.SortOrder
+  authority?: Prisma.SortOrder
+  refId?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
+  paidAt?: Prisma.SortOrder
+  failureReason?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -408,7 +518,7 @@ export type TransactionMinOrderByAggregateInput = {
 
 export type TransactionSumOrderByAggregateInput = {
   codeNumber?: Prisma.SortOrder
-  verifyCode?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
 }
 
 export type TransactionCreateNestedManyWithoutOrderInput = {
@@ -453,15 +563,20 @@ export type TransactionUncheckedUpdateManyWithoutOrderNestedInput = {
   deleteMany?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
 }
 
-export type EnumStatusFieldUpdateOperationsInput = {
-  set?: $Enums.Status
+export type EnumTransactionStatusFieldUpdateOperationsInput = {
+  set?: $Enums.TransactionStatus
 }
 
 export type TransactionCreateWithoutOrderInput = {
   id?: string
   codeNumber: number
-  verifyCode?: number | null
-  status?: $Enums.Status
+  authority?: string | null
+  refId?: string | null
+  amount: number
+  status?: $Enums.TransactionStatus
+  expiresAt: Date | string
+  paidAt?: Date | string | null
+  failureReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -469,8 +584,13 @@ export type TransactionCreateWithoutOrderInput = {
 export type TransactionUncheckedCreateWithoutOrderInput = {
   id?: string
   codeNumber: number
-  verifyCode?: number | null
-  status?: $Enums.Status
+  authority?: string | null
+  refId?: string | null
+  amount: number
+  status?: $Enums.TransactionStatus
+  expiresAt: Date | string
+  paidAt?: Date | string | null
+  failureReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -507,8 +627,13 @@ export type TransactionScalarWhereInput = {
   NOT?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
   id?: Prisma.StringFilter<"Transaction"> | string
   codeNumber?: Prisma.IntFilter<"Transaction"> | number
-  verifyCode?: Prisma.IntNullableFilter<"Transaction"> | number | null
-  status?: Prisma.EnumStatusFilter<"Transaction"> | $Enums.Status
+  authority?: Prisma.StringNullableFilter<"Transaction"> | string | null
+  refId?: Prisma.StringNullableFilter<"Transaction"> | string | null
+  amount?: Prisma.IntFilter<"Transaction"> | number
+  status?: Prisma.EnumTransactionStatusFilter<"Transaction"> | $Enums.TransactionStatus
+  expiresAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
+  paidAt?: Prisma.DateTimeNullableFilter<"Transaction"> | Date | string | null
+  failureReason?: Prisma.StringNullableFilter<"Transaction"> | string | null
   orderId?: Prisma.StringFilter<"Transaction"> | string
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
@@ -517,8 +642,13 @@ export type TransactionScalarWhereInput = {
 export type TransactionCreateManyOrderInput = {
   id?: string
   codeNumber: number
-  verifyCode?: number | null
-  status?: $Enums.Status
+  authority?: string | null
+  refId?: string | null
+  amount: number
+  status?: $Enums.TransactionStatus
+  expiresAt: Date | string
+  paidAt?: Date | string | null
+  failureReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -526,8 +656,13 @@ export type TransactionCreateManyOrderInput = {
 export type TransactionUpdateWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codeNumber?: Prisma.IntFieldUpdateOperationsInput | number
-  verifyCode?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  authority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -535,8 +670,13 @@ export type TransactionUpdateWithoutOrderInput = {
 export type TransactionUncheckedUpdateWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codeNumber?: Prisma.IntFieldUpdateOperationsInput | number
-  verifyCode?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  authority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -544,8 +684,13 @@ export type TransactionUncheckedUpdateWithoutOrderInput = {
 export type TransactionUncheckedUpdateManyWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   codeNumber?: Prisma.IntFieldUpdateOperationsInput | number
-  verifyCode?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  authority?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumTransactionStatusFieldUpdateOperationsInput | $Enums.TransactionStatus
+  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failureReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -555,8 +700,13 @@ export type TransactionUncheckedUpdateManyWithoutOrderInput = {
 export type TransactionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   codeNumber?: boolean
-  verifyCode?: boolean
+  authority?: boolean
+  refId?: boolean
+  amount?: boolean
   status?: boolean
+  expiresAt?: boolean
+  paidAt?: boolean
+  failureReason?: boolean
   orderId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -566,8 +716,13 @@ export type TransactionSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 export type TransactionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   codeNumber?: boolean
-  verifyCode?: boolean
+  authority?: boolean
+  refId?: boolean
+  amount?: boolean
   status?: boolean
+  expiresAt?: boolean
+  paidAt?: boolean
+  failureReason?: boolean
   orderId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -577,8 +732,13 @@ export type TransactionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
 export type TransactionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   codeNumber?: boolean
-  verifyCode?: boolean
+  authority?: boolean
+  refId?: boolean
+  amount?: boolean
   status?: boolean
+  expiresAt?: boolean
+  paidAt?: boolean
+  failureReason?: boolean
   orderId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -588,14 +748,19 @@ export type TransactionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type TransactionSelectScalar = {
   id?: boolean
   codeNumber?: boolean
-  verifyCode?: boolean
+  authority?: boolean
+  refId?: boolean
+  amount?: boolean
   status?: boolean
+  expiresAt?: boolean
+  paidAt?: boolean
+  failureReason?: boolean
   orderId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TransactionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codeNumber" | "verifyCode" | "status" | "orderId" | "createdAt" | "updatedAt", ExtArgs["result"]["transaction"]>
+export type TransactionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codeNumber" | "authority" | "refId" | "amount" | "status" | "expiresAt" | "paidAt" | "failureReason" | "orderId" | "createdAt" | "updatedAt", ExtArgs["result"]["transaction"]>
 export type TransactionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
 }
@@ -614,8 +779,13 @@ export type $TransactionPayload<ExtArgs extends runtime.Types.Extensions.Interna
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     codeNumber: number
-    verifyCode: number | null
-    status: $Enums.Status
+    authority: string | null
+    refId: string | null
+    amount: number
+    status: $Enums.TransactionStatus
+    expiresAt: Date
+    paidAt: Date | null
+    failureReason: string | null
     orderId: string
     createdAt: Date
     updatedAt: Date
@@ -1045,8 +1215,13 @@ export interface Prisma__TransactionClient<T, Null = never, ExtArgs extends runt
 export interface TransactionFieldRefs {
   readonly id: Prisma.FieldRef<"Transaction", 'String'>
   readonly codeNumber: Prisma.FieldRef<"Transaction", 'Int'>
-  readonly verifyCode: Prisma.FieldRef<"Transaction", 'Int'>
-  readonly status: Prisma.FieldRef<"Transaction", 'Status'>
+  readonly authority: Prisma.FieldRef<"Transaction", 'String'>
+  readonly refId: Prisma.FieldRef<"Transaction", 'String'>
+  readonly amount: Prisma.FieldRef<"Transaction", 'Int'>
+  readonly status: Prisma.FieldRef<"Transaction", 'TransactionStatus'>
+  readonly expiresAt: Prisma.FieldRef<"Transaction", 'DateTime'>
+  readonly paidAt: Prisma.FieldRef<"Transaction", 'DateTime'>
+  readonly failureReason: Prisma.FieldRef<"Transaction", 'String'>
   readonly orderId: Prisma.FieldRef<"Transaction", 'String'>
   readonly createdAt: Prisma.FieldRef<"Transaction", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Transaction", 'DateTime'>

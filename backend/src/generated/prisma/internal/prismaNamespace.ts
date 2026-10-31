@@ -1193,7 +1193,11 @@ export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof Room
 export const OrderScalarFieldEnum = {
   id: 'id',
   orderNumber: 'orderNumber',
+  status: 'status',
+  amount: 'amount',
   extraRequest: 'extraRequest',
+  expiresAt: 'expiresAt',
+  confirmedAt: 'confirmedAt',
   passengerId: 'passengerId',
   personId: 'personId',
   hotelId: 'hotelId',
@@ -1208,8 +1212,13 @@ export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof Or
 export const TransactionScalarFieldEnum = {
   id: 'id',
   codeNumber: 'codeNumber',
-  verifyCode: 'verifyCode',
+  authority: 'authority',
+  refId: 'refId',
+  amount: 'amount',
   status: 'status',
+  expiresAt: 'expiresAt',
+  paidAt: 'paidAt',
+  failureReason: 'failureReason',
   orderId: 'orderId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1391,16 +1400,30 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'Status'
+ * Reference to a field of type 'OrderStatus'
  */
-export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
+export type EnumOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderStatus'>
     
 
 
 /**
- * Reference to a field of type 'Status[]'
+ * Reference to a field of type 'OrderStatus[]'
  */
-export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
+export type ListEnumOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TransactionStatus'
+ */
+export type EnumTransactionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransactionStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'TransactionStatus[]'
+ */
+export type ListEnumTransactionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransactionStatus[]'>
     
 
 

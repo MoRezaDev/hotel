@@ -9,13 +9,23 @@
 * 🟢 You can import this file directly.
 */
 
-export const Status = {
+export const OrderStatus = {
   PENDING: 'PENDING',
-  FAILED: 'FAILED',
-  SUCCESS: 'SUCCESS'
+  CONFIRMED: 'CONFIRMED',
+  EXPIRED: 'EXPIRED',
+  CANCELLED: 'CANCELLED'
 } as const
 
-export type Status = (typeof Status)[keyof typeof Status]
+export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
+
+
+export const TransactionStatus = {
+  PENDING: 'PENDING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED'
+} as const
+
+export type TransactionStatus = (typeof TransactionStatus)[keyof typeof TransactionStatus]
 
 
 export const Gender = {

@@ -686,10 +686,6 @@ export type NullableEnumGenderFieldUpdateOperationsInput = {
   set?: $Enums.Gender | null
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type PersonCreateNestedOneWithoutOtpInput = {
   create?: Prisma.XOR<Prisma.PersonCreateWithoutOtpInput, Prisma.PersonUncheckedCreateWithoutOtpInput>
   connectOrCreate?: Prisma.PersonCreateOrConnectWithoutOtpInput

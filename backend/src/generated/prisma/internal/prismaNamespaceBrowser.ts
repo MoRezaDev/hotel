@@ -141,7 +141,11 @@ export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof Room
 export const OrderScalarFieldEnum = {
   id: 'id',
   orderNumber: 'orderNumber',
+  status: 'status',
+  amount: 'amount',
   extraRequest: 'extraRequest',
+  expiresAt: 'expiresAt',
+  confirmedAt: 'confirmedAt',
   passengerId: 'passengerId',
   personId: 'personId',
   hotelId: 'hotelId',
@@ -156,8 +160,13 @@ export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof Or
 export const TransactionScalarFieldEnum = {
   id: 'id',
   codeNumber: 'codeNumber',
-  verifyCode: 'verifyCode',
+  authority: 'authority',
+  refId: 'refId',
+  amount: 'amount',
   status: 'status',
+  expiresAt: 'expiresAt',
+  paidAt: 'paidAt',
+  failureReason: 'failureReason',
   orderId: 'orderId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
