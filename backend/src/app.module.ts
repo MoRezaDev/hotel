@@ -11,9 +11,15 @@ import { PassengerModule } from './modules/passenger/passenger.module.js';
 import { CommentModule } from './modules/comment/comment.module.js';
 import { OrderModule } from './modules/order/order.module.js';
 import { PublicModule } from './modules/public/public.module.js';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'node:path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(process.cwd(), 'upload'),
+      serveRoot: '/upload',
+    }),
     ConfigModule.forRoot({ isGlobal: true }),
     HotelModule,
     DatabaseModule,

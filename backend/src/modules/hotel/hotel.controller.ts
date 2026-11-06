@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Req,
   UploadedFile,
   UploadedFiles,
   UseGuards,
@@ -62,12 +63,23 @@ export class HotelController {
 
   @Delete('image')
   @UseGuards(HotelExistsGurd)
-  async deleteAllImages(@Param('id') id: string) {
-    
+  async deleteAllImages(@Req() req: Request & { hotelId: string }) {
+    const id = req.hotelId;
+    await this.hotelService.deleteAllImages(id);
+    return { message: 'success!' };
   }
 
   @Delete('image/main/:id')
-  async deleteMainImage() {}
+  @UseGuards(HotelExistsGurd)
+  async deleteMainImage(@Param('id') id: string) {
+    await this.hotelService.deleteMainImage(id);
+  }
+
+  @Delete('image/images/:id')
+  @UseGuards(HotelExistsGurd)
+  async deleteImages(@Param('id') id: string) {
+    await this.hotelService.deleteImages(id);
+  }
 
   //For hotel features
   @Get('feature')
@@ -124,8 +136,10 @@ export class HotelController {
   async uploadMain(
     @UploadedFile()
     file: Express.Multer.File,
+    @Param('id') id: string,
   ) {
-    console.log(file);
+    console.log('ajab baba');
+    console.log(file.destination);
   }
 
   @Post('upload/:hotelId/images')

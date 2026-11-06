@@ -11,7 +11,10 @@ export function multerMainImageOptions(): MulterOptions {
         destination: async (req, file, callback) => {
           try {
             const hotelId = req.params.hotelId as string;
-            const hotelPath = join(process.cwd(), 'upload', hotelId);
+            const hotelPath =
+              file.fieldname === 'image'
+                ? join(process.cwd(), 'upload', hotelId, 'main')
+                : join(process.cwd(), 'upload', hotelId, 'images');
             await mkdir(hotelPath, { recursive: true });
             callback(null, hotelPath);
           } catch (err) {

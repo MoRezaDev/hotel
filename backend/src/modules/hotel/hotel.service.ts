@@ -6,6 +6,8 @@ import { CreateHotelFeaturesDto } from './dto/create-hotel-features.dto.js';
 import { CreateHotelRoomDto } from './dto/create-hotel-room.dto.js';
 import { UpdateHotelDto } from './dto/update-hotel.dto.js';
 import { UpdateHotelFeatureDto } from './dto/update-hotel-features.dto.js';
+import { join } from 'node:path';
+import { rm } from 'node:fs/promises';
 
 @Injectable()
 export class HotelService {
@@ -59,10 +61,49 @@ export class HotelService {
     return await this.databaseService.hotel.deleteMany();
   }
 
-  async deleteAllImages() {
+  //For images
+  async uploadMainImage(hotelId: string) {
     try {
-    } catch (err as Erro) {
-      throw new Error(err.message);
+      await this.databaseService.hotel.update({where: {id: hotelId},data: {mainImageUrl: ''}})
+    }catch (err) {}
+  }
+
+  async deleteAllImages(hotelId: string) {
+    try {
+      const deletePath = join(process.cwd(), 'upload', hotelId);
+      await rm(deletePath, { force: true, recursive: true });
+      await this.databaseService.hotel.update({
+        where: { id: hotelId },
+        data: { imagesUrl: [], mainImageUrl: null },
+      });
+    } catch (err: any) {
+      throw new Error(err.message || 'Somethings wrong with delete images!');
+    }
+  }
+
+  async deleteMainImage(hotelId: string) {
+    try {
+      const deletePath = join(process.cwd(), 'upload', hotelId, 'main');
+      await rm(deletePath, { force: true, recursive: true });
+      await this.databaseService.hotel.update({
+        where: { id: hotelId },
+        data: { mainImageUrl: null },
+      });
+    } catch (err: any) {
+      throw new Error(err.message || 'Somethings wrong with delete image!');
+    }
+  }
+
+  async deleteImages(hotelId: string) {
+    try {
+      const deletePath = join(process.cwd(), 'upload', hotelId, 'images');
+      await rm(deletePath, { force: true, recursive: true });
+      await this.databaseService.hotel.update({
+        where: { id: hotelId },
+        data: { imagesUrl: [] },
+      });
+    } catch (err: any) {
+      throw new Error(err.message || 'Somethings wrong with delete image!');
     }
   }
 
