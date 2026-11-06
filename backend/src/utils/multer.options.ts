@@ -1,13 +1,23 @@
 import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface.js';
 import { diskStorage, memoryStorage } from 'multer';
+import { mkdir } from 'node:fs/promises';
+import { join } from 'node:path';
 
 export function multerMainImageOptions(): MulterOptions {
-  console.log('NODE_ENV:', process.env.NODE_ENV);
   if (process.env.NODE_ENV === 'development') {
     return {
       limits: { fileSize: 5 * 1024 * 1024 },
       storage: diskStorage({
-        destination: (req, file) => {},
+        destination: async (req, file, callback) => {
+          try {
+            const hotelId = req.params.hotelId as string;
+            const hotelPath = join(process.cwd(), 'upload', hotelId);
+            await mkdir(hotelPath, { recursive: true });
+            callback(null, hotelPath);
+          } catch (err) {
+            callback(err as Error, '');
+          }
+        },
         filename(req, file, callback) {
           callback(null, `main-${file.originalname}`);
         },
@@ -19,6 +29,6 @@ export function multerMainImageOptions(): MulterOptions {
       storage: memoryStorage(),
     };
   } else {
-    throw new Error(' multerOption entries are missing');
+    throw new Error('multerOption entries are missing');
   }
 }

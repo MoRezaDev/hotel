@@ -52,6 +52,7 @@ export type RoomMinAggregateOutputType = {
   actualPrice: number | null
   discountedPrice: number | null
   discountPercent: number | null
+  isReserved: boolean | null
   HotelId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -69,6 +70,7 @@ export type RoomMaxAggregateOutputType = {
   actualPrice: number | null
   discountedPrice: number | null
   discountPercent: number | null
+  isReserved: boolean | null
   HotelId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -87,6 +89,7 @@ export type RoomCountAggregateOutputType = {
   actualPrice: number
   discountedPrice: number
   discountPercent: number
+  isReserved: number
   HotelId: number
   createdAt: number
   updatedAt: number
@@ -120,6 +123,7 @@ export type RoomMinAggregateInputType = {
   actualPrice?: true
   discountedPrice?: true
   discountPercent?: true
+  isReserved?: true
   HotelId?: true
   createdAt?: true
   updatedAt?: true
@@ -137,6 +141,7 @@ export type RoomMaxAggregateInputType = {
   actualPrice?: true
   discountedPrice?: true
   discountPercent?: true
+  isReserved?: true
   HotelId?: true
   createdAt?: true
   updatedAt?: true
@@ -155,6 +160,7 @@ export type RoomCountAggregateInputType = {
   actualPrice?: true
   discountedPrice?: true
   discountPercent?: true
+  isReserved?: true
   HotelId?: true
   createdAt?: true
   updatedAt?: true
@@ -260,6 +266,7 @@ export type RoomGroupByOutputType = {
   actualPrice: number
   discountedPrice: number | null
   discountPercent: number | null
+  isReserved: boolean
   HotelId: string
   createdAt: Date
   updatedAt: Date
@@ -301,6 +308,7 @@ export type RoomWhereInput = {
   actualPrice?: Prisma.IntFilter<"Room"> | number
   discountedPrice?: Prisma.IntNullableFilter<"Room"> | number | null
   discountPercent?: Prisma.IntNullableFilter<"Room"> | number | null
+  isReserved?: Prisma.BoolFilter<"Room"> | boolean
   HotelId?: Prisma.StringFilter<"Room"> | string
   createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
@@ -321,6 +329,7 @@ export type RoomOrderByWithRelationInput = {
   actualPrice?: Prisma.SortOrder
   discountedPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   discountPercent?: Prisma.SortOrderInput | Prisma.SortOrder
+  isReserved?: Prisma.SortOrder
   HotelId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -344,6 +353,7 @@ export type RoomWhereUniqueInput = Prisma.AtLeast<{
   actualPrice?: Prisma.IntFilter<"Room"> | number
   discountedPrice?: Prisma.IntNullableFilter<"Room"> | number | null
   discountPercent?: Prisma.IntNullableFilter<"Room"> | number | null
+  isReserved?: Prisma.BoolFilter<"Room"> | boolean
   HotelId?: Prisma.StringFilter<"Room"> | string
   createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
@@ -364,6 +374,7 @@ export type RoomOrderByWithAggregationInput = {
   actualPrice?: Prisma.SortOrder
   discountedPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   discountPercent?: Prisma.SortOrderInput | Prisma.SortOrder
+  isReserved?: Prisma.SortOrder
   HotelId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -390,6 +401,7 @@ export type RoomScalarWhereWithAggregatesInput = {
   actualPrice?: Prisma.IntWithAggregatesFilter<"Room"> | number
   discountedPrice?: Prisma.IntNullableWithAggregatesFilter<"Room"> | number | null
   discountPercent?: Prisma.IntNullableWithAggregatesFilter<"Room"> | number | null
+  isReserved?: Prisma.BoolWithAggregatesFilter<"Room"> | boolean
   HotelId?: Prisma.StringWithAggregatesFilter<"Room"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Room"> | Date | string
@@ -408,6 +420,7 @@ export type RoomCreateInput = {
   actualPrice: number
   discountedPrice?: number | null
   discountPercent?: number | null
+  isReserved?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   hotel: Prisma.HotelCreateNestedOneWithoutRoomsInput
@@ -427,6 +440,7 @@ export type RoomUncheckedCreateInput = {
   actualPrice: number
   discountedPrice?: number | null
   discountPercent?: number | null
+  isReserved?: boolean
   HotelId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -446,6 +460,7 @@ export type RoomUpdateInput = {
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   discountPercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isReserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hotel?: Prisma.HotelUpdateOneRequiredWithoutRoomsNestedInput
@@ -465,6 +480,7 @@ export type RoomUncheckedUpdateInput = {
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   discountPercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isReserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   HotelId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -484,6 +500,7 @@ export type RoomCreateManyInput = {
   actualPrice: number
   discountedPrice?: number | null
   discountPercent?: number | null
+  isReserved?: boolean
   HotelId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -502,6 +519,7 @@ export type RoomUpdateManyMutationInput = {
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   discountPercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isReserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -519,6 +537,7 @@ export type RoomUncheckedUpdateManyInput = {
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   discountPercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isReserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   HotelId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -547,6 +566,7 @@ export type RoomCountOrderByAggregateInput = {
   actualPrice?: Prisma.SortOrder
   discountedPrice?: Prisma.SortOrder
   discountPercent?: Prisma.SortOrder
+  isReserved?: Prisma.SortOrder
   HotelId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -571,6 +591,7 @@ export type RoomMaxOrderByAggregateInput = {
   actualPrice?: Prisma.SortOrder
   discountedPrice?: Prisma.SortOrder
   discountPercent?: Prisma.SortOrder
+  isReserved?: Prisma.SortOrder
   HotelId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -588,6 +609,7 @@ export type RoomMinOrderByAggregateInput = {
   actualPrice?: Prisma.SortOrder
   discountedPrice?: Prisma.SortOrder
   discountPercent?: Prisma.SortOrder
+  isReserved?: Prisma.SortOrder
   HotelId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -683,6 +705,7 @@ export type RoomCreateWithoutHotelInput = {
   actualPrice: number
   discountedPrice?: number | null
   discountPercent?: number | null
+  isReserved?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   orders?: Prisma.OrderCreateNestedManyWithoutRoomInput
@@ -701,6 +724,7 @@ export type RoomUncheckedCreateWithoutHotelInput = {
   actualPrice: number
   discountedPrice?: number | null
   discountPercent?: number | null
+  isReserved?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutRoomInput
@@ -748,6 +772,7 @@ export type RoomScalarWhereInput = {
   actualPrice?: Prisma.IntFilter<"Room"> | number
   discountedPrice?: Prisma.IntNullableFilter<"Room"> | number | null
   discountPercent?: Prisma.IntNullableFilter<"Room"> | number | null
+  isReserved?: Prisma.BoolFilter<"Room"> | boolean
   HotelId?: Prisma.StringFilter<"Room"> | string
   createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
@@ -766,6 +791,7 @@ export type RoomCreateWithoutOrdersInput = {
   actualPrice: number
   discountedPrice?: number | null
   discountPercent?: number | null
+  isReserved?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   hotel: Prisma.HotelCreateNestedOneWithoutRoomsInput
@@ -784,6 +810,7 @@ export type RoomUncheckedCreateWithoutOrdersInput = {
   actualPrice: number
   discountedPrice?: number | null
   discountPercent?: number | null
+  isReserved?: boolean
   HotelId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -818,6 +845,7 @@ export type RoomUpdateWithoutOrdersInput = {
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   discountPercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isReserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hotel?: Prisma.HotelUpdateOneRequiredWithoutRoomsNestedInput
@@ -836,6 +864,7 @@ export type RoomUncheckedUpdateWithoutOrdersInput = {
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   discountPercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isReserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   HotelId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -854,6 +883,7 @@ export type RoomCreateManyHotelInput = {
   actualPrice: number
   discountedPrice?: number | null
   discountPercent?: number | null
+  isReserved?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -871,6 +901,7 @@ export type RoomUpdateWithoutHotelInput = {
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   discountPercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isReserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orders?: Prisma.OrderUpdateManyWithoutRoomNestedInput
@@ -889,6 +920,7 @@ export type RoomUncheckedUpdateWithoutHotelInput = {
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   discountPercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isReserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orders?: Prisma.OrderUncheckedUpdateManyWithoutRoomNestedInput
@@ -907,6 +939,7 @@ export type RoomUncheckedUpdateManyWithoutHotelInput = {
   actualPrice?: Prisma.IntFieldUpdateOperationsInput | number
   discountedPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   discountPercent?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isReserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -955,6 +988,7 @@ export type RoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   actualPrice?: boolean
   discountedPrice?: boolean
   discountPercent?: boolean
+  isReserved?: boolean
   HotelId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -976,6 +1010,7 @@ export type RoomSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   actualPrice?: boolean
   discountedPrice?: boolean
   discountPercent?: boolean
+  isReserved?: boolean
   HotelId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -995,6 +1030,7 @@ export type RoomSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   actualPrice?: boolean
   discountedPrice?: boolean
   discountPercent?: boolean
+  isReserved?: boolean
   HotelId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1014,12 +1050,13 @@ export type RoomSelectScalar = {
   actualPrice?: boolean
   discountedPrice?: boolean
   discountPercent?: boolean
+  isReserved?: boolean
   HotelId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type RoomOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "extraInfo" | "capacity" | "breakfast" | "dinner" | "extraBed" | "isMainContent" | "features" | "actualPrice" | "discountedPrice" | "discountPercent" | "HotelId" | "createdAt" | "updatedAt", ExtArgs["result"]["room"]>
+export type RoomOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "extraInfo" | "capacity" | "breakfast" | "dinner" | "extraBed" | "isMainContent" | "features" | "actualPrice" | "discountedPrice" | "discountPercent" | "isReserved" | "HotelId" | "createdAt" | "updatedAt", ExtArgs["result"]["room"]>
 export type RoomInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hotel?: boolean | Prisma.HotelDefaultArgs<ExtArgs>
   orders?: boolean | Prisma.Room$ordersArgs<ExtArgs>
@@ -1051,6 +1088,7 @@ export type $RoomPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     actualPrice: number
     discountedPrice: number | null
     discountPercent: number | null
+    isReserved: boolean
     HotelId: string
     createdAt: Date
     updatedAt: Date
@@ -1491,6 +1529,7 @@ export interface RoomFieldRefs {
   readonly actualPrice: Prisma.FieldRef<"Room", 'Int'>
   readonly discountedPrice: Prisma.FieldRef<"Room", 'Int'>
   readonly discountPercent: Prisma.FieldRef<"Room", 'Int'>
+  readonly isReserved: Prisma.FieldRef<"Room", 'Boolean'>
   readonly HotelId: Prisma.FieldRef<"Room", 'String'>
   readonly createdAt: Prisma.FieldRef<"Room", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Room", 'DateTime'>

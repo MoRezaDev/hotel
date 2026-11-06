@@ -44,6 +44,8 @@ export type OrderMinAggregateOutputType = {
   extraRequest: string | null
   expiresAt: Date | null
   confirmedAt: Date | null
+  checkIn: Date | null
+  checkOut: Date | null
   passengerId: string | null
   personId: string | null
   hotelId: string | null
@@ -60,6 +62,8 @@ export type OrderMaxAggregateOutputType = {
   extraRequest: string | null
   expiresAt: Date | null
   confirmedAt: Date | null
+  checkIn: Date | null
+  checkOut: Date | null
   passengerId: string | null
   personId: string | null
   hotelId: string | null
@@ -76,6 +80,8 @@ export type OrderCountAggregateOutputType = {
   extraRequest: number
   expiresAt: number
   confirmedAt: number
+  checkIn: number
+  checkOut: number
   passengerId: number
   personId: number
   hotelId: number
@@ -104,6 +110,8 @@ export type OrderMinAggregateInputType = {
   extraRequest?: true
   expiresAt?: true
   confirmedAt?: true
+  checkIn?: true
+  checkOut?: true
   passengerId?: true
   personId?: true
   hotelId?: true
@@ -120,6 +128,8 @@ export type OrderMaxAggregateInputType = {
   extraRequest?: true
   expiresAt?: true
   confirmedAt?: true
+  checkIn?: true
+  checkOut?: true
   passengerId?: true
   personId?: true
   hotelId?: true
@@ -136,6 +146,8 @@ export type OrderCountAggregateInputType = {
   extraRequest?: true
   expiresAt?: true
   confirmedAt?: true
+  checkIn?: true
+  checkOut?: true
   passengerId?: true
   personId?: true
   hotelId?: true
@@ -239,6 +251,8 @@ export type OrderGroupByOutputType = {
   extraRequest: string | null
   expiresAt: Date
   confirmedAt: Date | null
+  checkIn: Date
+  checkOut: Date
   passengerId: string
   personId: string
   hotelId: string
@@ -278,6 +292,8 @@ export type OrderWhereInput = {
   extraRequest?: Prisma.StringNullableFilter<"Order"> | string | null
   expiresAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   confirmedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  checkIn?: Prisma.DateTimeFilter<"Order"> | Date | string
+  checkOut?: Prisma.DateTimeFilter<"Order"> | Date | string
   passengerId?: Prisma.StringFilter<"Order"> | string
   personId?: Prisma.StringFilter<"Order"> | string
   hotelId?: Prisma.StringFilter<"Order"> | string
@@ -299,6 +315,8 @@ export type OrderOrderByWithRelationInput = {
   extraRequest?: Prisma.SortOrderInput | Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   confirmedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  checkIn?: Prisma.SortOrder
+  checkOut?: Prisma.SortOrder
   passengerId?: Prisma.SortOrder
   personId?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
@@ -323,6 +341,8 @@ export type OrderWhereUniqueInput = Prisma.AtLeast<{
   extraRequest?: Prisma.StringNullableFilter<"Order"> | string | null
   expiresAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   confirmedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  checkIn?: Prisma.DateTimeFilter<"Order"> | Date | string
+  checkOut?: Prisma.DateTimeFilter<"Order"> | Date | string
   passengerId?: Prisma.StringFilter<"Order"> | string
   personId?: Prisma.StringFilter<"Order"> | string
   hotelId?: Prisma.StringFilter<"Order"> | string
@@ -344,6 +364,8 @@ export type OrderOrderByWithAggregationInput = {
   extraRequest?: Prisma.SortOrderInput | Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   confirmedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  checkIn?: Prisma.SortOrder
+  checkOut?: Prisma.SortOrder
   passengerId?: Prisma.SortOrder
   personId?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
@@ -368,6 +390,8 @@ export type OrderScalarWhereWithAggregatesInput = {
   extraRequest?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
   expiresAt?: Prisma.DateTimeWithAggregatesFilter<"Order"> | Date | string
   confirmedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
+  checkIn?: Prisma.DateTimeWithAggregatesFilter<"Order"> | Date | string
+  checkOut?: Prisma.DateTimeWithAggregatesFilter<"Order"> | Date | string
   passengerId?: Prisma.StringWithAggregatesFilter<"Order"> | string
   personId?: Prisma.StringWithAggregatesFilter<"Order"> | string
   hotelId?: Prisma.StringWithAggregatesFilter<"Order"> | string
@@ -384,6 +408,8 @@ export type OrderCreateInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   transactions?: Prisma.TransactionCreateNestedManyWithoutOrderInput
@@ -401,6 +427,8 @@ export type OrderUncheckedCreateInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   passengerId: string
   personId: string
   hotelId: string
@@ -418,6 +446,8 @@ export type OrderUpdateInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transactions?: Prisma.TransactionUpdateManyWithoutOrderNestedInput
@@ -435,6 +465,8 @@ export type OrderUncheckedUpdateInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passengerId?: Prisma.StringFieldUpdateOperationsInput | string
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -452,6 +484,8 @@ export type OrderCreateManyInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   passengerId: string
   personId: string
   hotelId: string
@@ -468,6 +502,8 @@ export type OrderUpdateManyMutationInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -480,6 +516,8 @@ export type OrderUncheckedUpdateManyInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passengerId?: Prisma.StringFieldUpdateOperationsInput | string
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -506,6 +544,8 @@ export type OrderCountOrderByAggregateInput = {
   extraRequest?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   confirmedAt?: Prisma.SortOrder
+  checkIn?: Prisma.SortOrder
+  checkOut?: Prisma.SortOrder
   passengerId?: Prisma.SortOrder
   personId?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
@@ -527,6 +567,8 @@ export type OrderMaxOrderByAggregateInput = {
   extraRequest?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   confirmedAt?: Prisma.SortOrder
+  checkIn?: Prisma.SortOrder
+  checkOut?: Prisma.SortOrder
   passengerId?: Prisma.SortOrder
   personId?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
@@ -543,6 +585,8 @@ export type OrderMinOrderByAggregateInput = {
   extraRequest?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   confirmedAt?: Prisma.SortOrder
+  checkIn?: Prisma.SortOrder
+  checkOut?: Prisma.SortOrder
   passengerId?: Prisma.SortOrder
   personId?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
@@ -759,6 +803,8 @@ export type OrderCreateWithoutHotelInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   transactions?: Prisma.TransactionCreateNestedManyWithoutOrderInput
@@ -775,6 +821,8 @@ export type OrderUncheckedCreateWithoutHotelInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   passengerId: string
   personId: string
   roomId: string
@@ -820,6 +868,8 @@ export type OrderScalarWhereInput = {
   extraRequest?: Prisma.StringNullableFilter<"Order"> | string | null
   expiresAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   confirmedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  checkIn?: Prisma.DateTimeFilter<"Order"> | Date | string
+  checkOut?: Prisma.DateTimeFilter<"Order"> | Date | string
   passengerId?: Prisma.StringFilter<"Order"> | string
   personId?: Prisma.StringFilter<"Order"> | string
   hotelId?: Prisma.StringFilter<"Order"> | string
@@ -836,6 +886,8 @@ export type OrderCreateWithoutRoomInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   transactions?: Prisma.TransactionCreateNestedManyWithoutOrderInput
@@ -852,6 +904,8 @@ export type OrderUncheckedCreateWithoutRoomInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   passengerId: string
   personId: string
   hotelId: string
@@ -894,6 +948,8 @@ export type OrderCreateWithoutTransactionsInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   passenger: Prisma.PassengerCreateNestedOneWithoutOrdersInput
@@ -910,6 +966,8 @@ export type OrderUncheckedCreateWithoutTransactionsInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   passengerId: string
   personId: string
   hotelId: string
@@ -942,6 +1000,8 @@ export type OrderUpdateWithoutTransactionsInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passenger?: Prisma.PassengerUpdateOneRequiredWithoutOrdersNestedInput
@@ -958,6 +1018,8 @@ export type OrderUncheckedUpdateWithoutTransactionsInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passengerId?: Prisma.StringFieldUpdateOperationsInput | string
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -974,6 +1036,8 @@ export type OrderCreateWithoutPersonInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   transactions?: Prisma.TransactionCreateNestedManyWithoutOrderInput
@@ -990,6 +1054,8 @@ export type OrderUncheckedCreateWithoutPersonInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   passengerId: string
   hotelId: string
   roomId: string
@@ -1032,6 +1098,8 @@ export type OrderCreateWithoutPassengerInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   transactions?: Prisma.TransactionCreateNestedManyWithoutOrderInput
@@ -1048,6 +1116,8 @@ export type OrderUncheckedCreateWithoutPassengerInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   personId: string
   hotelId: string
   roomId: string
@@ -1090,6 +1160,8 @@ export type OrderCreateManyHotelInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   passengerId: string
   personId: string
   roomId: string
@@ -1105,6 +1177,8 @@ export type OrderUpdateWithoutHotelInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transactions?: Prisma.TransactionUpdateManyWithoutOrderNestedInput
@@ -1121,6 +1195,8 @@ export type OrderUncheckedUpdateWithoutHotelInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passengerId?: Prisma.StringFieldUpdateOperationsInput | string
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   roomId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1137,6 +1213,8 @@ export type OrderUncheckedUpdateManyWithoutHotelInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passengerId?: Prisma.StringFieldUpdateOperationsInput | string
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   roomId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1152,6 +1230,8 @@ export type OrderCreateManyRoomInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   passengerId: string
   personId: string
   hotelId: string
@@ -1167,6 +1247,8 @@ export type OrderUpdateWithoutRoomInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transactions?: Prisma.TransactionUpdateManyWithoutOrderNestedInput
@@ -1183,6 +1265,8 @@ export type OrderUncheckedUpdateWithoutRoomInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passengerId?: Prisma.StringFieldUpdateOperationsInput | string
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1199,6 +1283,8 @@ export type OrderUncheckedUpdateManyWithoutRoomInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passengerId?: Prisma.StringFieldUpdateOperationsInput | string
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1214,6 +1300,8 @@ export type OrderCreateManyPersonInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   passengerId: string
   hotelId: string
   roomId: string
@@ -1229,6 +1317,8 @@ export type OrderUpdateWithoutPersonInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transactions?: Prisma.TransactionUpdateManyWithoutOrderNestedInput
@@ -1245,6 +1335,8 @@ export type OrderUncheckedUpdateWithoutPersonInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passengerId?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
   roomId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1261,6 +1353,8 @@ export type OrderUncheckedUpdateManyWithoutPersonInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passengerId?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
   roomId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1276,6 +1370,8 @@ export type OrderCreateManyPassengerInput = {
   extraRequest?: string | null
   expiresAt: Date | string
   confirmedAt?: Date | string | null
+  checkIn: Date | string
+  checkOut: Date | string
   personId: string
   hotelId: string
   roomId: string
@@ -1291,6 +1387,8 @@ export type OrderUpdateWithoutPassengerInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   transactions?: Prisma.TransactionUpdateManyWithoutOrderNestedInput
@@ -1307,6 +1405,8 @@ export type OrderUncheckedUpdateWithoutPassengerInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
   roomId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1323,6 +1423,8 @@ export type OrderUncheckedUpdateManyWithoutPassengerInput = {
   extraRequest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   confirmedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   personId?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
   roomId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1369,6 +1471,8 @@ export type OrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   extraRequest?: boolean
   expiresAt?: boolean
   confirmedAt?: boolean
+  checkIn?: boolean
+  checkOut?: boolean
   passengerId?: boolean
   personId?: boolean
   hotelId?: boolean
@@ -1391,6 +1495,8 @@ export type OrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   extraRequest?: boolean
   expiresAt?: boolean
   confirmedAt?: boolean
+  checkIn?: boolean
+  checkOut?: boolean
   passengerId?: boolean
   personId?: boolean
   hotelId?: boolean
@@ -1411,6 +1517,8 @@ export type OrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   extraRequest?: boolean
   expiresAt?: boolean
   confirmedAt?: boolean
+  checkIn?: boolean
+  checkOut?: boolean
   passengerId?: boolean
   personId?: boolean
   hotelId?: boolean
@@ -1431,6 +1539,8 @@ export type OrderSelectScalar = {
   extraRequest?: boolean
   expiresAt?: boolean
   confirmedAt?: boolean
+  checkIn?: boolean
+  checkOut?: boolean
   passengerId?: boolean
   personId?: boolean
   hotelId?: boolean
@@ -1439,7 +1549,7 @@ export type OrderSelectScalar = {
   updatedAt?: boolean
 }
 
-export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderNumber" | "status" | "amount" | "extraRequest" | "expiresAt" | "confirmedAt" | "passengerId" | "personId" | "hotelId" | "roomId" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
+export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderNumber" | "status" | "amount" | "extraRequest" | "expiresAt" | "confirmedAt" | "checkIn" | "checkOut" | "passengerId" | "personId" | "hotelId" | "roomId" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
 export type OrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   transactions?: boolean | Prisma.Order$transactionsArgs<ExtArgs>
   passenger?: boolean | Prisma.PassengerDefaultArgs<ExtArgs>
@@ -1478,6 +1588,8 @@ export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     extraRequest: string | null
     expiresAt: Date
     confirmedAt: Date | null
+    checkIn: Date
+    checkOut: Date
     passengerId: string
     personId: string
     hotelId: string
@@ -1919,6 +2031,8 @@ export interface OrderFieldRefs {
   readonly extraRequest: Prisma.FieldRef<"Order", 'String'>
   readonly expiresAt: Prisma.FieldRef<"Order", 'DateTime'>
   readonly confirmedAt: Prisma.FieldRef<"Order", 'DateTime'>
+  readonly checkIn: Prisma.FieldRef<"Order", 'DateTime'>
+  readonly checkOut: Prisma.FieldRef<"Order", 'DateTime'>
   readonly passengerId: Prisma.FieldRef<"Order", 'String'>
   readonly personId: Prisma.FieldRef<"Order", 'String'>
   readonly hotelId: Prisma.FieldRef<"Order", 'String'>

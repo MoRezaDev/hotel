@@ -52,7 +52,6 @@ export class CommentController {
   }
 
   //for Admin
-
   @Role('admin')
   @UseGuards(RoleAcessGurd)
   @Delete('admin/delete')

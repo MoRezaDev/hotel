@@ -130,6 +130,7 @@ export const RoomScalarFieldEnum = {
   actualPrice: 'actualPrice',
   discountedPrice: 'discountedPrice',
   discountPercent: 'discountPercent',
+  isReserved: 'isReserved',
   HotelId: 'HotelId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -146,6 +147,8 @@ export const OrderScalarFieldEnum = {
   extraRequest: 'extraRequest',
   expiresAt: 'expiresAt',
   confirmedAt: 'confirmedAt',
+  checkIn: 'checkIn',
+  checkOut: 'checkOut',
   passengerId: 'passengerId',
   personId: 'personId',
   hotelId: 'hotelId',

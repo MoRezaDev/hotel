@@ -1,7 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  Param,
+  Patch,
   Post,
   UploadedFile,
   UploadedFiles,
@@ -16,24 +19,85 @@ import { CreateHotelRoomDto } from './dto/create-hotel-room.dto.js';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { HotelExistsGurd } from '../../gurds/hotel-exists.gurd.js';
 import { multerMainImageOptions } from '../../utils/multer.options.js';
+import { JwtAuthGurd } from '../../gurds/jwt-auth.gurd.js';
+import { Role, RoleAcessGurd } from '../../gurds/role.gurd.js';
+import { UpdateHotelDto } from './dto/update-hotel.dto.js';
+import { UpdateHotelFeatureDto } from './dto/update-hotel-features.dto.js';
 
 @Controller('hotel')
+@UseGuards(JwtAuthGurd)
+@Role('admin')
+@UseGuards(RoleAcessGurd)
 export class HotelController {
   constructor(private readonly hotelService: HotelService) {}
   @Get()
   async findAll() {
     return this.hotelService.findAll();
   }
+
+  @Get('find/:id')
+  async findOne(@Param('id') id: string) {}
+
   @Post('create')
   async createHotel(@Body() createHotelDto: CreateHotelDto) {
     return this.hotelService.createHotel(createHotelDto);
   }
 
-  //for hotel features
+  @Patch('update/:id')
+  async updateHotel(
+    @Param('id') id: string,
+    @Body() updateHotelDto: UpdateHotelDto,
+  ) {
+    return this.hotelService.updateHotel(updateHotelDto, id);
+  }
+
+  @Delete('delete')
+  async removeAllHotells() {
+    return this.hotelService.removeAllHotells();
+  }
+  @Delete('delete/:id')
+  async removeHotel(id: string) {
+    return this.hotelService.removeHotel(id);
+  }
+
+  @Delete('image')
+  @UseGuards(HotelExistsGurd)
+  async deleteAllImages(@Param('id') id: string) {
+    
+  }
+
+  @Delete('image/main/:id')
+  async deleteMainImage() {}
+
+  //For hotel features
   @Get('feature')
   async getAllHotelFeatures() {
     return this.hotelService.getAllHotelFeatures();
   }
+
+  @Get('feature/find/:id')
+  async findOneFeature(@Param('id') id: string) {
+    return this.hotelService.findOneFeature(id);
+  }
+
+  @Patch('feature/update')
+  async updateFeature(
+    @Body() updateHotelFeatureDto: UpdateHotelFeatureDto,
+    @Param('id') id: string,
+  ) {
+    return this.hotelService.updateFeature(updateHotelFeatureDto, id);
+  }
+
+  @Delete('feature/delete')
+  async deleteAllHotellFeature() {
+    return this.hotelService.deleteAllHotellFeature();
+  }
+
+  @Delete('feature/delete/:id')
+  async deleteHotelFeature(@Param('id') id: string) {
+    return this.hotelService.deleteHotelFeature(id);
+  }
+
   @Post('feature/create')
   async createHotelFeatures(
     @Body() createHotelFeatures: CreateHotelFeaturesDto[],
@@ -56,7 +120,7 @@ export class HotelController {
   //for upload
   @Post('upload/:hotelId/image')
   @UseGuards(HotelExistsGurd)
-  @UseInterceptors(FileInterceptor('image', {}))
+  @UseInterceptors(FileInterceptor('image', multerMainImageOptions()))
   async uploadMain(
     @UploadedFile()
     file: Express.Multer.File,

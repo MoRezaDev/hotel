@@ -11,7 +11,7 @@ import { Request } from 'express';
 export class HotelExistsGurd implements CanActivate {
   constructor(private readonly databaseService: DatabaseService) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const req = context.switchToHttp().getRequest<Request>();
+    const req = context.switchToHttp().getRequest<Request & {hotelId: string}>();
     const hotelId = req.params.hotelId as string;
     const hotel = await this.databaseService.hotel.findUnique({
       where: { id: hotelId },
@@ -19,6 +19,7 @@ export class HotelExistsGurd implements CanActivate {
     if (!hotel) {
       throw new NotFoundException('hotel not found!');
     }
+    req.hotelId = hotel.id;
     return true;
   }
 }

@@ -10,6 +10,7 @@ import { PersonModule } from './modules/person/person.module.js';
 import { PassengerModule } from './modules/passenger/passenger.module.js';
 import { CommentModule } from './modules/comment/comment.module.js';
 import { OrderModule } from './modules/order/order.module.js';
+import { PublicModule } from './modules/public/public.module.js';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { OrderModule } from './modules/order/order.module.js';
     PassengerModule,
     CommentModule,
     OrderModule,
+    PublicModule,
   ],
   controllers: [AppController],
   providers: [AppService],

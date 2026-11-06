@@ -55,6 +55,7 @@ model Room {
     actualPrice Int
     discountedPrice Int?
     discountPercent Int?
+    isReserved Boolean @default(false)
 
     HotelId String
     hotel Hotel @relation(fields: [HotelId],references: [id],onDelete: Cascade)
